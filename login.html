@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login | iStudyBytes</title>
+
+    <meta name="description"
+          content="Login to your iStudyBytes account and access your courses, notes, tests and lectures.">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body class="auth-page">
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="auth-header">
+
+        <a href="index.html" class="auth-logo">
+
+            <img src="images/logo-icon.png"
+                 alt="iStudyBytes Logo">
+
+            <span>
+                <span class="brand-dark">iStudy</span><span class="brand-blue">Bytes</span>
+            </span>
+
+        </a>
+
+        <a href="index.html" class="back-home">
+            <i class="fa-solid fa-arrow-left"></i>
+            Back to Home
+        </a>
+
+    </header>
+
+
+    <!-- ================= LOGIN ================= -->
+
+    <main class="auth-main">
+
+        <div class="login-card">
+
+
+            <!-- Logo -->
+
+            <div class="auth-card-logo">
+
+                <img src="images/logo-icon.png"
+                     alt="iStudyBytes Logo">
+
+            </div>
+
+
+            <div class="auth-heading">
+
+                <h1>Welcome Back</h1>
+
+                <p>
+                    Login to continue learning with iStudyBytes.
+                </p>
+
+            </div>
+
+
+            <!-- Login Form -->
+
+            <form id="login-form">
+
+
+                <!-- Email -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-regular fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="form-group">
+
+                    <div class="password-label">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <a href="forgot-password.html">Forgot Password?</a>
+
+                    </div>
+
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="password-toggle"
+                            aria-label="Show password">
+
+                            <i class="fa-regular fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Remember Me -->
+
+                <div class="remember-row">
+
+                    <label class="remember-label">
+
+                        <input
+                            type="checkbox"
+                            id="remember">
+
+                        <span>Remember me</span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- Login Button -->
+
+                <button
+                    type="submit"
+                    class="auth-submit">
+
+                    Login
+
+                </button>
+
+                <div class="google-login-section">
+                    <div class="login-divider">
+                        <span>OR</span>
+                    </div>
+
+                    <button type="button" id="google-login" class="google-login-btn">
+                        Continue with Google
+                    </button>
+                </div>                
+            </form>
+
+
+            <!-- Register -->
+
+            <div class="auth-divider">
+
+                <span>OR</span>
+
+            </div>
+
+
+            <p class="register-text">
+
+                Don't have an account?
+
+                <a href="register.html">
+                    Create an account
+                </a>
+
+            </p>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="auth-footer">
+
+        <p>
+            © 2026 iStudyBytes. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        /* Show / Hide Password */
+
+        const passwordToggle =
+            document.getElementById("password-toggle");
+
+        const passwordInput =
+            document.getElementById("password");
+
+
+        passwordToggle.addEventListener("click", function () {
+
+            const isPassword =
+                passwordInput.type === "password";
+
+
+            passwordInput.type =
+                isPassword ? "text" : "password";
+
+
+            passwordToggle.innerHTML =
+                isPassword
+                ? '<i class="fa-regular fa-eye-slash"></i>'
+                : '<i class="fa-regular fa-eye"></i>';
+
+        });
+
+
+        /* Temporary form behaviour */
+
+        document
+            .getElementById("login-form")
+            .addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                alert(
+                    "Login system will be connected after authentication is set up."
+                );
+
+            });
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+
+    <script>
+    document.getElementById("google-login").addEventListener("click", async function () {
+
+        const { error } = await supabaseClient.auth.signInWithOAuth({
+            provider: "google",
+            options: {
+                redirectTo: window.location.origin + "/dashboard.html"
+            }
+        });
+
+        if (error) {
+            alert("Google login failed: " + error.message);
+        }
+
+    });
+    </script>
+</body>
+
+</html>

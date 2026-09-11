@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Cart | iStudyBytes</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header class="dashboard-header">
+
+    <a href="index.html"
+       class="dashboard-logo">
+
+        <img src="images/logo-icon.png"
+             alt="iStudyBytes Logo">
+
+        <span>
+            <span class="brand-dark">iStudy</span><span class="brand-blue">Bytes</span>
+        </span>
+
+    </a>
+
+
+    <nav class="dashboard-nav">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="store.html">
+            Store
+        </a>
+
+        <a href="cart.html">
+            <i class="fa-solid fa-cart-shopping"></i>
+            Cart
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     CART
+====================================================== -->
+
+<main class="store-main">
+
+
+    <section class="store-hero">
+
+        <span class="store-label">
+            YOUR CART
+        </span>
+
+        <h1>
+            Review Your Cart
+        </h1>
+
+        <p>
+            Review your selected course before continuing to checkout.
+        </p>
+
+    </section>
+
+
+
+    <section class="store-section">
+
+
+        <div id="cart-content">
+
+            <!-- Cart item will be loaded here -->
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     SUPABASE
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase-config.js"></script>
+
+
+<script>
+
+(async function () {
+
+
+    /* =================================================
+       CHECK LOGIN
+    ================================================== */
+
+    const {
+        data: {
+            session
+        },
+        error: sessionError
+    } =
+        await supabaseClient.auth.getSession();
+
+
+    if (
+        sessionError ||
+        !session
+    ) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    /* =================================================
+       CART ELEMENT
+    ================================================== */
+
+    const cartContent =
+        document.getElementById("cart-content");
+
+
+    /* =================================================
+       GET CART COURSE
+    ================================================== */
+
+    const cartCourse =
+        localStorage.getItem("cartCourse");
+
+
+    if (!cartCourse) {
+
+        cartContent.innerHTML = `
+
+            <div class="product-card">
+
+                <div class="product-icon">
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                </div>
+
+                <h3>
+                    Your cart is empty
+                </h3>
+
+                <p>
+                    You have not added any course to your cart yet.
+                </p>
+
+                <div class="product-bottom">
+
+                    <a href="store.html"
+                       class="product-button">
+
+                        Browse Courses
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* =================================================
+       LOAD COURSE
+    ================================================== */
+
+    const {
+        data: course,
+        error: courseError
+    } =
+        await supabaseClient
+
+            .from("courses")
+
+            .select(`
+                id,
+                name,
+                slug,
+                description,
+                price
+            `)
+
+            .eq(
+                "slug",
+                cartCourse
+            )
+
+            .maybeSingle();
+
+
+    if (courseError) {
+
+        console.error(
+            "Failed to load cart course:",
+            courseError
+        );
+
+        cartContent.innerHTML = `
+
+            <div class="product-card">
+
+                <h3>
+                    Unable to load cart
+                </h3>
+
+                <p>
+                    Please refresh and try again.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    if (!course) {
+
+        localStorage.removeItem(
+            "cartCourse"
+        );
+
+        cartContent.innerHTML = `
+
+            <div class="product-card">
+
+                <h3>
+                    Course not found
+                </h3>
+
+                <p>
+                    The selected course could not be found.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* =================================================
+       DISPLAY CART
+    ================================================== */
+
+    const formattedPrice =
+        "₹" +
+        Number(course.price)
+            .toLocaleString("en-IN");
+
+
+    cartContent.innerHTML = `
+
+        <div class="product-card"
+             style="max-width: 800px; margin: 0 auto;">
+
+            <div class="product-icon">
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+            </div>
+
+
+            <div class="product-category">
+                COMPLETE COURSE
+            </div>
+
+
+            <h2>
+                ${course.name}
+            </h2>
+
+
+            <p>
+                ${course.description || ""}
+            </p>
+
+
+            <div class="product-bottom">
+
+                <span class="product-price">
+                    ${formattedPrice}
+                </span>
+
+                <button
+                    class="product-button"
+                    id="checkoutBtn"
+                    type="button">
+
+                    Proceed to Checkout
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </div>
+
+
+            <button
+                id="removeCartBtn"
+                type="button"
+                style="
+                    margin-top: 20px;
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    text-decoration: underline;
+                ">
+
+                Remove from Cart
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    /* =================================================
+       PROCEED TO CHECKOUT
+    ================================================== */
+
+    const checkoutBtn =
+        document.getElementById(
+            "checkoutBtn"
+        );
+
+
+    if (checkoutBtn) {
+
+        checkoutBtn.addEventListener(
+            "click",
+            function () {
+
+                window.location.href =
+                    "checkout.html?course=" +
+                    encodeURIComponent(
+                        course.slug
+                    );
+
+            }
+        );
+
+    }
+
+
+    /* =================================================
+       REMOVE FROM CART
+    ================================================== */
+
+    const removeCartBtn =
+        document.getElementById(
+            "removeCartBtn"
+        );
+
+
+    if (removeCartBtn) {
+
+        removeCartBtn.addEventListener(
+            "click",
+            function () {
+
+                localStorage.removeItem(
+                    "cartCourse"
+                );
+
+                window.location.reload();
+
+            }
+        );
+
+    }
+
+
+})();
+
+</script>
+
+
+</body>
+
+</html>

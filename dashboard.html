@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | iStudyBytes</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet"
+          href="css/style.css">
+
+</head>
+
+
+<body class="dashboard-page">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="dashboard-header">
+
+        <a href="index.html"
+           class="dashboard-logo">
+
+            <img src="images/logo-icon.png"
+                 alt="iStudyBytes Logo">
+
+            <span>
+                <span class="brand-dark">iStudy</span><span class="brand-blue">Bytes</span>
+            </span>
+
+        </a>
+
+
+        <nav class="dashboard-nav">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="#">
+                My Courses
+            </a>
+
+            <a href="#">
+                Notes
+            </a>
+
+            <a href="#">
+                Tests
+            </a>
+
+        </nav>
+
+
+        <div class="dashboard-user">
+
+            <button class="user-button"
+                    id="userButton">
+
+                <i class="fa-solid fa-user"></i>
+
+                <span>Student</span>
+
+                <i class="fa-solid fa-chevron-down"></i>
+
+            </button>
+
+
+            <div class="user-menu"
+                 id="userMenu">
+
+                <a href="#">
+                    <i class="fa-regular fa-user"></i>
+                    Profile
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-gear"></i>
+                    Settings
+                </a>
+
+                <a href="#" id="logout-btn">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN DASHBOARD
+    ====================================================== -->
+
+    <main class="dashboard-main">
+
+
+        <!-- ================= WELCOME ================= -->
+
+        <section class="dashboard-welcome">
+
+            <div>
+
+                <p class="dashboard-label">
+                    STUDENT DASHBOARD
+                </p>
+
+                <h1>
+                    Welcome back, <span id="welcome-user">Student</span>
+                </h1>
+
+                <p>
+                    Continue your preparation and keep improving every day.
+                </p>
+
+            </div>
+
+
+            <a href="#courses"
+               class="dashboard-primary-btn">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                Browse Courses
+
+            </a>
+
+        </section>
+
+
+
+        <!-- ================= STATS ================= -->
+
+        <section class="dashboard-stats">
+
+
+            <div class="dashboard-stat">
+
+                <div class="dashboard-stat-icon">
+                    <i class="fa-solid fa-book"></i>
+                </div>
+
+                <div>
+
+                    <h3>2</h3>
+
+                    <p>My Courses</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-stat">
+
+                <div class="dashboard-stat-icon">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+
+                <div>
+
+                    <h3>24</h3>
+
+                    <p>Notes</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-stat">
+
+                <div class="dashboard-stat-icon">
+                    <i class="fa-solid fa-clipboard-check"></i>
+                </div>
+
+                <div>
+
+                    <h3>10</h3>
+
+                    <p>Tests</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-stat">
+
+                <div class="dashboard-stat-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+                <div>
+
+                    <h3>65%</h3>
+
+                    <p>Progress</p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             CONTINUE LEARNING
+        ====================================================== -->
+
+        <section class="dashboard-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Continue Learning
+                    </h2>
+
+                    <p>
+                        Pick up where you left off.
+                    </p>
+
+                </div>
+
+                <a href="#">
+                    View All
+                </a>
+
+            </div>
+
+
+
+            <div class="continue-card">
+
+
+                <div class="continue-icon">
+
+                    <i class="fa-solid fa-flask"></i>
+
+                </div>
+
+
+                <div class="continue-content">
+
+                    <span class="course-class">
+                        CLASS 9 • SCIENCE
+                    </span>
+
+                    <h3>
+                        Matter in Our Surroundings
+                    </h3>
+
+                    <p>
+                        Continue your chapter preparation.
+                    </p>
+
+
+                    <div class="progress-row">
+
+                        <div class="progress-bar">
+
+                            <div class="progress-fill"></div>
+
+                        </div>
+
+                        <span>
+                            65%
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <a href="#"
+                   class="continue-btn">
+
+                    Continue
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             MY COURSES
+        ====================================================== -->
+<!-- =====================================================
+     MY COURSES
+====================================================== -->
+
+<section class="dashboard-section"
+         id="courses">
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>
+                My Courses
+            </h2>
+
+            <p>
+                Your purchased courses.
+            </p>
+
+        </div>
+
+        <a href="#">
+            View All
+        </a>
+
+    </div>
+
+
+    <!-- Courses will be loaded from Supabase -->
+
+    <div class="course-grid"
+         id="enrolled-courses">
+
+        <p id="courses-loading">
+            Loading your courses...
+        </p>
+
+    </div>
+
+
+</section>
+
+
+        <!-- =====================================================
+             QUICK ACCESS
+        ====================================================== -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Quick Access
+                    </h2>
+
+                    <p>
+                        Get to your study resources quickly.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="quick-grid">
+
+
+                <a href="#"
+                   class="quick-card">
+
+                    <div class="quick-icon">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Notes
+                        </h3>
+
+                        <p>
+                            Study chapter-wise notes.
+                        </p>
+
+                    </div>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+
+
+                <a href="#"
+                   class="quick-card">
+
+                    <div class="quick-icon">
+                        <i class="fa-solid fa-file-powerpoint"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            PPT Presentations
+                        </h3>
+
+                        <p>
+                            Access classroom-ready PPTs.
+                        </p>
+
+                    </div>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+
+
+                <a href="#"
+                   class="quick-card">
+
+                    <div class="quick-icon">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Chapter Tests
+                        </h3>
+
+                        <p>
+                            Practice and check your preparation.
+                        </p>
+
+                    </div>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+
+
+                <a href="#"
+                   class="quick-card">
+
+                    <div class="quick-icon">
+                        <i class="fa-solid fa-circle-play"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            One Shot Videos
+                        </h3>
+
+                        <p>
+                            Revise complete chapters quickly.
+                        </p>
+
+                    </div>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+    /* =====================================================
+       USER MENU
+    ====================================================== */
+
+    const userButton =
+        document.getElementById("userButton");
+
+    const userMenu =
+        document.getElementById("userMenu");
+
+
+    if (userButton && userMenu) {
+
+        userButton.addEventListener("click", function () {
+
+            userMenu.classList.toggle("show");
+
+        });
+
+
+        document.addEventListener("click", function (event) {
+
+            if (
+                !userButton.contains(event.target) &&
+                !userMenu.contains(event.target)
+            ) {
+
+                userMenu.classList.remove("show");
+
+            }
+
+        });
+
+    }
+
+</script>
+
+
+<!-- =====================================================
+     SUPABASE
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase-config.js"></script>
+
+
+<script>
+
+(async function () {
+
+    /* =====================================================
+       CHECK LOGIN SESSION
+    ====================================================== */
+
+    const {
+        data: { session },
+        error: sessionError
+    } = await supabaseClient.auth.getSession();
+
+
+    if (sessionError) {
+
+        console.error(
+            "Failed to get session:",
+            sessionError
+        );
+
+        window.location.href = "login.html";
+
+        return;
+    }
+
+
+    if (!session) {
+
+        window.location.href = "login.html";
+
+        return;
+    }
+
+
+    /* =====================================================
+       CURRENT USER
+    ====================================================== */
+
+    const user = session.user;
+
+    console.log(
+        "LOGGED IN USER:",
+        user.id,
+        user.email
+    );
+
+
+    /* =====================================================
+       USER NAME
+    ====================================================== */
+
+    const name =
+        user.user_metadata?.full_name ||
+        user.user_metadata?.name ||
+        user.email?.split("@")[0] ||
+        "Student";
+
+
+    /* =====================================================
+       USER EMAIL
+    ====================================================== */
+
+    const email =
+        user.email || "";
+
+
+    /* =====================================================
+       DISPLAY USER NAME
+    ====================================================== */
+
+    const welcome =
+        document.getElementById("welcome-user");
+
+
+    if (welcome) {
+
+        welcome.textContent = name;
+
+    }
+
+
+    /* =====================================================
+       DISPLAY USER EMAIL
+    ====================================================== */
+
+    const userEmail =
+        document.getElementById("user-email");
+
+
+    if (userEmail) {
+
+        userEmail.textContent = email;
+
+    }
+
+
+    /* =====================================================
+       DISPLAY USER BUTTON NAME
+    ====================================================== */
+
+    if (userButton) {
+
+        const buttonText =
+            userButton.querySelector("span");
+
+        if (buttonText) {
+
+            buttonText.textContent = name;
+
+        }
+
+    }
+
+
+    /* =====================================================
+       LOAD USER'S ENROLLED COURSES
+    ====================================================== */
+
+    const {
+        data: enrollments,
+        error: enrollmentError
+    } = await supabaseClient
+
+        .from("enrollments")
+
+        .select(`
+            id,
+            status,
+            enrolled_at,
+            courses (
+                id,
+                name,
+                slug,
+                description,
+                price
+            )
+        `)
+
+        .eq("user_id", user.id)
+
+        .eq("status", "active");
+
+
+    /* =====================================================
+       CHECK ENROLLMENT ERROR
+    ====================================================== */
+
+    if (enrollmentError) {
+
+        console.error(
+            "Failed to load enrolled courses:",
+            enrollmentError
+        );
+
+        const coursesContainer =
+            document.getElementById("enrolled-courses");
+
+        if (coursesContainer) {
+
+            coursesContainer.innerHTML = `
+
+                <div class="course-empty">
+
+                    <h3>
+                        Unable to load courses
+                    </h3>
+
+                    <p>
+                        Please refresh the page and try again.
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+        return;
+    }
+
+
+    /* =====================================================
+       SHOW ENROLLMENTS IN CONSOLE
+    ====================================================== */
+
+    console.log(
+        "My enrolled courses:",
+        enrollments
+    );
+
+
+    /* =====================================================
+       COURSES CONTAINER
+    ====================================================== */
+
+    const coursesContainer =
+        document.getElementById("enrolled-courses");
+
+    const coursesLoading =
+        document.getElementById("courses-loading");
+
+
+    if (!coursesContainer) {
+
+        console.error(
+            "enrolled-courses container not found."
+        );
+
+        return;
+    }
+
+
+    /* =====================================================
+       REMOVE LOADING MESSAGE
+    ====================================================== */
+
+    if (coursesLoading) {
+
+        coursesLoading.remove();
+
+    }
+
+
+    /* =====================================================
+       NO COURSES
+    ====================================================== */
+
+    if (!enrollments || enrollments.length === 0) {
+
+        coursesContainer.innerHTML = `
+
+            <div class="course-empty">
+
+                <h3>
+                    No courses yet
+                </h3>
+
+                <p>
+                    You have not enrolled in any course yet.
+                </p>
+
+                <a href="store.html"
+                   class="course-btn">
+
+                    Browse Courses
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    /* =====================================================
+       DISPLAY ENROLLED COURSES
+    ====================================================== */
+
+    coursesContainer.innerHTML = "";
+
+
+    enrollments.forEach(function (enrollment) {
+
+        const course =
+            enrollment.courses;
+
+
+        if (!course) {
+
+            return;
+
+        }
+
+
+        const slug =
+            course.slug || "";
+
+
+        /* =================================================
+           COURSE DESIGN
+        ================================================== */
+
+        let courseClass = "science";
+
+        let icon = "fa-flask";
+
+        let badge =
+            course.name
+                ? course.name.toUpperCase()
+                : "COURSE";
+
+
+        if (slug === "class-9") {
+
+            courseClass = "science";
+
+            icon = "fa-flask";
+
+            badge = "CLASS 9";
+
+        }
+
+
+        if (slug === "class-10") {
+
+            courseClass = "maths";
+
+            icon = "fa-calculator";
+
+            badge = "CLASS 10";
+
+        }
+
+
+        /* =================================================
+           CREATE COURSE CARD
+        ================================================== */
+
+        const courseCard =
+            document.createElement("div");
+
+
+        courseCard.className =
+            "course-card";
+
+
+        courseCard.innerHTML = `
+
+            <div class="course-card-top">
+
+                <div class="course-icon ${courseClass}">
+
+                    <i class="fa-solid ${icon}"></i>
+
+                </div>
+
+
+                <span class="course-badge">
+
+                    ${badge}
+
+                </span>
+
+            </div>
+
+
+            <h3>
+
+                ${course.name}
+
+            </h3>
+
+
+            <p>
+
+                ${
+                    course.description ||
+                    "Course resources and preparation material."
+                }
+
+            </p>
+
+
+            <div class="course-progress">
+
+                <div>
+
+                    <span>
+                        Progress
+                    </span>
+
+                    <strong>
+                        0%
+                    </strong>
+
+                </div>
+
+
+                <div class="small-progress">
+
+                    <div style="width: 0%;"></div>
+
+                </div>
+
+            </div>
+
+
+            <a href="${slug === "class-9" ? "course-class9.html" : "course-class10.html"}"
+               class="course-btn">
+
+                View Course
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        `;
+
+
+        coursesContainer.appendChild(
+            courseCard
+        );
+
+    });
+
+
+    /* =====================================================
+       LOGOUT
+    ====================================================== */
+
+    const logoutBtn =
+        document.getElementById("logout-btn");
+
+
+    if (logoutBtn) {
+
+        logoutBtn.addEventListener(
+            "click",
+            async function (event) {
+
+                event.preventDefault();
+
+
+                const {
+                    error
+                } =
+                    await supabaseClient.auth.signOut();
+
+
+                if (error) {
+
+                    alert(
+                        "Logout failed: " +
+                        error.message
+                    );
+
+                    return;
+                }
+
+
+                window.location.href =
+                    "login.html";
+
+            }
+        );
+
+    }
+
+
+})();
+
+</script>
+
+
+</body>
+
+</html>

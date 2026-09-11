@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Study Notes - Matter in Our Surroundings | iStudyBytes
+    </title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Your main stylesheet -->
+    <link rel="stylesheet"
+          href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="dashboard.html"
+           class="logo">
+
+            iStudy<span>Bytes</span>
+
+        </a>
+
+
+        <nav>
+
+            <a href="dashboard.html">
+                Home
+            </a>
+
+            <a href="dashboard.html#courses">
+                My Courses
+            </a>
+
+            <a href="notes-class9-matter.html"
+               class="active">
+                Notes
+            </a>
+
+            <a href="dashboard.html">
+                Tests
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+====================================================== -->
+
+<main class="dashboard-container">
+
+
+    <!-- Breadcrumb -->
+
+    <div style="margin-bottom: 20px;">
+
+        <a href="course-class9.html">
+            Class 9 Complete Course
+        </a>
+
+        <span>
+            ›
+        </span>
+
+        <a href="chapter-class9-matter.html">
+            Matter in Our Surroundings
+        </a>
+
+        <span>
+            › Notes
+        </span>
+
+    </div>
+
+
+
+    <!-- Page Heading -->
+
+    <div class="section-heading">
+
+        <div>
+
+            <div class="course-small-label">
+                CLASS 9 • SCIENCE • CHAPTER 1
+            </div>
+
+            <h1>
+                Study Notes
+            </h1>
+
+            <p>
+                Matter in Our Surroundings
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         NOTES
+    ================================================== -->
+
+    <section class="dashboard-section">
+
+
+        <div class="quick-card">
+
+            <div class="quick-icon">
+
+                <i class="fa-solid fa-book-open"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Matter in Our Surroundings
+                </h3>
+
+                <p>
+                    Complete chapter notes will appear here.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             NOTES CONTENT
+        ================================================== -->
+
+        <div class="quick-card"
+             style="margin-top: 20px; display: block;">
+
+
+            <h2>
+                Chapter 1 — Matter in Our Surroundings
+            </h2>
+
+
+            <p>
+                Notes content will be added here.
+            </p>
+
+
+            <p>
+                You can later add the complete NCERT-based
+                notes, definitions, concepts, activities,
+                examples and important points in this section.
+            </p>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         BACK BUTTON
+    ================================================== -->
+
+    <a href="chapter-class9-matter.html"
+       class="course-btn"
+       style="display: inline-flex; margin-top: 20px;">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Back to Chapter
+
+    </a>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     SUPABASE
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase-config.js"></script>
+
+
+<script>
+
+(async function () {
+
+
+    /* =================================================
+       CHECK LOGIN
+    ================================================== */
+
+    const {
+        data: {
+            session
+        },
+        error: sessionError
+    } =
+        await supabaseClient.auth.getSession();
+
+
+    if (
+        sessionError ||
+        !session
+    ) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    const user =
+        session.user;
+
+
+    /* =================================================
+       CHECK COURSE ACCESS
+    ================================================== */
+
+    const {
+        data: enrollment,
+        error: enrollmentError
+    } =
+        await supabaseClient
+
+            .from("enrollments")
+
+            .select(`
+                id,
+                status,
+                course_id
+            `)
+
+            .eq(
+                "user_id",
+                user.id
+            )
+
+            .eq(
+                "course_id",
+                1
+            )
+
+            .eq(
+                "status",
+                "active"
+            )
+
+            .maybeSingle();
+
+
+    if (
+        enrollmentError ||
+        !enrollment
+    ) {
+
+        alert(
+            "You do not have access to this course."
+        );
+
+        window.location.href =
+            "dashboard.html";
+
+        return;
+
+    }
+
+
+    console.log(
+        "NOTES ACCESS GRANTED:",
+        enrollment
+    );
+
+
+})();
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout | iStudyBytes</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="dashboard.html"
+           class="logo">
+
+            iStudy<span>Bytes</span>
+
+        </a>
+
+        <nav>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="store.html">
+                Store
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     CHECKOUT
+====================================================== -->
+
+<main class="dashboard-container">
+
+
+    <div class="section-heading">
+
+        <div>
+
+            <div class="course-small-label">
+                CHECKOUT
+            </div>
+
+            <h1>
+                Complete Your Purchase
+            </h1>
+
+            <p>
+                Review your course before continuing.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         CHECKOUT CARD
+    ================================================== -->
+
+    <section class="dashboard-section">
+
+
+        <div class="quick-card"
+             style="display: block;">
+
+
+            <h2 id="course-name">
+                Loading course...
+            </h2>
+
+
+            <p id="course-description">
+                Please wait while we load your course details.
+            </p>
+
+
+            <div style="margin-top: 25px;">
+
+                <span>
+                    Course Price
+                </span>
+
+
+                <h2 id="course-price">
+                    Loading...
+                </h2>
+
+            </div>
+
+
+            <div style="margin-top: 30px;">
+
+                <button
+                    id="pay-button"
+                    class="course-btn"
+                    type="button">
+
+                    Continue to Payment
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </div>
+
+
+            <p id="checkout-message"
+               style="margin-top: 20px;">
+            </p>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     SUPABASE
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase-config.js"></script>
+
+
+<script>
+
+(async function () {
+
+
+    /* =================================================
+       CHECK LOGIN
+    ================================================== */
+
+    const {
+        data: {
+            session
+        },
+        error: sessionError
+    } =
+        await supabaseClient.auth.getSession();
+
+
+    if (
+        sessionError ||
+        !session
+    ) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    /* =================================================
+       GET COURSE SLUG FROM URL
+
+       Example:
+       checkout.html?course=class-9
+       checkout.html?course=class-10
+    ================================================== */
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const courseSlug =
+        params.get("course");
+
+
+    if (!courseSlug) {
+
+        document.getElementById(
+            "checkout-message"
+        ).textContent =
+            "No course was selected.";
+
+        document.getElementById(
+            "pay-button"
+        ).disabled = true;
+
+        return;
+
+    }
+
+
+    console.log(
+        "Checkout course:",
+        courseSlug
+    );
+
+
+    /* =================================================
+       LOAD COURSE FROM SUPABASE
+    ================================================== */
+
+    const {
+        data: course,
+        error: courseError
+    } =
+        await supabaseClient
+
+            .from("courses")
+
+            .select(`
+                id,
+                name,
+                slug,
+                description,
+                price
+            `)
+
+            .eq(
+                "slug",
+                courseSlug
+            )
+
+            .maybeSingle();
+
+
+    /* =================================================
+       COURSE ERROR
+    ================================================== */
+
+    if (courseError) {
+
+        console.error(
+            "Course loading failed:",
+            courseError
+        );
+
+        document.getElementById(
+            "checkout-message"
+        ).textContent =
+            "Unable to load course details.";
+
+        document.getElementById(
+            "pay-button"
+        ).disabled = true;
+
+        return;
+
+    }
+
+
+    /* =================================================
+       COURSE NOT FOUND
+    ================================================== */
+
+    if (!course) {
+
+        document.getElementById(
+            "course-name"
+        ).textContent =
+            "Course not found";
+
+        document.getElementById(
+            "course-description"
+        ).textContent =
+            "The selected course does not exist.";
+
+        document.getElementById(
+            "course-price"
+        ).textContent =
+            "";
+
+        document.getElementById(
+            "pay-button"
+        ).disabled = true;
+
+        return;
+
+    }
+
+
+    /* =================================================
+       DISPLAY COURSE
+    ================================================== */
+
+    document.getElementById(
+        "course-name"
+    ).textContent =
+        course.name;
+
+
+    document.getElementById(
+        "course-description"
+    ).textContent =
+        course.description || "";
+
+
+    document.getElementById(
+        "course-price"
+    ).textContent =
+        "₹" +
+        Number(course.price)
+            .toLocaleString("en-IN");
+
+
+    /* =================================================
+       LOAD RAZORPAY CHECKOUT
+    ================================================== */
+
+    const razorpayScript =
+        document.createElement("script");
+
+
+    razorpayScript.src =
+        "https://checkout.razorpay.com/v1/checkout.js";
+
+
+    razorpayScript.onload =
+        function () {
+
+            console.log(
+                "Razorpay Checkout loaded."
+            );
+
+        };
+
+
+    razorpayScript.onerror =
+        function () {
+
+            console.error(
+                "Failed to load Razorpay Checkout."
+            );
+
+            document.getElementById(
+                "checkout-message"
+            ).textContent =
+                "Unable to load payment system. Please try again.";
+
+        };
+
+
+    document.head.appendChild(
+        razorpayScript
+    );
+
+
+    /* =================================================
+       PAYMENT BUTTON
+    ================================================== */
+
+    const payButton =
+        document.getElementById(
+            "pay-button"
+        );
+
+
+    payButton.addEventListener(
+        "click",
+        async function () {
+
+
+            const message =
+                document.getElementById(
+                    "checkout-message"
+                );
+
+
+            /* ==========================================
+               DISABLE BUTTON
+            ========================================== */
+
+            payButton.disabled =
+                true;
+
+
+            payButton.innerHTML = `
+                Creating secure payment...
+            `;
+
+
+            message.textContent =
+                "";
+
+
+            try {
+
+
+                /* ======================================
+                   WAIT FOR RAZORPAY SCRIPT
+                ====================================== */
+
+                if (
+                    typeof Razorpay ===
+                    "undefined"
+                ) {
+
+                    await new Promise(
+                        function (
+                            resolve,
+                            reject
+                        ) {
+
+                            const start =
+                                Date.now();
+
+
+                            const timer =
+                                setInterval(
+                                    function () {
+
+
+                                        if (
+                                            typeof Razorpay !==
+                                            "undefined"
+                                        ) {
+
+                                            clearInterval(
+                                                timer
+                                            );
+
+                                            resolve();
+
+                                        }
+
+
+                                        if (
+                                            Date.now() -
+                                            start >
+                                            10000
+                                        ) {
+
+                                            clearInterval(
+                                                timer
+                                            );
+
+                                            reject(
+                                                new Error(
+                                                    "Razorpay Checkout failed to load."
+                                                )
+                                            );
+
+                                        }
+
+                                    },
+                                    100
+                                );
+
+                        }
+                    );
+
+                }
+
+
+                /* ======================================
+                   GET CURRENT SESSION
+                ====================================== */
+
+                const {
+                    data: {
+                        session: currentSession
+                    }
+                } =
+                    await supabaseClient
+                        .auth
+                        .getSession();
+
+
+                if (
+                    !currentSession
+                ) {
+
+                    throw new Error(
+                        "Your login session has expired. Please log in again."
+                    );
+
+                }
+
+
+                /* ======================================
+                   CREATE PAYMENT ORDER
+                ====================================== */
+
+                const {
+                    data: orderData,
+                    error: orderError
+                } =
+                    await supabaseClient
+                        .functions
+                        .invoke(
+                            "create-payment-order",
+                            {
+
+                                body: {
+
+                                    course:
+                                        course.slug
+
+                                }
+
+                            }
+                        );
+
+
+                if (
+                    orderError
+                ) {
+
+                    console.error(
+                        "Edge Function error:",
+                        orderError
+                    );
+
+                    throw new Error(
+                        "Unable to create payment order."
+                    );
+
+                }
+
+
+                /* ======================================
+                   VALIDATE ORDER RESPONSE
+                ====================================== */
+
+                if (
+                    !orderData ||
+                    !orderData.success ||
+                    !orderData.order_id ||
+                    !orderData.key_id
+                ) {
+
+                    console.error(
+                        "Invalid order response:",
+                        orderData
+                    );
+
+                    throw new Error(
+                        "Invalid payment order received."
+                    );
+
+                }
+
+
+                console.log(
+                    "Razorpay order created:",
+                    orderData
+                );
+
+
+                /* ======================================
+                   RAZORPAY CHECKOUT OPTIONS
+                ====================================== */
+
+                const options = {
+
+                    key:
+                        orderData.key_id,
+
+                    amount:
+                        orderData.amount,
+
+                    currency:
+                        orderData.currency,
+
+                    name:
+                        "iStudyBytes",
+
+                    description:
+                        orderData.course_name,
+
+                    order_id:
+                        orderData.order_id,
+
+
+                    prefill: {
+
+                        name:
+                            currentSession.user
+                                .user_metadata
+                                ?.full_name ||
+
+                            currentSession.user
+                                .user_metadata
+                                ?.name ||
+
+                            "",
+
+                        email:
+                            currentSession.user
+                                .email ||
+
+                            ""
+
+                    },
+
+
+                    theme: {
+
+                        color:
+                            "#2563eb"
+
+                    },
+
+
+                    /* ==================================
+                       PAYMENT SUCCESS
+                    ================================== */
+
+                    handler:
+                        async function (
+                            response
+                        ) {
+
+
+                            console.log(
+                                "Razorpay payment response:",
+                                response
+                            );
+
+
+                            try {
+
+
+                                /* ==========================
+                                   SHOW VERIFICATION STATUS
+                                ========================== */
+
+                                message.textContent =
+                                    "Verifying payment...";
+
+
+                                payButton.disabled =
+                                    true;
+
+
+                                payButton.innerHTML = `
+                                    Verifying Payment...
+                                `;
+
+
+                                /* ==========================
+                                   VERIFY PAYMENT SERVER-SIDE
+                                ========================== */
+
+                                const {
+                                    data:
+                                        verificationData,
+
+                                    error:
+                                        verificationError
+
+                                } =
+                                    await supabaseClient
+                                        .functions
+                                        .invoke(
+                                            "verify-payment",
+                                            {
+
+                                                body: {
+
+                                                    razorpay_payment_id:
+                                                        response.razorpay_payment_id,
+
+                                                    razorpay_order_id:
+                                                        response.razorpay_order_id,
+
+                                                    razorpay_signature:
+                                                        response.razorpay_signature,
+
+                                                    course:
+                                                        course.slug
+
+                                                }
+
+                                            }
+                                        );
+
+
+                                /* ==========================
+                                   EDGE FUNCTION ERROR
+                                ========================== */
+
+                                if (
+                                    verificationError
+                                ) {
+
+                                    console.error(
+                                        "Payment verification error:",
+                                        verificationError
+                                    );
+
+                                    throw new Error(
+                                        "Payment verification failed."
+                                    );
+
+                                }
+
+
+                                /* ==========================
+                                   INVALID RESPONSE
+                                ========================== */
+
+                                if (
+                                    !verificationData ||
+                                    !verificationData.success
+                                ) {
+
+                                    console.error(
+                                        "Invalid verification response:",
+                                        verificationData
+                                    );
+
+                                    throw new Error(
+                                        verificationData?.error ||
+                                        "Payment verification failed."
+                                    );
+
+                                }
+
+
+                                /* ==========================
+                                   VERIFIED SUCCESS
+                                ========================== */
+
+                                console.log(
+                                    "Payment verified:",
+                                    verificationData
+                                );
+
+
+                                message.innerHTML = `
+                                    Payment verified successfully.
+                                    <br>
+                                    Your course access has been activated.
+                                `;
+
+
+                                payButton.disabled =
+                                    true;
+
+
+                                payButton.innerHTML = `
+                                    Payment Completed
+                                `;
+
+
+                            } catch (
+                                verificationError
+                            ) {
+
+
+                                console.error(
+                                    "Payment verification failed:",
+                                    verificationError
+                                );
+
+
+                                message.textContent =
+                                    verificationError.message ||
+                                    "Payment verification failed. Please contact support.";
+
+
+                                payButton.disabled =
+                                    false;
+
+
+                                payButton.innerHTML = `
+                                    Continue to Payment
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                `;
+
+                            }
+
+                        },
+
+
+                    /* ==================================
+                       CHECKOUT CLOSED
+                    ================================== */
+
+                    modal: {
+
+                        ondismiss:
+                            function () {
+
+
+                                console.log(
+                                    "Razorpay checkout closed."
+                                );
+
+
+                                payButton.disabled =
+                                    false;
+
+
+                                payButton.innerHTML = `
+                                    Continue to Payment
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                `;
+
+                            }
+
+                    }
+
+                };
+
+
+                /* ======================================
+                   OPEN RAZORPAY
+                ====================================== */
+
+                const razorpay =
+                    new Razorpay(
+                        options
+                    );
+
+
+                /* ======================================
+                   PAYMENT FAILED
+                ====================================== */
+
+                razorpay.on(
+                    "payment.failed",
+                    function (
+                        response
+                    ) {
+
+
+                        console.error(
+                            "Payment failed:",
+                            response
+                        );
+
+
+                        message.textContent =
+                            "Payment failed. Please try again.";
+
+
+                        payButton.disabled =
+                            false;
+
+
+                        payButton.innerHTML = `
+                            Continue to Payment
+                            <i class="fa-solid fa-arrow-right"></i>
+                        `;
+
+                    }
+                );
+
+
+                /* ======================================
+                   OPEN CHECKOUT
+                ====================================== */
+
+                razorpay.open();
+
+
+            } catch (
+                error
+            ) {
+
+
+                console.error(
+                    "Payment initialization failed:",
+                    error
+                );
+
+
+                message.textContent =
+                    error.message ||
+                    "Unable to start payment.";
+
+
+                payButton.disabled =
+                    false;
+
+
+                payButton.innerHTML = `
+                    Continue to Payment
+                    <i class="fa-solid fa-arrow-right"></i>
+                `;
+
+            }
+
+        }
+    );
+
+
+})();
+
+</script>
+
+</body>
+
+</html>
