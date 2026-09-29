@@ -8,7 +8,7 @@ const cls=p.get("class")||"";
 const subject=p.get("subject")||"";
 const chapter=p.get("chapter")||"";
 
-let questions=[],i=0,score=0,answered=false;
+let questions=[],i=0,score=0,answered=false,answerLog=[],startedAt=new Date().toISOString();
 
 const chapterLists={
 "9|Science":[
@@ -208,6 +208,13 @@ function answer(b,q){
   answered=true;
   const ok=b.dataset.value===q.correct_answer;
   if(ok)score++;
+  answerLog.push({
+    question_id:q.id||null,
+    question_number:i+1,
+    selected_answer:b.dataset.value,
+    correct_answer:q.correct_answer||null,
+    is_correct:ok
+  });
   b.classList.add(ok?"correct":"wrong");
   body.querySelectorAll(".quiz-option").forEach(x=>{if(x.dataset.value===q.correct_answer)x.classList.add("correct")});
   const f=body.querySelector("#quiz-feedback");
@@ -216,9 +223,41 @@ function answer(b,q){
   body.querySelector("#quiz-next").disabled=false;
 }
 
-function nextQuestion(){
+async function saveAttempt(){
+  try{
+    if(typeof supabaseClient==="undefined")return;
+    const sessionResult=await supabaseClient.auth.getSession();
+    const session=sessionResult?.data?.session;
+    if(!session?.user?.id)return;
+
+    const courseResult=await supabaseClient.from("courses").select("id").eq("slug","class-"+cls).maybeSingle();
+    const courseId=courseResult?.data?.id||null;
+    const attemptResult=await supabaseClient.from("quiz_attempts").insert({
+      user_id:session.user.id,
+      course_id:courseId,
+      class_level:cls,
+      subject,
+      chapter,
+      question_count:questions.length,
+      score,
+      started_at:startedAt,
+      completed_at:new Date().toISOString()
+    }).select("id").single();
+    if(attemptResult.error||!attemptResult.data?.id)return;
+    if(answerLog.length){
+      await supabaseClient.from("quiz_attempt_answers").insert(
+        answerLog.map(item=>Object.assign({attempt_id:attemptResult.data.id},item))
+      );
+    }
+  }catch(error){
+    console.warn("Unable to save quiz attempt.",error);
+  }
+}
+
+async function nextQuestion(){
   if(!answered)return;
   if(i<questions.length-1){i++;render();return;}
+  await saveAttempt();
   body.hidden=true;
   result.hidden=false;
   document.getElementById("final-score").textContent=score+"/"+questions.length;
