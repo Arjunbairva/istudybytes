@@ -1,0 +1,4 @@
+create table if not exists public.quiz_questions (id uuid primary key default gen_random_uuid(), class_level text not null, subject text not null, chapter text not null, question text not null, question_type text not null default 'single', option_a text not null, option_b text not null, option_c text, option_d text, correct_answer text not null, explanation text, difficulty text not null default 'Easy', published boolean not null default false, created_at timestamptz not null default now());
+create index if not exists quiz_questions_lookup_idx on public.quiz_questions(class_level,subject,chapter,published);
+alter table public.quiz_questions enable row level security;
+create policy "public can read published quiz questions" on public.quiz_questions for select to anon,authenticated using (published = true);

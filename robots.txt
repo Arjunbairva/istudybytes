@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard.html
+Disallow: /checkout.html
+Disallow: /invoice.html
+Disallow: /login.html
+Disallow: /register.html
+Disallow: /forgot-password.html
+Disallow: /reset-password.html
+Disallow: /course-class9.html
+
+Sitemap: https://istudybytes.com/sitemap.xml

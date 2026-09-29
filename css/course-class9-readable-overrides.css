@@ -1,0 +1,108 @@
+/* iStudyBytes Class 9 Course Page — Readability Overrides */
+
+.course-page .course-label,
+.course-page .course-section-label {
+  font-size: 16px;
+  letter-spacing: 1.5px;
+}
+
+.course-page .course-breadcrumb {
+  font-size: 18px;
+}
+
+.course-page .course-progress-top,
+.course-page .course-progress-card > p,
+.course-page .continue-progress-row,
+.course-page .subject-progress-header,
+.course-page .chapter-progress-top,
+.course-page .course-small-label,
+.course-page .course-view-all {
+  font-size: 17px;
+}
+
+.course-page .course-section-heading p {
+  font-size: 19px;
+  line-height: 1.7;
+}
+
+.course-page .continue-content p {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.course-page .subject-class {
+  font-size: 15px;
+}
+
+.course-page .subject-card p {
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.course-page .resource-content p {
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.course-page .chapter-info p {
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.course-page .chapter-action {
+  font-size: 17px;
+}
+
+.course-page .course-note {
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.dashboard-footer-brand p {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.dashboard-footer-owner {
+  font-size: 17px !important;
+}
+
+.dashboard-footer-links a {
+  font-size: 18px;
+}
+
+.dashboard-footer-bottom {
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+@media (max-width: 650px) {
+  .course-page .course-label,
+  .course-page .course-section-label {
+    font-size: 15px;
+  }
+
+  .course-page .course-section-heading p,
+  .course-page .subject-card p,
+  .course-page .resource-content p,
+  .course-page .chapter-info p,
+  .course-page .course-note {
+    font-size: 17px;
+  }
+
+  .course-page .course-progress-top,
+  .course-page .course-progress-card > p,
+  .course-page .continue-progress-row,
+  .course-page .subject-progress-header,
+  .course-page .chapter-progress-top {
+    font-size: 16px;
+  }
+
+  .dashboard-footer-links a {
+    font-size: 17px;
+  }
+
+  .dashboard-footer-bottom {
+    font-size: 16px;
+  }
+}

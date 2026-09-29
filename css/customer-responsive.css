@@ -1,0 +1,4 @@
+/* iStudyBytes — shared responsive helpers */
+.customer-footer-owner{display:block;margin-top:5px;line-height:1.5;font-weight:500;color:#8a96a8}
+@media(max-width:700px){.invoice-shell{width:100%}.invoice-actions{flex-wrap:wrap}.invoice-action{min-width:0}.items{table-layout:fixed}.items th:first-child,.items td:first-child{width:68%}.items th:last-child,.items td:last-child{width:32%;white-space:nowrap}.invoice-footer{padding-left:20px;padding-right:20px}}
+@media(max-width:520px){.invoice-actions{display:grid;grid-template-columns:1fr}.invoice-action{width:100%}}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Dashboard | iStudyBytes</title><link rel="icon" href="images/logo-icon.avif"><meta name="description" content="Your iStudyBytes student dashboard."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/dashboard-polish.css"><link rel="stylesheet" href="css/customer-responsive.css">  <link rel="stylesheet" href="css/ui-system.css">
+<link rel="stylesheet" href="css/site.css">
+<meta name="theme-color" content="#2563eb">
+</head><body class="dashboard-page"><!-- SHELL:HEADER:START -->
+<header class="site-header" id="site-header">
+  <script>try{for(var k in localStorage){if(/^sb-.+-auth-token$/.test(k)){document.documentElement.classList.add('has-session');break}}}catch(e){}</script>
+  <div class="site-header__inner">
+    <a href="index.html" class="site-logo" aria-label="iStudyBytes home">
+      <img src="images/logo-icon.avif" alt="" width="36" height="36">
+      <span class="site-logo__text"><b>iStudy</b><strong>Bytes</strong></span>
+    </a>
+    <button class="site-menu-toggle" type="button" id="site-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+      <svg class="icon-open" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <ul class="site-nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="store.html" aria-current="page">Store</a></li>
+        <li><a href="ncert-solutions.html">NCERT Solutions</a></li>
+        <li><a href="quiz.html">Quizzes</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="site-nav__actions">
+        <div class="site-nav__guest">
+          <a href="login.html" class="btn btn-ghost btn-sm" id="home-auth-link">Log in</a>
+          <a href="register.html" class="btn btn-primary btn-sm">Sign up</a>
+        </div>
+        <div class="site-user" id="site-user">
+          <button type="button" class="site-user__button" id="userButton" aria-haspopup="true" aria-expanded="false" aria-controls="userMenu">
+            <span class="site-user__avatar" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span>
+            <span class="site-user__name" id="site-user-name">Account</span>
+            <svg class="site-user__chev" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="site-user__menu" id="userMenu" role="menu">
+            <a href="dashboard.html" role="menuitem">Dashboard</a>
+            <a href="store.html" role="menuitem">Store</a>
+            <a href="#" id="logout-btn" role="menuitem">Log out</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- SHELL:HEADER:END --><main class="dashboard-main"><section class="dashboard-welcome"><div><p class="dashboard-label">STUDENT DASHBOARD</p><h1>Welcome back, <span id="welcome-user">Student</span></h1><p>Your courses, resources and learning access in one place.</p></div><a href="store.html" class="dashboard-primary-btn"><i class="fa-solid fa-store"></i> Browse Courses</a></section><section class="dashboard-stats"><div class="dashboard-stat"><div class="dashboard-stat-icon"><i class="fa-solid fa-book"></i></div><div><h3 id="stat-courses">—</h3><p>My Courses</p></div></div><div class="dashboard-stat"><div class="dashboard-stat-icon"><i class="fa-solid fa-file-lines"></i></div><div><h3 id="stat-resources">—</h3><p>Resources</p></div></div><div class="dashboard-stat"><div class="dashboard-stat-icon"><i class="fa-solid fa-clipboard-check"></i></div><div><h3 id="stat-tests">—</h3><p>Tests</p></div></div><div class="dashboard-stat"><div class="dashboard-stat-icon"><i class="fa-solid fa-shield-halved"></i></div><div><h3 id="stat-access">—</h3><p>Access</p></div></div></section><section class="dashboard-section" id="continue"><div class="section-heading"><div><h2>Continue Learning</h2><p>Open the course you currently have access to.</p></div></div><div id="continue-card"></div></section><section class="dashboard-section" id="courses"><div class="section-heading"><div><h2>My Courses</h2><p>Your active course access.</p></div><a href="store.html">Browse Store</a></div><div class="course-grid" id="enrolled-courses"><div class="course-empty">Loading your courses...</div></div></section><section class="dashboard-section" id="bundles"><div class="section-heading"><div><h2>My Resource Bundles</h2><p>Premium Notes, PPTs, Tests and One-Shot access purchased separately.</p></div><a href="store.html#bundles">Browse Bundles</a></div><div class="course-grid" id="resource-bundles"><div class="course-empty">Loading your resource bundles...</div></div></section><section class="dashboard-section" id="resources"><div class="section-heading"><div><h2>Quick Access</h2><p>Go directly to your course learning areas.</p></div></div><div class="quick-grid"><a href="class9-science.html" class="quick-card"><div class="quick-icon"><i class="fa-solid fa-flask"></i></div><div><h3>Class 9 Science</h3><p>Exploration Science resources</p></div><i class="fa-solid fa-arrow-right"></i></a><a href="class9-maths.html" class="quick-card"><div class="quick-icon"><i class="fa-solid fa-calculator"></i></div><div><h3>Class 9 Mathematics</h3><p>Ganita Manjari resources</p></div><i class="fa-solid fa-arrow-right"></i></a><a href="class10-science.html" class="quick-card"><div class="quick-icon"><i class="fa-solid fa-atom"></i></div><div><h3>Class 10 Science</h3><p>Science resources</p></div><i class="fa-solid fa-arrow-right"></i></a><a href="class10-maths.html" class="quick-card"><div class="quick-icon"><i class="fa-solid fa-square-root-variable"></i></div><div><h3>Class 10 Mathematics</h3><p>Mathematics resources</p></div><i class="fa-solid fa-arrow-right"></i></a></div></section></main><!-- SHELL:FOOTER:START -->
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <a href="index.html" class="site-logo" aria-label="iStudyBytes home">
+          <img src="images/logo-icon.avif" alt="" width="36" height="36" loading="lazy">
+          <span class="site-logo__text"><b>iStudy</b><strong>Bytes</strong></span>
+        </a>
+        <p>Structured CBSE learning resources for focused preparation. Learn smarter. Score better.</p>
+        <p class="site-footer__owner">By Arjun Bairva</p>
+      </div>
+      <nav class="site-footer__col" aria-label="Explore">
+        <h4>Explore</h4>
+        <a href="store.html">Store</a>
+        <a href="product-class9.html">Class 9 Course</a>
+        <a href="product-class10.html">Class 10 Course</a>
+        <a href="ncert-solutions.html">NCERT Solutions</a>
+        <a href="quiz.html">Chapter Quizzes</a>
+      </nav>
+      <nav class="site-footer__col" aria-label="Account">
+        <h4>Account</h4>
+        <a href="login.html" id="footer-auth-link" class="footer-guest-only">Log in</a>
+        <a href="register.html" id="footer-register-link" class="footer-guest-only">Create Account</a>
+        <a href="dashboard.html">Dashboard</a>
+      </nav>
+      <nav class="site-footer__col" aria-label="Company">
+        <h4>Company</h4>
+        <a href="about.html">About iStudyBytes</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+      <nav class="site-footer__col" aria-label="Legal">
+        <h4>Legal</h4>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="refund-policy.html">Refund &amp; Cancellation</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </nav>
+    </div>
+    <div class="site-footer__bottom">
+      <span>© 2026 iStudyBytes. All rights reserved.</span>
+      <span>Learn. Practice. Succeed.</span>
+    </div>
+  </div>
+</footer>
+<!-- SHELL:FOOTER:END --><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="js/supabase-config.js"></script><script>
+function courseUrl(slug){return slug==='class-9'?'course-class9.html':slug==='class-10'?'course-class10.html':'store.html'}function clearAndCreate(parent,tag,className,text){const el=document.createElement(tag);if(className)el.className=className;if(text!==undefined)el.textContent=text;parent.appendChild(el);return el}function addArrow(parent){const icon=document.createElement('i');icon.className='fa-solid fa-arrow-right';parent.append(document.createTextNode(' '),icon)}function renderEmpty(message){const courses=document.getElementById('enrolled-courses');courses.replaceChildren();const card=clearAndCreate(courses,'div','course-empty');clearAndCreate(card,'h3',null,'No active courses');clearAndCreate(card,'p',null,message);const link=clearAndCreate(card,'a','course-btn','Browse Courses');link.href='store.html';addArrow(link);const cont=document.getElementById('continue-card');cont.replaceChildren();const cc=clearAndCreate(cont,'div','course-empty');clearAndCreate(cc,'h3',null,'Nothing to continue yet');clearAndCreate(cc,'p',null,'Purchase a course to unlock your learning dashboard')}(async function(){const {data:{session},error:sessionError}=await supabaseClient.auth.getSession();if(sessionError||!session){window.location.href='login.html';return}const user=session.user;const name=user.user_metadata?.full_name||user.user_metadata?.name||user.email?.split('@')[0]||'Student';document.getElementById('welcome-user').textContent=name;const {data:enrollments,error}=await supabaseClient.from('enrollments').select('id,status,enrolled_at,courses(id,name,slug,description)').eq('user_id',user.id).eq('status','active');if(error){console.error(error);const ec=document.getElementById('enrolled-courses');ec.replaceChildren();clearAndCreate(ec,'div','dashboard-error','Unable to load your courses. Please refresh and try again.');return}const active=enrollments||[];
+const bundleContainer=document.getElementById('resource-bundles');
+const {data:resourceAccess,error:resourceAccessError}=await supabaseClient.from('resource_access').select('course_id,subject,resource_type,granted_at').eq('user_id',user.id);
+if(bundleContainer){
+  bundleContainer.replaceChildren();
+  if(resourceAccessError){clearAndCreate(bundleContainer,'div','dashboard-error','Unable to load your resource bundles. Please refresh and try again.')}
+  else if(!resourceAccess?.length){const empty=clearAndCreate(bundleContainer,'div','course-empty');clearAndCreate(empty,'h3',null,'No resource bundles yet');clearAndCreate(empty,'p',null,'Buy Premium Notes, PPTs, Tests or One-Shot Series from the Store.')}
+  else {
+    const courseIds=[...new Set(resourceAccess.map(x=>x.course_id))];
+    const {data:bundleCatalog}=await supabaseClient.from('resource_bundles').select('course_id,name,subject,resource_type').in('course_id',courseIds);
+    const {data:courseCatalog}=await supabaseClient.from('courses').select('id,slug').in('id',courseIds);
+    const key=function(x){return String(x.course_id)+'|'+x.subject+'|'+x.resource_type};
+    const catalog=new Map((bundleCatalog||[]).map(x=>[key(x),x]));
+    const coursesById=new Map((courseCatalog||[]).map(x=>[String(x.id),x.slug]));
+    const subjectUrl=function(slug,subject){
+      if(slug==='class-9'&&subject==='Science')return 'class9-science.html';
+      if(slug==='class-9'&&subject==='Mathematics')return 'class9-maths.html';
+      if(slug==='class-10'&&subject==='Science')return 'class10-science.html';
+      if(slug==='class-10'&&subject==='Mathematics')return 'class10-maths.html';
+      return 'store.html#bundles';
+    };
+    resourceAccess.forEach(function(access){
+      const bundle=catalog.get(key(access))||{name:(access.subject+' — '+access.resource_type)};
+      const card=clearAndCreate(bundleContainer,'article','course-card');
+      clearAndCreate(card,'span','course-badge','PREMIUM RESOURCE');
+      clearAndCreate(card,'h3',null,bundle.name||'Premium Resource Bundle');
+      clearAndCreate(card,'p',null,'Access your purchased premium '+access.resource_type+' resources.');
+      const link=clearAndCreate(card,'a','course-btn','Open Resources');link.href=subjectUrl(coursesById.get(String(access.course_id)),access.subject);addArrow(link);
+    });
+  }
+}
+document.getElementById('stat-courses').textContent=active.length;document.getElementById('stat-access').textContent=(active.length||resourceAccess?.length)?'Active':'—';const ids=active.map(x=>x.courses?.id).filter(Boolean);let resources=[];if(ids.length){const result=await supabaseClient.from('course_resources').select('id,resource_type,course_id').in('course_id',ids);if(!result.error)resources=result.data||[]}document.getElementById('stat-resources').textContent=resources.length+(resourceAccess?.length||0);document.getElementById('stat-tests').textContent=resources.filter(x=>x.resource_type==='test').length+(resourceAccess||[]).filter(x=>x.resource_type==='test').length;if(!active.length){document.getElementById('continue-card').replaceChildren();const cc=clearAndCreate(document.getElementById('continue-card'),'div','course-empty');if(resourceAccess?.length){clearAndCreate(cc,'h3',null,'Your premium resources are ready');clearAndCreate(cc,'p',null,'Open My Resource Bundles below to access your purchased resources.')}else{clearAndCreate(cc,'h3',null,'Nothing to continue yet');clearAndCreate(cc,'p',null,'Purchase a course or resource bundle to unlock your learning dashboard')}const link=clearAndCreate(cc,'a','course-btn','Browse Store');link.href='store.html';addArrow(link);const ec=document.getElementById('enrolled-courses');ec.replaceChildren();const empty=clearAndCreate(ec,'div','course-empty');clearAndCreate(empty,'h3',null,'No active courses');clearAndCreate(empty,'p',null,'You have not enrolled in a Complete Course yet.');}const container=document.getElementById('enrolled-courses');container.replaceChildren();active.forEach(enrollment=>{const c=enrollment.courses;if(!c)return;const card=clearAndCreate(container,'article','course-card');clearAndCreate(card,'span','course-badge',c.slug==='class-9'?'CLASS 9':c.slug==='class-10'?'CLASS 10':'ACTIVE COURSE');clearAndCreate(card,'h3',null,c.name||'Course');clearAndCreate(card,'p',null,c.description||'Access your course resources chapter by chapter.');const link=clearAndCreate(card,'a','course-btn','Open Course');link.href=courseUrl(c.slug);addArrow(link)});const first=active[0]?.courses;if(first){const target=document.getElementById('continue-card');target.replaceChildren();const cc=clearAndCreate(target,'div','continue-card');const icon=clearAndCreate(cc,'div','continue-icon');const iconEl=clearAndCreate(icon,'i');iconEl.className='fa-solid fa-book-open';const content=clearAndCreate(cc,'div','continue-content');clearAndCreate(content,'span','course-class',first.slug==='class-9'?'CLASS 9':first.slug==='class-10'?'CLASS 10':'YOUR COURSE');clearAndCreate(content,'h3',null,first.name||'Course');clearAndCreate(content,'p',null,'Open your course and continue with the available chapter resources.');const link=clearAndCreate(cc,'a','continue-btn','Open Course');link.href=courseUrl(first.slug);addArrow(link)}})();
+</script>
+<script src="js/site.js" defer></script>
+</body></html>

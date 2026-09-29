@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice | iStudyBytes</title><link rel="icon" href="images/logo-icon.avif">
+<meta name="description" content="iStudyBytes payment invoice and receipt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.invoice-page{background:#f5f8fc;min-height:100vh;font-family:Poppins,Arial,sans-serif;color:#172033}
+.invoice-shell{max-width:900px;margin:0 auto;padding:36px 20px 60px}
+.invoice-actions{display:flex;justify-content:flex-end;gap:12px;margin-bottom:20px}
+.invoice-action{border:0;border-radius:9px;padding:11px 16px;background:#2563eb;color:#fff;font:600 14px Poppins,Arial,sans-serif;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.invoice-action.secondary{background:#fff;color:#2563eb;border:1px solid #dbe4f0}
+.invoice-card{background:#fff;border:1px solid #e3eaf3;border-radius:16px;box-shadow:0 10px 35px rgba(25,55,95,.08);overflow:hidden}
+.invoice-top{padding:34px 38px 26px;border-bottom:1px solid #e7edf5;display:flex;justify-content:space-between;gap:30px}
+.brand{font-size:28px;font-weight:800;letter-spacing:-.5px}.brand-dark{color:#14213d}.brand-blue{color:#2563eb}.invoice-brand-owner{display:block;margin-top:3px;font-size:11px;font-weight:500;color:#7b8798;letter-spacing:.15px}
+.invoice-label{text-align:right}.invoice-label h1{margin:0;font-size:28px}.invoice-label p{margin:7px 0 0;color:#6b7b93;font-size:13px}
+.invoice-body{padding:34px 38px}.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-bottom:34px}.meta-title{font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:#7b8ba3;font-weight:700;margin-bottom:8px}.meta-value{font-size:15px;font-weight:600}.meta-muted{font-size:13px;color:#65758c;margin-top:4px;word-break:break-word}
+table{width:100%;border-collapse:collapse}.items th{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:#7b8ba3;text-align:left;padding:12px 10px;border-bottom:1px solid #dfe7f1}.items th:last-child,.items td:last-child{text-align:right}.items td{padding:18px 10px;border-bottom:1px solid #edf1f6;font-size:14px}.item-name{font-weight:600}.item-desc{font-size:12px;color:#74839a;margin-top:4px}.total-wrap{display:flex;justify-content:flex-end;margin-top:24px}.total-table{width:320px}.total-table td{padding:7px 0;font-size:14px}.total-table .grand td{padding-top:14px;border-top:2px solid #172033;font-size:18px;font-weight:800}.paid-badge{display:inline-flex;align-items:center;gap:7px;background:#eaf8ef;color:#17834a;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:700}.invoice-note{margin-top:34px;padding:16px 18px;border-radius:10px;background:#f7f9fc;color:#66758c;font-size:12px;line-height:1.65}.invoice-footer{padding:22px 38px;border-top:1px solid #e7edf5;color:#7a899e;font-size:12px;text-align:center}.invoice-footer .owner-line{display:block;margin-top:5px;font-size:11px;color:#7b8798;font-weight:500}
+.loading{text-align:center;padding:80px 20px;color:#6b7b93}.error{text-align:center;padding:70px 20px}.error h2{margin-bottom:8px}
+@media(max-width:650px){.invoice-shell{padding:20px 12px 40px}.invoice-top{padding:25px 22px;display:block}.invoice-label{text-align:left;margin-top:20px}.invoice-body{padding:25px 22px}.meta-grid{grid-template-columns:1fr;gap:20px}.items th,.items td{padding:12px 5px}.total-table{width:100%}.invoice-actions{justify-content:stretch}.invoice-action{flex:1;justify-content:center}}
+@media print{body{background:#fff!important}.invoice-shell{max-width:none;padding:0}.invoice-actions{display:none!important}.invoice-card{border:0;box-shadow:none;border-radius:0}.invoice-top{padding-top:0}.invoice-footer{padding-bottom:0}.invoice-note{background:#f7f9fc}}
+</style>
+  <link rel="stylesheet" href="css/ui-system.css">
+</head>
+<body class="invoice-page">
+<div class="invoice-shell">
+<div class="invoice-actions">
+<a class="invoice-action secondary" href="dashboard.html"><i class="fa-solid fa-arrow-left"></i> Dashboard</a>
+<button class="invoice-action" type="button" onclick="window.print()"><i class="fa-solid fa-download"></i> Download / Print Invoice</button>
+</div>
+<div id="invoice-root" class="invoice-card">
+<div class="loading"><i class="fa-solid fa-spinner fa-spin"></i><p>Loading your invoice...</p></div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script>
+(async function(){
+const root=document.getElementById('invoice-root');
+function showError(title,text){root.innerHTML='<div class="error"><h2>'+title+'</h2><p>'+text+'</p><a class="invoice-action" href="dashboard.html">Go to Dashboard</a></div>';}
+const {data:{session},error:sessionError}=await supabaseClient.auth.getSession();
+if(sessionError||!session){window.location.href='login.html';return;}
+const orderId=new URLSearchParams(window.location.search).get('order');
+if(!orderId||!/^\d+$/.test(orderId)){showError('Invoice not found','The invoice link is invalid or incomplete.');return;}
+const {data:order,error:orderError}=await supabaseClient.from('orders').select('id,user_id,total_amount,status,payment_id,created_at,razorpay_order_id,product_type,product_slug,bundle_id,course_id').eq('id',Number(orderId)).eq('user_id',session.user.id).eq('status','paid').maybeSingle();
+if(orderError||!order){showError('Invoice unavailable','We could not find a paid order for this account.');return;}
+let productName='',productDescription='';
+if(order.product_type==='bundle'){
+  const {data:bundle,error:bundleError}=await supabaseClient.from('resource_bundles').select('name,description').eq('id',order.bundle_id).maybeSingle();
+  if(bundleError||!bundle){showError('Invoice unavailable','The resource bundle linked to this payment could not be found.');return;}
+  const {data:access}=await supabaseClient.from('resource_access').select('id').eq('order_id',order.id).eq('user_id',session.user.id).maybeSingle();
+  if(!access){showError('Invoice unavailable','Resource access could not be verified for this order.');return;}
+  productName=bundle.name;productDescription='One-time digital resource bundle access';
+}else{
+  const {data:access,error:accessError}=await supabaseClient.from('course_access').select('course_id,granted_at').eq('order_id',order.id).eq('user_id',session.user.id).maybeSingle();
+  if(accessError||!access){showError('Invoice unavailable','Course access could not be verified for this order.');return;}
+  const {data:course,error:courseError}=await supabaseClient.from('courses').select('name,slug,description,price').eq('id',access.course_id).maybeSingle();
+  if(courseError||!course){showError('Invoice unavailable','The course linked to this payment could not be found.');return;}
+  productName=course.name;productDescription='One-time digital course access';
+}
+const customerName=session.user.user_metadata?.full_name||session.user.user_metadata?.name||session.user.email?.split('@')[0]||'Student';
+const invoiceNumber='ISB-'+new Date(order.created_at).getFullYear()+'-'+String(order.id).padStart(6,'0');
+const invoiceDate=new Date(order.created_at).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+const amount=Number(order.total_amount).toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
+const safe=(value)=>String(value??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));
+root.innerHTML=`
+<div class="invoice-top"><div><div class="brand"><span class="brand-dark">iStudy</span><span class="brand-blue">Bytes</span><span class="invoice-brand-owner">By Arjun Bairva</span></div><p style="margin:7px 0 0;color:#6b7b93;font-size:13px">Digital Education &amp; Learning</p></div><div class="invoice-label"><h1>INVOICE</h1><p>${safe(invoiceNumber)}</p></div></div>
+<div class="invoice-body">
+<div class="meta-grid">
+<div><div class="meta-title">Billed To</div><div class="meta-value">${safe(customerName)}</div><div class="meta-muted">${safe(session.user.email)}</div></div>
+<div><div class="meta-title">Invoice Details</div><div class="meta-value">Invoice No. ${safe(invoiceNumber)}</div><div class="meta-muted">Date: ${safe(invoiceDate)}</div><div style="margin-top:9px"><span class="paid-badge"><i class="fa-solid fa-circle-check"></i> PAID</span></div></div>
+</div>
+<table class="items"><thead><tr><th>Description</th><th>Amount</th></tr></thead><tbody><tr><td><div class="item-name">${safe(productName)}</div><div class="item-desc">${safe(productDescription)}</div></td><td>₹${amount}</td></tr></tbody></table>
+<div class="total-wrap"><table class="total-table"><tbody><tr><td>Subtotal</td><td style="text-align:right">₹${amount}</td></tr><tr><td>Tax</td><td style="text-align:right">₹0.00</td></tr><tr class="grand"><td>Total Paid</td><td style="text-align:right">₹${amount}</td></tr></tbody></table></div>
+<div class="invoice-note"><strong>Payment reference:</strong> ${safe(order.payment_id)}<br><strong>Razorpay Order ID:</strong> ${safe(order.razorpay_order_id)}<br><br>This invoice confirms payment for the digital educational course listed above. Tax/GST details are shown only where applicable.</div>
+</div>
+<div class="invoice-footer">Thank you for choosing iStudyBytes. Please keep this invoice for your records.<span class="owner-line">iStudyBytes • By Arjun Bairva</span></div>`;
+})();
+</script>
+</body>
+</html>
