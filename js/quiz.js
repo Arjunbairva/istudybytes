@@ -55,8 +55,7 @@ const chapterLists={
 ["The Human Eye and the Colourful World","The Human Eye and the Colourful World"],
 ["Electricity","Electricity"],
 ["Magnetic Effects of Electric Current","Magnetic Effects of Electric Current"],
-["Our Environment","Our Environment"],
-["Sustainable Management of Natural Resources","Sustainable Management of Natural Resources"]
+["Our Environment","Our Environment"]
 ],
 "10|Mathematics":[
 ["Real Numbers","Real Numbers"],
