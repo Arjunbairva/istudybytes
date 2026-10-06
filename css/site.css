@@ -336,3 +336,212 @@ h1, h2 { text-wrap: balance; }
   font-size: 16px !important;
   line-height: 1.65 !important;
 }
+
+
+/* ============ FINAL GLOBAL VISUAL ALIGNMENT ============ */
+/* The homepage is the visual reference for the entire customer-facing site:
+   comfortable reading size, compact hierarchy, 14–16px card radius, restrained shadows. */
+:root{
+  --site-card-radius:15px;
+  --site-page-h1:clamp(2.25rem,3.5vw,3rem);
+  --site-page-h2:30px;
+  --site-card-h3:20px;
+  --site-body:16px;
+  --site-lead:17px;
+}
+
+/* Shared typography */
+.site-nav__links a{font-size:16px !important;font-weight:500 !important}
+.site-nav__links a[aria-current="page"]{font-weight:600 !important}
+
+.store-page .store-main,
+.free-page .free-wrap,
+.product-page .product-main,
+.checkout-page .checkout-main,
+.about-page .about-main,
+.legal-page .legal-main,
+.subject-page .subject-main,
+.course-page .course-main{
+  width:min(1200px,calc(100% - 64px)) !important;
+}
+
+/* Page-level headings and introductory copy */
+.store-page .store-hero h1,
+.free-page .free-hero h1,
+.checkout-page .checkout-heading h1,
+.about-page .about-hero h1,
+.legal-page .legal-hero h1{
+  font-size:var(--site-page-h1) !important;
+  line-height:1.12 !important;
+  letter-spacing:-.035em !important;
+}
+.store-page .store-hero p,
+.free-page .free-hero p,
+.checkout-page .checkout-heading p,
+.about-page .about-hero p,
+.legal-page .legal-hero p{
+  font-size:var(--site-lead) !important;
+  line-height:1.7 !important;
+}
+
+/* Cards: same visual weight as the homepage */
+.store-page .product-card,
+.store-page .bundle-subject-card,
+.free-page .free-card,
+.free-page .quiz-card,
+.product-page .overview-card,
+.product-page .product-buy-card,
+.product-page .product-details,
+.checkout-page .checkout-card,
+.about-page .about-card,
+.legal-page .legal-card{
+  border-radius:var(--site-card-radius) !important;
+  box-shadow:0 7px 25px rgba(15,23,42,.025) !important;
+}
+
+/* Store */
+.store-page .store-main{padding-top:64px !important;padding-bottom:88px !important}
+.store-page .store-hero{max-width:760px;margin:0 auto 44px}
+.store-page .store-hero h1{margin:10px 0 12px}
+.store-page .store-section{margin-top:52px}
+.store-page .store-section-heading{margin-bottom:20px}
+.store-page .store-section-heading h2{
+  font-size:30px !important;
+  line-height:1.2 !important;
+  letter-spacing:-.025em !important;
+}
+.store-page .store-section-heading p{font-size:16px !important;line-height:1.65 !important}
+.store-page .product-grid{gap:20px}
+.store-page .product-card{padding:27px !important;min-height:0 !important}
+.store-page .product-category{margin:20px 0 8px;font-size:13px !important}
+.store-page .product-card h3{
+  font-size:20px !important;
+  font-weight:600 !important;
+  line-height:1.35 !important;
+  letter-spacing:-.01em !important;
+}
+.store-page .product-card p{font-size:16px !important;line-height:1.65 !important}
+.store-page .product-price{font-size:30px !important}
+.store-page .product-button{font-size:15px !important}
+
+/* Free learning / quizzes */
+.free-page .free-wrap{padding-top:64px !important;padding-bottom:88px !important}
+.free-page .free-hero{max-width:760px;margin-bottom:42px}
+.free-page .free-eyebrow{font-size:13px !important}
+.free-page .free-card,.free-page .quiz-card{padding:26px !important}
+.free-page .free-card h2,.free-page .quiz-card h2{
+  font-size:21px !important;
+  line-height:1.3 !important;
+}
+.free-page .free-card p,.free-page .quiz-card p{
+  font-size:16px !important;
+  line-height:1.65 !important;
+}
+
+/* Course product pages */
+.product-page .product-main{padding-top:40px !important;padding-bottom:82px !important}
+.product-page .product-hero{gap:20px}
+.product-page .product-visual{
+  border-radius:18px !important;
+  padding:36px !important;
+  min-height:500px !important;
+}
+.product-page .product-visual h1{
+  font-size:clamp(36px,3.7vw,48px) !important;
+  line-height:1.08 !important;
+}
+.product-page .product-visual p{font-size:16px !important;line-height:1.7 !important}
+.product-page .product-buy-card{padding:27px !important;border-radius:18px !important}
+.product-page .product-price-large{font-size:38px !important}
+.product-page .overview-heading h2,
+.product-page .product-section-heading h2{font-size:30px !important}
+.product-page .overview-heading p,
+.product-page .product-section-heading p{font-size:16px !important}
+.product-page .overview-card{padding:22px !important}
+.product-page .overview-card h3{font-size:19px !important}
+.product-page .overview-card p{font-size:15px !important}
+
+/* Checkout */
+.checkout-page .checkout-main{padding-top:48px !important;padding-bottom:76px !important}
+.checkout-page .checkout-label{font-size:13px !important}
+.checkout-page .checkout-heading h1{
+  font-size:var(--site-page-h1) !important;
+  line-height:1.12 !important;
+}
+.checkout-page .checkout-heading p{font-size:17px !important}
+.checkout-page .checkout-card{padding:30px !important;border-radius:18px !important}
+.checkout-page .course-info h2{font-size:26px !important}
+.checkout-page .course-info p{font-size:17px !important}
+.checkout-page .price-row span{font-size:16px !important}
+.checkout-page .price-row strong{font-size:28px !important}
+.checkout-page .payment-identity-notice p{font-size:15px !important}
+.checkout-page .checkout-trust-row strong{font-size:16px !important}
+.checkout-page .checkout-trust-row small{font-size:14px !important}
+
+/* About / legal pages */
+.about-page .about-main{padding-top:52px !important;padding-bottom:84px !important}
+.about-page .about-hero{padding:34px !important;border-radius:18px !important}
+.about-page .about-hero p{font-size:17px !important}
+.about-page .about-card{padding:26px !important}
+.about-page .about-card h2{font-size:22px !important}
+.about-page .about-card p,
+.about-page .about-card li{font-size:16px !important;line-height:1.7 !important}
+
+.legal-page .legal-main{padding-top:52px !important;padding-bottom:84px !important}
+.legal-page .legal-hero h1{font-size:42px !important}
+.legal-page .legal-card{padding:32px !important}
+.legal-page .legal-card h2{font-size:22px !important}
+.legal-page .legal-card h3{font-size:18px !important}
+.legal-page .legal-card p,
+.legal-page .legal-card li{font-size:16px !important;line-height:1.75 !important}
+
+/* Course/subject learning pages */
+.subject-page .subject-main,
+.course-page .course-main{padding-top:48px !important;padding-bottom:84px !important}
+.subject-page .hero,
+.course-page .course-hero{border-radius:18px !important}
+.subject-page .hero h1,
+.course-page .course-hero h1{font-size:clamp(36px,3.5vw,48px) !important;line-height:1.1 !important}
+.subject-page .hero p,
+.course-page .course-hero p{font-size:17px !important;line-height:1.7 !important}
+.subject-page .chapter,
+.subject-page .chapter-card,
+.course-page .subject-card,
+.course-page .resource-content{
+  border-radius:15px !important;
+}
+.subject-page .chapter h3,
+.subject-page .chapter-card h3,
+.course-page .subject-card h3,
+.course-page .resource-content h3{font-size:20px !important}
+
+/* Mobile: preserve the same visual scale instead of collapsing into oversized headings. */
+@media(max-width:700px){
+  .store-page .store-main,
+  .free-page .free-wrap,
+  .product-page .product-main,
+  .checkout-page .checkout-main,
+  .about-page .about-main,
+  .legal-page .legal-main,
+  .subject-page .subject-main,
+  .course-page .course-main{
+    width:calc(100% - 28px) !important;
+  }
+  .store-page .store-hero h1,
+  .free-page .free-hero h1,
+  .checkout-page .checkout-heading h1,
+  .about-page .about-hero h1,
+  .legal-page .legal-hero h1{
+    font-size:36px !important;
+  }
+  .store-page .store-main,
+  .free-page .free-wrap{padding-top:44px !important}
+  .store-page .product-card,
+  .free-page .free-card,
+  .free-page .quiz-card,
+  .checkout-page .checkout-card,
+  .about-page .about-card,
+  .legal-page .legal-card{
+    padding:22px !important;
+  }
+}
