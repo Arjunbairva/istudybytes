@@ -51,10 +51,10 @@
   --fs-h1: clamp(2rem, 3.4vw, 2.75rem);        /* 32–44  page titles           */
   --fs-h2: clamp(1.5rem, 2.4vw, 1.875rem);     /* 24–30  section headings      */
   --fs-h3-lg: 1.375rem;                        /* 22     large card titles     */
-  --fs-h3: 1.125rem;                           /* 18     card titles           */
+  --fs-h3: 1.25rem;                            /* 20     card titles           */
   --fs-lead: clamp(1rem, 1.5vw, 1.125rem);     /* 16–18  intro paragraphs      */
   --fs-body: 1rem;                             /* 16                            */
-  --fs-sm: .9375rem;                           /* 15     card / UI text        */
+  --fs-sm: 1rem;                               /* 16     card / UI text        */
   --fs-xs: .8125rem;                           /* 13     captions              */
   --fs-eyebrow: .75rem;                        /* 12     uppercase labels      */
 }
@@ -321,11 +321,18 @@ h1, h2 { text-wrap: balance; }
 .free-actions .free-btn, .free-btn { padding: 0 20px; }
 .free-note { margin-top: 18px; }
 
-/* Store course cards: keep Class 9 and Class 10 titles visually identical. */
+/* Store course cards: match the site's comfortable EdTech reading scale. */
+.store-page .store-hero h1{
+  font-size: var(--fs-h1) !important;
+}
 .store-page .product-card h3{
   font-family: Poppins, system-ui, sans-serif !important;
-  font-size: 23px !important;
+  font-size: 20px !important;
   font-weight: 600 !important;
-  line-height: 1.3 !important;
-  letter-spacing: -.02em !important;
+  line-height: 1.35 !important;
+  letter-spacing: -.01em !important;
+}
+.store-page .product-card p{
+  font-size: 16px !important;
+  line-height: 1.65 !important;
 }
