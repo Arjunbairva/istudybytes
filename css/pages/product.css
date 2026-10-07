@@ -1,0 +1,42 @@
+/* Product (course sales) pages: Class 9 and Class 10 share this layout. */
+.product-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: var(--grid-gap);
+  align-items: start;
+  margin-bottom: var(--section-gap);
+}
+.product-visual { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s-4); min-height: 28rem; justify-content: center; }
+.product-visual h1 { color: #fff; font-size: var(--fs-h1); }
+.product-visual p { font-size: var(--fs-lead); line-height: 1.7; max-width: 36rem; }
+.product-visual__icon { width: 56px; height: 56px; font-size: 1.5rem; background: rgba(255, 255, 255, .14); color: #fff; }
+
+.product-buy { gap: 0; position: sticky; top: calc(var(--header-h) + var(--s-4)); }
+.product-buy > * + * { margin-top: var(--s-4); }
+.product-buy__badge { align-self: flex-start; }
+.product-buy__heading { font-size: var(--fs-base); font-weight: 600; margin-bottom: var(--s-3); }
+.product-buy__secure { text-align: center; }
+.product-buy__secure i { color: var(--success); margin-right: var(--s-1); }
+
+.product-get { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-4) var(--s-8); }
+
+.details { display: grid; padding: 0; margin: 0; }
+.details > div {
+  display: grid;
+  grid-template-columns: minmax(8rem, 14rem) 1fr;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--card-pad);
+}
+.details > div + div { margin-top: 0; border-top: 1px solid var(--line); }
+.details dt { color: var(--muted); font-size: var(--fs-ui); }
+.details dd { margin: 0; font-weight: 600; color: var(--ink); }
+
+@media (max-width: 900px) {
+  .product-hero { grid-template-columns: 1fr; }
+  .product-visual { min-height: 0; padding: var(--s-8) var(--s-6); }
+  .product-buy { position: static; }
+}
+@media (max-width: 640px) {
+  .product-get { grid-template-columns: 1fr; }
+  .details > div { grid-template-columns: 1fr; gap: var(--s-1); }
+}

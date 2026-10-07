@@ -8,14 +8,17 @@
 <link rel="icon" href="images/logo-icon.avif">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/free-learning.css">
-  <link rel="stylesheet" href="css/ui-system.css">
-<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
 <meta name="theme-color" content="#2563eb">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/learn.css">
 </head>
-<body class="free-page">
+<body class="page-learn">
+<a class="skip-link" href="#main">Skip to main content</a>
 <!-- SHELL:HEADER:START -->
 <header class="site-header" id="site-header">
   <script>try{for(var k in localStorage){if(/^sb-.+-auth-token$/.test(k)){document.documentElement.classList.add('has-session');break}}}catch(e){}</script>
@@ -38,7 +41,7 @@
       </ul>
       <div class="site-nav__actions">
         <div class="site-nav__guest">
-          <a href="login.html" class="btn btn-ghost btn-sm" id="home-auth-link">Log in</a>
+          <a href="login.html" class="btn btn-secondary btn-sm" id="home-auth-link">Log in</a>
           <a href="register.html" class="btn btn-primary btn-sm">Sign up</a>
         </div>
         <div class="site-user" id="site-user">
@@ -59,72 +62,47 @@
 </header>
 <!-- SHELL:HEADER:END -->
 
-<main class="free-wrap">
-<section class="free-hero">
-<span class="free-eyebrow">100% FREE • NO LOGIN</span>
-<h1 id="quiz-title">Free CBSE Quizzes</h1>
-<p id="quiz-intro">Choose your class and subject to start a free chapter-wise quiz. Class 9 quizzes follow Ganita Manjari Mathematics and Exploration Science.</p>
-</section>
+<main id="main" class="page page--narrow">
+  <header class="page-head page-head--center">
+    <span class="eyebrow">100% free · No login</span>
+    <h1 id="quiz-title">Free CBSE Quizzes</h1>
+    <p class="page-head__lead" id="quiz-intro">Choose your class and subject to start a free chapter-wise quiz. Class 9 quizzes follow Ganita Manjari Mathematics and Exploration Science.</p>
+  </header>
 
-<section id="quiz-app">
-<a id="quiz-back" class="quiz-back" href="quiz.html">← All Quizzes</a>
+  <section id="quiz-app">
+    <a id="quiz-back" class="link-arrow quiz-back" href="quiz.html"><span aria-hidden="true">←</span> All quizzes</a>
 
-<div id="quiz-body" class="quiz-card quiz-main-card" hidden>
-<div class="quiz-topline"><strong id="quiz-count">Loading…</strong><span>Free Quiz</span></div>
-<div class="quiz-progress"><span id="quiz-progress"></span></div>
-<h2 id="quiz-question">Loading questions…</h2>
-<div id="quiz-options"></div>
-<div id="quiz-feedback" class="quiz-feedback" hidden></div>
-<div class="quiz-actions">
-<a class="free-btn secondary" href="ncert-solutions.html">NCERT Solutions</a>
-<button class="free-btn" id="quiz-next" disabled>Next →</button>
-</div>
-</div>
+    <div id="quiz-body" class="card quiz-card" hidden>
+      <div class="quiz-topline"><strong id="quiz-count">Loading…</strong><span class="badge">Free quiz</span></div>
+      <div class="progress"><span class="progress__bar" id="quiz-progress"></span></div>
+      <h2 id="quiz-question">Loading questions…</h2>
+      <div id="quiz-options"></div>
+      <div id="quiz-feedback" class="notice" hidden></div>
+      <div class="quiz-actions">
+        <a class="btn btn-secondary" href="ncert-solutions.html">NCERT Solutions</a>
+        <button class="btn btn-primary" id="quiz-next" disabled>Next <span aria-hidden="true">→</span></button>
+      </div>
+    </div>
 
-<div id="quiz-result" class="quiz-card quiz-result" hidden>
-<div class="quiz-score" id="final-score">0/0</div>
-<h2>Quiz complete</h2>
-<p id="final-message"></p>
-<div class="free-actions" style="justify-content:center">
-<button class="free-btn" onclick="location.href='quiz.html'">All Quizzes</button>
-<a class="free-btn secondary" href="ncert-solutions.html">Study Solutions</a>
-</div>
-</div>
+    <div id="quiz-result" class="card quiz-result" hidden>
+      <div class="quiz-score" id="final-score">0/0</div>
+      <h2>Quiz complete</h2>
+      <p id="final-message"></p>
+      <div class="cluster quiz-result__actions">
+        <button class="btn btn-primary" onclick="location.href='quiz.html'">All quizzes</button>
+        <a class="btn btn-secondary" href="ncert-solutions.html">Study solutions</a>
+      </div>
+    </div>
 
-<section id="quiz-library" class="free-grid quiz-library">
-<a class="free-card quiz-choice" href="quiz.html?class=9&amp;subject=Science">
-<div class="free-icon">Science</div>
-<h2>Class 9 Science</h2>
-<p>Chapter-wise Science quizzes for Class 9.</p>
-<span class="quiz-choice-link">Start Quiz <span aria-hidden="true">→</span></span>
-</a>
+    <section id="quiz-library" class="grid grid--2 quiz-library">
+      <a class="card" href="quiz.html?class=9&amp;subject=Science"><span class="badge">Science</span><h2 class="card__title">Class 9 Science</h2><p class="card__text">Chapter-wise Science quizzes for Class 9.</p><span class="card__foot link-arrow">Start quiz <span aria-hidden="true">→</span></span></a>
+      <a class="card" href="quiz.html?class=9&amp;subject=Mathematics"><span class="badge">Maths</span><h2 class="card__title">Class 9 Mathematics</h2><p class="card__text">Chapter-wise Mathematics quizzes for Class 9.</p><span class="card__foot link-arrow">Start quiz <span aria-hidden="true">→</span></span></a>
+      <a class="card" href="quiz.html?class=10&amp;subject=Science"><span class="badge">Science</span><h2 class="card__title">Class 10 Science</h2><p class="card__text">Chapter-wise Science quizzes for Class 10.</p><span class="card__foot link-arrow">Start quiz <span aria-hidden="true">→</span></span></a>
+      <a class="card" href="quiz.html?class=10&amp;subject=Mathematics"><span class="badge">Maths</span><h2 class="card__title">Class 10 Mathematics</h2><p class="card__text">Chapter-wise Mathematics quizzes for Class 10.</p><span class="card__foot link-arrow">Start quiz <span aria-hidden="true">→</span></span></a>
+    </section>
 
-<a class="free-card quiz-choice" href="quiz.html?class=9&amp;subject=Mathematics">
-<div class="free-icon">Maths</div>
-<h2>Class 9 Mathematics</h2>
-<p>Chapter-wise Mathematics quizzes for Class 9.</p>
-<span class="quiz-choice-link">Start Quiz <span aria-hidden="true">→</span></span>
-</a>
-
-<a class="free-card quiz-choice" href="quiz.html?class=10&amp;subject=Science">
-<div class="free-icon">Science</div>
-<h2>Class 10 Science</h2>
-<p>Chapter-wise Science quizzes for Class 10.</p>
-<span class="quiz-choice-link">Start Quiz <span aria-hidden="true">→</span></span>
-</a>
-
-<a class="free-card quiz-choice" href="quiz.html?class=10&amp;subject=Mathematics">
-<div class="free-icon">Maths</div>
-<h2>Class 10 Mathematics</h2>
-<p>Chapter-wise Mathematics quizzes for Class 10.</p>
-<span class="quiz-choice-link">Start Quiz <span aria-hidden="true">→</span></span>
-</a>
-</section>
-
-<div id="quiz-note" class="free-note">
-<strong>iStudyBytes policy:</strong> Free quizzes remain accessible without login.
-</div>
-</section>
+    <p id="quiz-note" class="notice"><strong>iStudyBytes policy:</strong> Free quizzes remain accessible without login.</p>
+  </section>
 </main>
 <!-- SHELL:FOOTER:START -->
 <footer class="site-footer">

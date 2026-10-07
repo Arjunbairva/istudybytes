@@ -20,16 +20,16 @@
     }
 
     main.innerHTML =
-      '<section class="chapter-access-gate" aria-live="polite">' +
-        '<div class="chapter-access-icon"><i class="fa-solid fa-lock"></i></div>' +
-        '<span class="chapter-access-label">Premium Chapter</span>' +
+      '<section class="card chapter-access-gate" aria-live="polite">' +
+        '<span class="icon-tile"><i class="fa-solid fa-lock" aria-hidden="true"></i></span>' +
+        '<span class="eyebrow">Premium chapter</span>' +
         '<h1>' + title + '</h1>' +
-        '<p>' + message + '</p>' +
+        '<p class="card__text">' + message + '</p>' +
         '<div class="chapter-access-actions">' +
-          '<a class="primary" href="' + primaryHref + '">' + primaryLabel + ' <i class="fa-solid fa-arrow-right"></i></a>' +
-          (secondaryHref ? '<a class="secondary" href="' + secondaryHref + '">' + secondaryLabel + '</a>' : '') +
+          '<a class="btn btn-primary" href="' + primaryHref + '">' + primaryLabel + ' <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>' +
+          (secondaryHref ? '<a class="btn btn-secondary" href="' + secondaryHref + '">' + secondaryLabel + '</a>' : '') +
         '</div>' +
-        '<div class="chapter-access-note">Chapter 1 remains free. Premium chapters require active course access.</div>' +
+        '<p class="card__meta">Chapter 1 remains free. Premium chapters require active course access.</p>' +
       '</section>';
 
     ready();

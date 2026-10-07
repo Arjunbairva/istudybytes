@@ -1,0 +1,26 @@
+/* Dashboard: a student's learning home */
+.dashboard-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s-4) var(--s-8);
+  margin-bottom: var(--section-gap);
+}
+.dashboard-head .eyebrow { margin-bottom: var(--s-3); }
+.dashboard-head h1 { margin-bottom: var(--s-2); }
+
+/* Elements below are created by js/dashboard-*.js */
+.continue-card { gap: var(--s-5); }
+.continue-card .btn { flex: none; }
+.course-card > .badge { align-self: flex-start; }
+.course-card .card__title { margin-top: var(--s-3); }
+
+.dashboard-progress { padding-top: var(--s-4); border-top: 1px solid var(--line); }
+.dashboard-progress__row { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); margin-bottom: var(--s-2); font-size: var(--fs-sm); color: var(--ink); }
+.dashboard-progress .card__meta { margin-top: var(--s-2); }
+.dashboard-progress--empty { opacity: .8; }
+
+@media (max-width: 640px) {
+  .continue-card { flex-direction: column; align-items: stretch; }
+}

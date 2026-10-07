@@ -23,7 +23,7 @@
       console.error("Unable to load quiz history:", result.error);
       list.replaceChildren();
       var error = document.createElement("div");
-      error.className = "course-empty";
+      error.className = "notice notice--danger";
       error.textContent = "Unable to load quiz history. Please refresh and try again.";
       list.appendChild(error);
       return;
@@ -33,15 +33,15 @@
 
     if (!result.data || !result.data.length) {
       var empty = document.createElement("div");
-      empty.className = "course-empty";
+      empty.className = "empty-state";
       var heading = document.createElement("h3");
       heading.textContent = "No completed quizzes yet";
       var copy = document.createElement("p");
       copy.textContent = "Complete a chapter quiz to build your learning history.";
       var link = document.createElement("a");
-      link.className = "course-btn";
+      link.className = "btn btn-primary";
       link.href = "quiz.html";
-      link.textContent = "Take a Quiz →";
+      link.textContent = "Take a quiz";
       empty.append(heading, copy, link);
       list.appendChild(empty);
       return;
@@ -49,11 +49,11 @@
 
     result.data.forEach(function (attempt) {
       var card = document.createElement("article");
-      card.className = "course-card";
+      card.className = "card course-card";
 
       var badge = document.createElement("span");
-      badge.className = "course-badge";
-      badge.textContent = "QUIZ COMPLETED";
+      badge.className = "badge badge--success";
+      badge.textContent = "Quiz completed";
 
       var title = document.createElement("h3");
       title.textContent = "Class " + attempt.class_level + " " + attempt.subject;

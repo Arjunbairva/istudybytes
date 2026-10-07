@@ -67,11 +67,11 @@
       if (action) {
         action.href = slug === "class-9" ? "course-class9.html" : "course-class10.html";
         action.innerHTML = "Open Class " + n + ' <i class="fa-solid fa-arrow-right"></i>';
-        action.classList.add("home-course-enrolled");
+        action.classList.replace("btn-primary", "btn-dark");
       }
 
       if (priceWrap) {
-        priceWrap.classList.add("home-course-price-hidden");
+        priceWrap.hidden = true;
       }
     });
   } catch (error) {

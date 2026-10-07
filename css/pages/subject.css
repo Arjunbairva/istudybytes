@@ -1,0 +1,7 @@
+/* Subject pages (Class 9/10 × Science/Maths): hero + chapter tiles */
+.subject-hero { margin-bottom: var(--section-gap); }
+.subject-hero h1 { margin: var(--s-3) 0; max-width: 32ch; }
+.subject-hero p { max-width: 46rem; font-size: var(--fs-lead); line-height: 1.7; }
+
+.chapter-tile .eyebrow { color: var(--muted); }
+.chapter-tile .card__title { margin-top: var(--s-1); }

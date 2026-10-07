@@ -7,13 +7,17 @@
   <title>Contact Us | iStudyBytes</title><link rel="icon" href="images/logo-icon.avif">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/legal.css">
-  <link rel="stylesheet" href="css/ui-system.css">
-<link rel="stylesheet" href="css/site.css">
-<meta name="theme-color" content="#2563eb">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+  <meta name="theme-color" content="#2563eb">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/content.css">
 </head>
-<body class="legal-page">
+<body class="page-content">
+<a class="skip-link" href="#main">Skip to main content</a>
   <!-- SHELL:HEADER:START -->
 <header class="site-header" id="site-header">
   <script>try{for(var k in localStorage){if(/^sb-.+-auth-token$/.test(k)){document.documentElement.classList.add('has-session');break}}}catch(e){}</script>
@@ -36,7 +40,7 @@
       </ul>
       <div class="site-nav__actions">
         <div class="site-nav__guest">
-          <a href="login.html" class="btn btn-ghost btn-sm" id="home-auth-link">Log in</a>
+          <a href="login.html" class="btn btn-secondary btn-sm" id="home-auth-link">Log in</a>
           <a href="register.html" class="btn btn-primary btn-sm">Sign up</a>
         </div>
         <div class="site-user" id="site-user">
@@ -57,15 +61,14 @@
 </header>
 <!-- SHELL:HEADER:END -->
 
-  <main class="legal-main">
-    <div class="legal-hero">
-      <span class="legal-label">SUPPORT</span>
-      <h1>Contact Us</h1>
-      <p class="legal-updated">Need help? Our support team is here to assist you with account, course and payment questions.</p>
-    </div>
-
-    <article class="legal-card">
-      <h2>Customer support</h2>
+  <main id="main" class="page page--narrow">
+  <header class="page-head">
+    <span class="eyebrow">Support</span>
+    <h1>Contact Us</h1>
+    <p class="page-head__lead">Need help? Our support team is here to assist you with account, course and payment questions.</p>
+  </header>
+  <article class="card prose-card">
+    <div class="prose"><h2>Customer support</h2>
       <p>For account issues, course access, purchases, payments, refunds or website-related questions, contact us using the details below.</p>
       <p><strong>Primary support email</strong><br><a href="mailto:istudybytes@gmail.com">istudybytes@gmail.com</a></p>
       <p><strong>Phone support</strong><br><a href="tel:+919971934002">+91 99719 34002</a></p>
@@ -78,14 +81,14 @@
       <h2>Payment or course-access issue</h2>
       <p>If you have completed a payment but your course access has not appeared, include your iStudyBytes account email and order or payment ID in your message.</p>
 
-      <div class="legal-note"><strong>Security notice:</strong> Never share your password, UPI PIN, card PIN, CVV, OTP or banking credentials by email, phone or through the website contact channel.</div>
+      <div class="notice"><strong>Security notice:</strong> Never share your password, UPI PIN, card PIN, CVV, OTP or banking credentials by email, phone or through the website contact channel.</div>
 
       <h2>Privacy requests</h2>
       <p>For requests concerning your personal information, account data or privacy matters, email <a href="mailto:istudybytes@gmail.com">istudybytes@gmail.com</a> and clearly describe your request.</p>
       <h2>About iStudyBytes</h2>
-      <p>iStudyBytes is an online educational platform providing digital learning resources to help students learn smarter and score better.</p>
-    </article>
-  </main>
+      <p>iStudyBytes is an online educational platform providing digital learning resources to help students learn smarter and score better.</p></div>
+  </article>
+</main>
 
   <!-- SHELL:FOOTER:START -->
 <footer class="site-footer">

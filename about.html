@@ -10,11 +10,7 @@
   <link rel="icon" href="images/logo-icon.avif">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/legal.css">
-  <link rel="stylesheet" href="css/about.css">
-  <link rel="stylesheet" href="css/ui-system.css">
-<link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -26,8 +22,15 @@
     "description":"An online educational platform providing structured CBSE Class 9 and Class 10 learning resources."
   }
   </script>
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/content.css">
 </head>
-<body class="legal-page about-page">
+<body class="page-content">
+<a class="skip-link" href="#main">Skip to main content</a>
   <!-- SHELL:HEADER:START -->
 <header class="site-header" id="site-header">
   <script>try{for(var k in localStorage){if(/^sb-.+-auth-token$/.test(k)){document.documentElement.classList.add('has-session');break}}}catch(e){}</script>
@@ -50,7 +53,7 @@
       </ul>
       <div class="site-nav__actions">
         <div class="site-nav__guest">
-          <a href="login.html" class="btn btn-ghost btn-sm" id="home-auth-link">Log in</a>
+          <a href="login.html" class="btn btn-secondary btn-sm" id="home-auth-link">Log in</a>
           <a href="register.html" class="btn btn-primary btn-sm">Sign up</a>
         </div>
         <div class="site-user" id="site-user">
@@ -71,34 +74,35 @@
 </header>
 <!-- SHELL:HEADER:END -->
 
-  <main class="about-main">
-    <section class="about-hero">
-      <span class="about-label">ABOUT iSTUDYBYTES</span>
-      <h1>Structured learning, built chapter by chapter.</h1>
-      <p>iStudyBytes is an online educational platform focused on structured CBSE learning resources for Class 9 and Class 10 students. The platform brings chapter-wise study material, practice and revision resources into one organised learning experience.</p>
-      <div class="about-pill-row">
-        <span class="about-pill">CBSE 2026–27</span>
-        <span class="about-pill">Class 9 &amp; 10</span>
-        <span class="about-pill">Mathematics &amp; Science</span>
-        <span class="about-pill">Chapter-wise</span>
-      </div>
+  <main id="main" class="page page--narrow">
+  <header class="page-head">
+    <span class="eyebrow">About iStudyBytes</span>
+    <h1>Structured learning, built chapter by chapter</h1>
+    <p class="page-head__lead">iStudyBytes is an online educational platform focused on structured CBSE learning resources for Class 9 and Class 10 students. The platform brings chapter-wise study material, practice and revision resources into one organised learning experience.</p>
+    <div class="cluster about__tags">
+      <span class="badge">CBSE 2026–27</span>
+      <span class="badge">Class 9 &amp; 10</span>
+      <span class="badge">Mathematics &amp; Science</span>
+      <span class="badge">Chapter-wise</span>
+    </div>
+  </header>
+
+  <div class="stack about__body">
+    <section class="grid grid--2" aria-label="About iStudyBytes">
+      <article class="card">
+        <h2 class="card__title">What iStudyBytes is</h2>
+        <p class="card__text">iStudyBytes is designed to make exam preparation more organised. Instead of treating learning as one large course, the platform structures resources around individual subjects and chapters so students can move from understanding to revision and practice in a clear sequence.</p>
+      </article>
+      <article class="card">
+        <h2 class="card__title">Who creates it</h2>
+        <p class="card__text">iStudyBytes is created and maintained by <strong>Arjun Bairva</strong>. The platform combines teaching experience with a focus on clear explanations, chapter-wise organisation and practical exam preparation.</p>
+      </article>
     </section>
 
-    <section class="about-grid" aria-label="About iStudyBytes">
-      <article class="about-card">
-        <h2>What iStudyBytes is</h2>
-        <p>iStudyBytes is designed to make exam preparation more organised. Instead of treating learning as one large course, the platform structures resources around individual subjects and chapters so students can move from understanding to revision and practice in a clear sequence.</p>
-      </article>
-      <article class="about-card">
-        <h2>Who creates it</h2>
-        <p>iStudyBytes is created and maintained by <strong>Arjun Bairva</strong>. The platform combines teaching experience with a focus on clear explanations, chapter-wise organisation and practical exam preparation.</p>
-      </article>
-    </section>
-
-    <section class="about-card about-wide">
-      <h2>How the learning experience is organised</h2>
-      <p>The platform follows a simple study flow:</p>
-      <ul>
+    <section class="card">
+      <h2 class="card__title">How the learning experience is organised</h2>
+      <p class="card__text">The platform follows a simple study flow:</p>
+      <ul class="check-list">
         <li><strong>Understand:</strong> learn the concepts using structured chapter resources.</li>
         <li><strong>Revise:</strong> reinforce important ideas using presentations and focused revision resources.</li>
         <li><strong>Practise:</strong> use chapter-wise questions and tests to check understanding.</li>
@@ -106,27 +110,28 @@
       </ul>
     </section>
 
-    <section class="about-grid">
-      <article class="about-card">
-        <h2>What students can find</h2>
-        <ul>
+    <section class="grid grid--2">
+      <article class="card">
+        <h2 class="card__title">What students can find</h2>
+        <ul class="check-list">
           <li>CBSE Class 9 and Class 10 Mathematics and Science resources.</li>
           <li>Chapter-wise notes, PPT presentations, one-shot revision resources and tests.</li>
           <li>Free learning resources, including chapter guides and quizzes.</li>
           <li>Course access and purchased resources organised through a student dashboard.</li>
         </ul>
       </article>
-      <article class="about-card">
-        <h2>Our approach to curriculum</h2>
-        <p>iStudyBytes organises its resources around the intended CBSE curriculum and the textbooks used for the relevant academic session. Curriculum references are provided for educational context; iStudyBytes is not claiming affiliation with or endorsement by CBSE or NCERT.</p>
+      <article class="card">
+        <h2 class="card__title">Our approach to curriculum</h2>
+        <p class="card__text">iStudyBytes organises its resources around the intended CBSE curriculum and the textbooks used for the relevant academic session. Curriculum references are provided for educational context; iStudyBytes is not claiming affiliation with or endorsement by CBSE or NCERT.</p>
       </article>
     </section>
 
-    <section class="about-card about-callout">
-      <h2>Have a question?</h2>
-      <p>For account, course access, payment or general platform questions, visit the <a href="contact.html">Contact Us</a> page. For information about how personal data is handled, see the <a href="privacy-policy.html">Privacy Policy</a>.</p>
+    <section class="card card--tint">
+      <h2 class="card__title">Have a question?</h2>
+      <p class="card__text">For account, course access, payment or general platform questions, visit the <a href="contact.html">Contact Us</a> page. For information about how personal data is handled, see the <a href="privacy-policy.html">Privacy Policy</a>.</p>
     </section>
-  </main>
+  </div>
+</main>
 
   <!-- SHELL:FOOTER:START -->
 <footer class="site-footer">

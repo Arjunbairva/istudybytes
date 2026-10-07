@@ -14,9 +14,12 @@ Edit those files, then run from the project root:
 
     python tools/sync-shell.py            # apply to every page
     python tools/sync-shell.py --check    # report pages that are out of sync (no writes)
+    python tools/sync-shell.py a.html b.html   # only those pages
 
-It also keeps each page <head> consistent (canonical Poppins font link,
-css/site.css loaded last) and adds js/site.js. Running it twice changes nothing.
+It also keeps each page <head> consistent (canonical Poppins link and the
+layered stylesheet set: tokens -> base -> layout -> components -> pages/<page>),
+adds the skip-to-content link, gives <main> its id, and adds js/site.js.
+Running it twice changes nothing.
 """
 import glob
 import os
@@ -31,7 +34,9 @@ COMPACT_FOOTER = {
     "login.html", "register.html", "forgot-password.html",
     "reset-password.html", "checkout.html",
 }
-POPPINS = "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+POPPINS = "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+FONT_AWESOME = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+CORE_CSS = ["tokens", "base", "layout", "components"]
 
 H_START, H_END = "<!-- SHELL:HEADER:START -->", "<!-- SHELL:HEADER:END -->"
 F_START, F_END = "<!-- SHELL:FOOTER:START -->", "<!-- SHELL:FOOTER:END -->"
@@ -52,10 +57,34 @@ def active_key(page):
         return "ncert"
     if page == "quiz.html":
         return "quiz"
-    if page in ("store.html", "dashboard.html", "checkout.html") or re.match(
+    if page in ("store.html", "checkout.html") or re.match(
         r"(product|course)-class\d+\.html$|class(9|10)-", page
     ):
         return "store"
+    return None
+
+
+def page_css(page):
+    """Which css/pages/<name>.css a page loads (None = shared layers only)."""
+    if page == "index.html":
+        return "home"
+    if page in ("store.html", "checkout.html", "dashboard.html"):
+        return page[:-5]
+    if re.match(r"product-class\d+\.html$", page):
+        return "product"
+    if re.match(r"course-class\d+\.html$", page):
+        return "course"
+    if page in ("ncert-solutions.html", "quiz.html"):
+        return "learn"
+    if page in ("login.html", "register.html", "forgot-password.html", "reset-password.html"):
+        return "auth"
+    if page in ("about.html", "contact.html", "privacy-policy.html", "terms.html",
+                "refund-policy.html", "disclaimer.html"):
+        return "content"
+    if re.match(r"class(9|10)-(maths|science)\.html$", page):
+        return "subject"
+    if page.startswith(("class9-", "class10-")):
+        return "chapter"
     return None
 
 
@@ -90,7 +119,7 @@ def insert_footer(html, block):
     return html[: m.start()] + wrapped + "\n" + html[m.start():]
 
 
-def fix_head(html):
+def fix_head(html, page):
     # 1. one canonical Poppins stylesheet (same weights on every page)
     html = re.sub(
         r'href="https://fonts\.googleapis\.com/css2\?family=Poppins[^"]*"',
@@ -101,21 +130,36 @@ def fix_head(html):
             '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
             '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
             f'<link rel="stylesheet" href="{POPPINS}">\n</head>', 1)
-    # 2. css/site.css must be the LAST stylesheet so it wins the cascade
-    html = re.sub(r'\s*<link[^>]+href="css/site\.css"[^>]*>', "", html)
-    links = list(re.finditer(r'<link[^>]+rel="stylesheet"[^>]*>', html))
-    tag = '<link rel="stylesheet" href="css/site.css">'
-    if links:
-        end = links[-1].end()
-        html = html[:end] + "\n" + tag + html[end:]
-    else:
-        html = html.replace("</head>", tag + "\n</head>", 1)
+    # 1b. Font Awesome wherever the page (or a script it loads) uses fa-* icons
+    if "font-awesome" not in html and any(k in html for k in ("fa-solid", "fa-regular", "fa-brands", "chapter-access.js")):
+        html = html.replace("</head>", '<link rel="stylesheet" href="%s">\n</head>' % FONT_AWESOME, 1)
+    # 2. the layered site stylesheets, always in the same order, after every vendor sheet
+    html = re.sub(r'\s*<link[^>]+href="css/[^"]+\.css"[^>]*>', "", html)
+    names = ["css/%s.css" % n for n in CORE_CSS]
+    extra = page_css(page)
+    if extra:
+        names.append("css/pages/%s.css" % extra)
+    block = "\n".join('<link rel="stylesheet" href="%s">' % n for n in names)
+    html = html.replace("</head>", "\n" + block + "\n</head>", 1)
     # 3. mobile viewport + brand theme colour
     if 'name="viewport"' not in html:
         html = html.replace(
             "<head>", '<head>\n<meta name="viewport" content="width=device-width,initial-scale=1">', 1)
     if 'name="theme-color"' not in html:
         html = html.replace("</head>", '<meta name="theme-color" content="#2563eb">\n</head>', 1)
+    return html
+
+
+def fix_body(html):
+    # skip-to-content link: first focusable element on every page
+    html = re.sub(r'\s*<a class="skip-link"[^>]*>.*?</a>', "", html, flags=re.S)
+    html = re.sub(r"(<body\b[^>]*>)", r'\1\n<a class="skip-link" href="#main">Skip to main content</a>', html, count=1, flags=re.I)
+    # <main> is the skip target (keep an id the page's scripts already rely on)
+    m = re.search(r"<main\b[^>]*\bid=\"([^\"]+)\"", html)
+    if not m:
+        html = re.sub(r"<main\b", '<main id="main"', html, count=1)
+    target = m.group(1) if m else "main"
+    html = html.replace('<a class="skip-link" href="#main">', '<a class="skip-link" href="#%s">' % target)
     return html
 
 
@@ -141,6 +185,7 @@ def fix_scripts(html):
 
 def main():
     check = "--check" in sys.argv
+    only = {a for a in sys.argv[1:] if a.endswith(".html")}
     header_tpl = read(os.path.join(SHELL, "header.html"))
     footer_tpl = read(os.path.join(SHELL, "footer.html"))
     compact_tpl = read(os.path.join(SHELL, "footer-compact.html"))
@@ -148,7 +193,7 @@ def main():
     changed, unchanged = [], 0
     for path in sorted(glob.glob(os.path.join(ROOT, "*.html"))):
         page = os.path.basename(path)
-        if page in SKIP:
+        if page in SKIP or (only and page not in only):
             continue
         html = orig = read(path)
 
@@ -160,7 +205,8 @@ def main():
         if not ok:
             html = insert_footer(html, ftpl)
 
-        html = fix_head(html)
+        html = fix_head(html, page)
+        html = fix_body(html)
         html = fix_scripts(html)
 
         if html != orig:

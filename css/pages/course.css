@@ -1,0 +1,25 @@
+/* Course home (Class 9 / Class 10 complete course) */
+main[data-guard] { visibility: hidden; }
+
+.course-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: var(--grid-gap);
+  align-items: stretch;
+  margin-bottom: var(--section-gap);
+}
+.course-hero__intro { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s-3); justify-content: center; }
+.course-hero__intro h1 { color: #fff; max-width: 22ch; }
+.course-hero__intro p { font-size: var(--fs-lead); line-height: 1.7; max-width: 36rem; }
+.course-hero__icon { width: 56px; height: 56px; font-size: 1.5rem; background: rgba(255, 255, 255, .14); color: #fff; }
+.course-hero__facts { justify-content: center; }
+.course-hero__facts-title { font-size: var(--fs-base); font-weight: 600; }
+
+.facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-4); margin: 0; }
+.facts > div { padding: var(--s-4); border-radius: var(--r-md); background: var(--bg); }
+.facts dt { font-size: var(--fs-h2); font-weight: 700; line-height: 1.1; color: var(--ink); }
+.facts dd { margin: var(--s-1) 0 0; font-size: var(--fs-sm); color: var(--muted); }
+
+@media (max-width: 900px) {
+  .course-hero { grid-template-columns: 1fr; }
+}

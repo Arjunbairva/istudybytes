@@ -1,0 +1,33 @@
+/* Log in, register, forgot / reset password: one centred card */
+.auth { display: grid; place-items: center; padding: var(--page-bottom) var(--gutter); }
+.auth__card { width: min(var(--container-form), 100%); gap: 0; padding: var(--s-8); box-shadow: var(--shadow-md); }
+.auth__card > * + * { margin-top: var(--s-5); }
+.auth__logo { width: 48px; height: 48px; object-fit: contain; }
+.auth__head > * + * { margin-top: var(--s-2); }
+.auth__head h1 { font-size: var(--fs-h2); }
+.auth__form { display: grid; gap: var(--s-4); }
+.auth__form > .field + .field { margin-top: 0; }
+.auth__label-row { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-3); }
+.auth__label-row a { font-size: var(--fs-sm); font-weight: 500; }
+.auth__input { position: relative; }
+.auth__input .input { padding-right: 52px; }
+.auth__toggle {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: var(--r-md);
+  background: transparent;
+  color: var(--muted);
+}
+.auth__toggle:hover { color: var(--ink); }
+.auth__alt { text-align: center; font-size: var(--fs-ui); color: var(--muted); }
+.auth__alt a { font-weight: 600; }
+
+@media (max-width: 480px) {
+  .auth { padding-block: var(--s-8); align-items: start; }
+  .auth__card { padding: var(--s-6) var(--s-5); box-shadow: none; }
+}

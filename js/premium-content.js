@@ -5,28 +5,24 @@
   var target = document.getElementById("premium-content");
   if (!page || !target || page.dataset.premiumChapter !== "true") return;
 
-  var style = document.createElement("style");
-  style.textContent = ".chapter-progress{margin-top:2rem;padding:1.25rem;border:1px solid rgba(37,99,235,.16);border-radius:16px;background:rgba(37,99,235,.04)}.chapter-progress__top,.chapter-progress__actions{display:flex;align-items:center;justify-content:space-between;gap:1rem}.chapter-progress__bar{width:100%;height:8px;margin:.75rem 0 1rem;overflow:hidden;border-radius:999px;background:rgba(15,23,42,.1)}.chapter-progress__fill{height:100%;width:0;border-radius:inherit;background:#2563eb;transition:width 180ms ease}.chapter-progress__button{border:0;border-radius:10px;padding:.7rem 1rem;cursor:pointer;background:#2563eb;color:#fff}.chapter-progress__button[disabled]{opacity:.65;cursor:wait}.chapter-progress__button.is-complete{background:#15803d}.chapter-progress__status{margin:0;opacity:.78}.chapter-progress__error{margin:.75rem 0 0;color:#b91c1c}@media(max-width:640px){.chapter-progress__top,.chapter-progress__actions{align-items:flex-start;flex-direction:column}.chapter-progress__button{width:100%}}";
-  document.head.appendChild(style);
-
   var loaded = false;
 
   function showError(title, message) {
     target.innerHTML =
       '<section class="chapter-section"><div class="chapter-section-head">' +
-      '<span class="chapter-section-label">CHAPTER ACCESS</span><h2>' + title + '</h2><p>' + message + '</p>' +
+      '<span class="chapter-section-label">CHAPTER ACCESS</span><h1>' + title + '</h1><p>' + message + '</p>' +
       '</div></section>';
   }
 
   function appendProgressControl(courseId, subject, chapterNumber) {
     var section = document.createElement("section");
-    section.className = "chapter-progress";
+    section.className = "card chapter-progress";
     section.setAttribute("aria-label", "Chapter progress");
     section.innerHTML =
       '<div class="chapter-progress__top"><strong>Chapter progress</strong><span data-progress-percent>0%</span></div>' +
-      '<div class="chapter-progress__bar" aria-hidden="true"><div class="chapter-progress__fill" data-progress-fill></div></div>' +
+      '<div class="progress" aria-hidden="true"><span class="progress__bar" data-progress-fill></span></div>' +
       '<div class="chapter-progress__actions"><p class="chapter-progress__status" data-progress-status>Mark this chapter complete when you finish studying it.</p>' +
-      '<button type="button" class="chapter-progress__button" data-progress-button>Mark as complete</button></div>' +
+      '<button type="button" class="btn btn-primary chapter-progress__button" data-progress-button>Mark as complete</button></div>' +
       '<p class="chapter-progress__error" data-progress-error hidden></p>';
     target.appendChild(section);
 

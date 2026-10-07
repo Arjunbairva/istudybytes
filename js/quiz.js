@@ -122,24 +122,24 @@ function showChapterList(){
 
   const makeCard=(item,index)=>{
     const chapterNumber=index+1;
-    return "<a class=\"quiz-chapter-card\" href=\"quiz.html?class="+encodeURIComponent(cls)+"&subject="+encodeURIComponent(subject)+"&chapter="+encodeURIComponent(item[1])+"\">"+
-      "<span class=\"quiz-chapter-index\" aria-hidden=\"true\">"+String(chapterNumber).padStart(2,"0")+"</span>"+
-      "<span class=\"quiz-chapter-copy\"><small>Chapter "+chapterNumber+"</small><strong>"+esc(item[0])+"</strong></span>"+
-      "<span class=\"quiz-chapter-action\" aria-hidden=\"true\">Open <span>→</span></span>"+
+    return "<a class=\"card card--row card--sm lesson\" href=\"quiz.html?class="+encodeURIComponent(cls)+"&subject="+encodeURIComponent(subject)+"&chapter="+encodeURIComponent(item[1])+"\">"+
+      "<span class=\"lesson__num\" aria-hidden=\"true\">"+String(chapterNumber).padStart(2,"0")+"</span>"+
+      "<span class=\"lesson__body card__body\"><strong>"+esc(item[0])+"</strong><small>Chapter "+chapterNumber+"</small></span>"+
+      "<span class=\"card__arrow\" aria-hidden=\"true\">→</span>"+
       "</a>";
   };
 
-  let content="<div class=\"chapter-quiz-head\"><span class=\"free-eyebrow\">CHAPTER SELECTOR</span><h2>Select a chapter</h2><p>Choose a chapter below. The quiz opens after you select it.</p></div>";
+  let content="<div class=\"section__head\"><span class=\"eyebrow\">Chapter selector</span><h2>Select a chapter</h2><p>Choose a chapter below. The quiz opens after you select it.</p></div>";
 
   if(key==="9|Mathematics"){
-    content+="<section class=\"quiz-part-section\"><div class=\"quiz-part-heading\"><span>Part 1</span><strong>Chapters 1–8</strong></div><div class=\"quiz-chapter-grid\">"+
+    content+="<section class=\"quiz-part\"><h3 class=\"quiz-part__title\">Part 1 <span>Chapters 1–8</span></h3><div class=\"grid grid--2\">"+
       list.slice(0,8).map((item,index)=>makeCard(item,index)).join("")+
       "</div></section>";
-    content+="<section class=\"quiz-part-section\"><div class=\"quiz-part-heading\"><span>Part 2</span><strong>Chapters 9–14</strong></div><div class=\"quiz-chapter-grid\">"+
+    content+="<section class=\"quiz-part\"><h3 class=\"quiz-part__title\">Part 2 <span>Chapters 9–14</span></h3><div class=\"grid grid--2\">"+
       list.slice(8).map((item,index)=>makeCard(item,index+8)).join("")+
       "</div></section>";
   }else{
-    content+="<div class=\"quiz-chapter-grid\">"+
+    content+="<div class=\"grid grid--2\">"+
       list.map((item,index)=>makeCard(item,index)).join("")+
       "</div>";
   }
@@ -156,7 +156,7 @@ function showQuizHeader(){
 
 function showUnavailable(){
   body.hidden=false;
-  body.innerHTML="<div class=\"quiz-empty\"><h2>Quiz not available yet</h2><p>Questions for this chapter are being added. Please check back soon.</p><a class=\"free-btn secondary\" href=\"quiz.html?class="+encodeURIComponent(cls)+"&subject="+encodeURIComponent(subject)+"\">Back to Chapters</a></div>";
+  body.innerHTML="<div class=\"empty-state\"><h2>Quiz not available yet</h2><p>Questions for this chapter are being added. Please check back soon.</p><a class=\"btn btn-secondary\" href=\"quiz.html?class="+encodeURIComponent(cls)+"&subject="+encodeURIComponent(subject)+"\">Back to chapters</a></div>";
 }
 
 function useFallback(){
@@ -189,12 +189,12 @@ function render(){
   if(!q){showUnavailable();return;}
   answered=false;
   body.hidden=false;
-  body.innerHTML="<div class=\"quiz-topline\"><strong id=\"quiz-count\">Question "+(i+1)+" of "+questions.length+"</strong><span>Free Quiz</span></div>"+
-    "<div class=\"quiz-progress\"><span id=\"quiz-progress\"></span></div>"+
+  body.innerHTML="<div class=\"quiz-topline\"><strong id=\"quiz-count\">Question "+(i+1)+" of "+questions.length+"</strong><span class=\"badge\">Free quiz</span></div>"+
+    "<div class=\"progress\"><span class=\"progress__bar\" id=\"quiz-progress\"></span></div>"+
     "<h2 id=\"quiz-question\"></h2><div id=\"quiz-options\"></div>"+
-    "<div id=\"quiz-feedback\" class=\"quiz-feedback\" hidden></div>"+
-    "<div class=\"quiz-actions\"><a class=\"free-btn secondary\" href=\"quiz.html?class="+encodeURIComponent(cls)+"&subject="+encodeURIComponent(subject)+"\">All Chapters</a>"+
-    "<button class=\"free-btn\" id=\"quiz-next\" disabled>Next →</button></div>";
+    "<div id=\"quiz-feedback\" class=\"notice\" hidden></div>"+
+    "<div class=\"quiz-actions\"><a class=\"btn btn-secondary\" href=\"quiz.html?class="+encodeURIComponent(cls)+"&subject="+encodeURIComponent(subject)+"\">All chapters</a>"+
+    "<button class=\"btn btn-primary\" id=\"quiz-next\" disabled>Next <span aria-hidden=\"true\">→</span></button></div>";
   body.querySelector("#quiz-progress").style.width=((i+1)/questions.length*100)+"%";
   body.querySelector("#quiz-question").textContent=q.question;
   const opts=q.question_type==="true_false"?[["A",q.option_a],["B",q.option_b]]:[["A",q.option_a],["B",q.option_b],["C",q.option_c],["D",q.option_d]];
@@ -219,6 +219,7 @@ function answer(b,q){
   body.querySelectorAll(".quiz-option").forEach(x=>{if(x.dataset.value===q.correct_answer)x.classList.add("correct")});
   const f=body.querySelector("#quiz-feedback");
   f.hidden=false;
+  f.className="notice "+(ok?"notice--success":"notice--danger");
   f.innerHTML="<strong>"+(ok?"Correct":"Review this one")+"</strong><br>"+esc(q.explanation||"Review the chapter concept and try again.");
   body.querySelector("#quiz-next").disabled=false;
 }

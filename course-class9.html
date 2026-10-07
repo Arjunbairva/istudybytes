@@ -1,315 +1,26 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Class 9 Complete Course by iStudyBytes with updated Science and Mathematics chapters.">
-  <title>Class 9 Complete Course | iStudyBytes</title><link rel="icon" href="images/logo-icon.avif">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-  >
-
-  <!-- Main website styles -->
-  <link rel="stylesheet" href="css/style.css">
-
-  <!-- Course page styles -->
-  <link rel="stylesheet" href="css/course-class9.css">
-
-  <!-- Readability and responsive corrections -->
-  <link rel="stylesheet" href="css/course-class9-readable-overrides.css">
-
-  <style>
-    .course-page .dashboard-header {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      padding: 15px clamp(18px, 4vw, 55px);
-    }
-
-    .course-page .dashboard-logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
-
-    .course-page .dashboard-logo img {
-      width: 46px;
-      height: 46px;
-      object-fit: contain;
-    }
-
-    .course-page .dashboard-logo > span {
-      font-size: 25px;
-      font-weight: 800;
-      letter-spacing: -0.7px;
-    }
-
-    .course-page .dashboard-nav {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      margin-left: auto;
-    }
-
-    .course-page .dashboard-nav a {
-      padding: 9px 12px;
-      border-radius: 10px;
-      color: #475569;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .course-page .dashboard-nav a:hover,
-    .course-page .dashboard-nav a.active {
-      background: #eff6ff;
-      color: #2563eb;
-    }
-
-    .course-page .dashboard-user {
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .course-page .user-button {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 13px;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      background: #fff;
-      color: #334155;
-      font: 600 13px Poppins, sans-serif;
-      cursor: pointer;
-    }
-
-    .course-page .user-menu {
-      display: none;
-      position: absolute;
-      right: 0;
-      top: calc(100% + 9px);
-      z-index: 20;
-      width: 185px;
-      padding: 7px;
-      border: 1px solid #e2e8f0;
-      border-radius: 13px;
-      background: #fff;
-      box-shadow: 0 15px 35px #0f172a1f;
-    }
-
-    .course-page .user-menu.show {
-      display: block;
-    }
-
-    .course-page .user-menu a {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      padding: 10px;
-      border-radius: 9px;
-      color: #475569;
-      text-decoration: none;
-      font-size: 13px;
-    }
-
-    .course-page .user-menu a:hover {
-      background: #f8fafc;
-      color: #2563eb;
-    }
-
-    .course-page .course-chapter-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .course-page .chapter-card {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      min-width: 0;
-      padding: 22px;
-      border: 1px solid #e2e8f0;
-      border-radius: 15px;
-      background: #fff;
-    }
-
-    .course-page .chapter-number {
-      flex: 0 0 42px;
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border-radius: 11px;
-      background: #eff6ff;
-      color: #2563eb;
-      font-weight: 800;
-      font-size: 14px;
-    }
-
-    .course-page .chapter-card h3 {
-      margin: 0;
-      color: #0f172a;
-      font-size: 16px;
-      line-height: 1.5;
-      overflow-wrap: anywhere;
-    }
-
-    .course-page .chapter-card p {
-      margin: 7px 0 0;
-      color: #64748b;
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
-    .course-page .dashboard-footer {
-      margin-top: 70px;
-      padding: 42px 32px 22px;
-      background: #fff;
-      border-top: 1px solid #e2e8f0;
-    }
-
-    .course-page .dashboard-footer-inner {
-      width: min(1180px, 100%);
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      gap: 35px;
-    }
-
-    .course-page .dashboard-footer-logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      text-decoration: none;
-    }
-
-    .course-page .dashboard-footer-logo img {
-      width: 34px;
-      height: 34px;
-      object-fit: contain;
-    }
-
-    .course-page .dashboard-footer-logo > span {
-      font-size: 21px;
-      font-weight: 800;
-    }
-
-    .course-page .dashboard-footer p {
-      margin: 10px 0 0;
-      color: #64748b;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .course-page .dashboard-footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 10px 20px;
-      max-width: 650px;
-    }
-
-    .course-page .dashboard-footer-links a {
-      color: #64748b;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .course-page .dashboard-footer-links a:hover {
-      color: #2563eb;
-    }
-
-    .course-page .dashboard-footer-bottom {
-      width: min(1180px, 100%);
-      margin: 28px auto 0;
-      padding-top: 17px;
-      border-top: 1px solid #edf0f5;
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      color: #8a96a8;
-      font-size: 13px;
-    }
-
-    @media (max-width: 700px) {
-      .course-page .dashboard-header {
-        gap: 10px;
-        padding: 13px 15px;
-      }
-
-      .course-page .dashboard-logo img {
-        width: 34px;
-        height: 34px;
-      }
-
-      .course-page .dashboard-logo > span {
-        font-size: 20px;
-      }
-
-      .course-page .dashboard-nav {
-        display: none;
-      }
-
-      .course-page .course-chapter-grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
-      }
-
-      .course-page .chapter-card {
-        padding: 18px;
-      }
-
-      .course-page .chapter-card h3 {
-        font-size: 15px;
-      }
-
-      .course-page .chapter-card p {
-        font-size: 13px;
-      }
-
-      .course-page .dashboard-footer {
-        padding: 34px 20px 20px;
-      }
-
-      .course-page .dashboard-footer-inner {
-        flex-direction: column;
-      }
-
-      .course-page .dashboard-footer-links {
-        justify-content: flex-start;
-      }
-
-      .course-page .dashboard-footer-bottom {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-  </style>
-  <link rel="stylesheet" href="css/ui-system.css">
-<link rel="stylesheet" href="css/site.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Class 9 Complete Course | iStudyBytes</title>
+<link rel="icon" href="images/logo-icon.avif">
+<meta name="description" content="Class 9 Complete Course by iStudyBytes with Science and Mathematics chapters.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <meta name="theme-color" content="#2563eb">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/course.css">
 </head>
-
-<body>
-  <div class="course-page" id="coursePage" style="visibility: hidden">
-
-    <!-- SHELL:HEADER:START -->
+<body class="page-course">
+<a class="skip-link" href="#main">Skip to main content</a>
+<!-- SHELL:HEADER:START -->
 <header class="site-header" id="site-header">
   <script>try{for(var k in localStorage){if(/^sb-.+-auth-token$/.test(k)){document.documentElement.classList.add('has-session');break}}}catch(e){}</script>
   <div class="site-header__inner">
@@ -331,7 +42,7 @@
       </ul>
       <div class="site-nav__actions">
         <div class="site-nav__guest">
-          <a href="login.html" class="btn btn-ghost btn-sm" id="home-auth-link">Log in</a>
+          <a href="login.html" class="btn btn-secondary btn-sm" id="home-auth-link">Log in</a>
           <a href="register.html" class="btn btn-primary btn-sm">Sign up</a>
         </div>
         <div class="site-user" id="site-user">
@@ -351,406 +62,103 @@
   </div>
 </header>
 <!-- SHELL:HEADER:END -->
+<main id="main" class="page" data-guard>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol class="breadcrumb__list">
+      <li><a href="dashboard.html">My courses</a></li>
+      <li><span aria-current="page">Class 9 complete course</span></li>
+    </ol>
+  </nav>
 
-    <main class="course-main">
-      <div class="course-breadcrumb">
-        <a href="dashboard.html">My Courses</a>
-        <i class="fa-solid fa-chevron-right"></i>
-        <span>Class 9 Complete Course</span>
-      </div>
+  <section class="course-hero">
+    <div class="panel-dark course-hero__intro">
+      <span class="icon-tile course-hero__icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
+      <span class="eyebrow">Class 9 · Complete course</span>
+      <h1>Learn Class 9 with a clear, chapter-wise system</h1>
+      <p>Study Science and Mathematics through organised notes, presentations, videos and chapter tests, all within your course.</p>
+    </div>
+    <div class="card course-hero__facts" aria-label="Course highlights">
+      <h2 class="course-hero__facts-title">What is in this course</h2>
+      <dl class="facts">
+        <div><dt>27</dt><dd>Chapters</dd></div>
+        <div><dt>2</dt><dd>Subjects</dd></div>
+        <div><dt>13</dt><dd>Science chapters</dd></div>
+        <div><dt>14</dt><dd>Maths chapters</dd></div>
+      </dl>
+      <p class="card__meta">Each chapter brings together notes, PPTs, one-shot revision and tests.</p>
+    </div>
+  </section>
 
-      <section class="course-hero">
-        <div class="course-hero-left">
-          <div class="course-icon">
-            <i class="fa-solid fa-graduation-cap"></i>
-          </div>
+  <section class="section" aria-labelledby="subjects-title">
+    <div class="section__head">
+      <span class="eyebrow">Your subjects</span>
+      <h2 id="subjects-title">Choose a subject</h2>
+      <p>Open a subject to see every chapter and the resources available.</p>
+    </div>
+    <div class="grid grid--2">
+      <article class="card">
+        <div class="card__top"><span class="icon-tile"><i class="fa-solid fa-flask" aria-hidden="true"></i></span><span class="badge badge--muted">13 chapters</span></div>
+        <h3 class="card__title">Science</h3>
+        <p class="card__text">Explore the Class 9 Exploration Science curriculum, organised chapter by chapter.</p>
+        <div class="card__foot"><a href="class9-science.html" class="btn btn-primary">View Science <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
+      </article>
+      <article class="card">
+        <div class="card__top"><span class="icon-tile"><i class="fa-solid fa-calculator" aria-hidden="true"></i></span><span class="badge badge--muted">14 chapters</span></div>
+        <h3 class="card__title">Mathematics</h3>
+        <p class="card__text">Build concepts and practise through the Class 9 Ganita Manjari Mathematics chapters.</p>
+        <div class="card__foot"><a href="class9-maths.html" class="btn btn-primary">View Mathematics <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
+      </article>
+    </div>
+  </section>
 
-          <div class="course-label">CLASS 9 • COMPLETE COURSE</div>
+  <section class="section" aria-labelledby="science-title">
+    <div class="section__head">
+      <span class="eyebrow">Science</span>
+      <h2 id="science-title">Science chapters</h2>
+      <p>13 chapters in the Class 9 Exploration Science curriculum.</p>
+    </div>
+    <div class="grid grid--2">
+      <a class="card card--row card--sm lesson" href="class9-science-exploration.html"><span class="lesson__num">01</span><span class="lesson__body card__body"><strong>Exploration: Entering the World of Secondary Science</strong><small>Science · Chapter 1</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-science-cell.html"><span class="lesson__num">02</span><span class="lesson__body card__body"><strong>Cell: The Building Block of Life</strong><small>Science · Chapter 2</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-science-chapter-3-tissues-in-action.html"><span class="lesson__num">03</span><span class="lesson__body card__body"><strong>Tissues in Action</strong><small>Science · Chapter 3</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-science-chapter-4-describing-motion-around-us.html"><span class="lesson__num">04</span><span class="lesson__body card__body"><strong>Describing Motion Around Us</strong><small>Science · Chapter 4</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-science-chapter-5-exploring-mixtures-and-their-separation.html"><span class="lesson__num">05</span><span class="lesson__body card__body"><strong>Exploring Mixtures and their Separation</strong><small>Science · Chapter 5</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-science-chapter-6-how-forces-affect-motion.html"><span class="lesson__num">06</span><span class="lesson__body card__body"><strong>How Forces Affect Motion</strong><small>Science · Chapter 6</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-science-chapter-7-work-energy-and-simple-machines.html"><span class="lesson__num">07</span><span class="lesson__body card__body"><strong>Work, Energy, and Simple Machines</strong><small>Science · Chapter 7</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-science-chapter-8-journey-inside-the-atom.html"><span class="lesson__num">08</span><span class="lesson__body card__body"><strong>Journey Inside the Atom</strong><small>Science · Chapter 8</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-science-chapter-9-atomic-foundations-of-matter.html"><span class="lesson__num">09</span><span class="lesson__body card__body"><strong>Atomic Foundations of Matter</strong><small>Science · Chapter 9</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-science-chapter-10-sound-waves-characteristics-and-applications.html"><span class="lesson__num">10</span><span class="lesson__body card__body"><strong>Sound Waves: Characteristics and Applications</strong><small>Science · Chapter 10</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-science-chapter-11-reproduction-how-life-continues.html"><span class="lesson__num">11</span><span class="lesson__body card__body"><strong>Reproduction: How Life Continues</strong><small>Science · Chapter 11</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-science-chapter-12-patterns-in-life-diversity-and-classification.html"><span class="lesson__num">12</span><span class="lesson__body card__body"><strong>Patterns in Life: Diversity and Classification</strong><small>Science · Chapter 12</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-science-chapter-13-earth-as-a-system-energy-matter-and-life.html"><span class="lesson__num">13</span><span class="lesson__body card__body"><strong>Earth as a System: Energy, Matter, and Life</strong><small>Science · Chapter 13</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+    </div>
+  </section>
 
-          <h1>Learn Class 9 with a clear, chapter-wise system.</h1>
-
-          <p>
-            Study Science and Mathematics through organised notes,
-            presentations, videos and chapter tests—all within your course.
-          </p>
-        </div>
-
-        <div class="course-progress-card">
-          <div class="course-progress-top">
-            <span>Course access</span>
-            <strong>Active</strong>
-          </div>
-
-          <div class="course-progress-bar">
-            <div class="course-progress-fill" style="width: 100%"></div>
-          </div>
-
-          <p>
-            Your complete course is unlocked. Start with any available chapter.
-          </p>
-        </div>
-      </section>
-
-      <section class="course-stats" aria-label="Course highlights">
-        <div class="course-stat-card">
-          <div class="course-stat-icon">
-            <i class="fa-solid fa-book-open"></i>
-          </div>
-          <div>
-            <strong>21</strong>
-            <span>Chapters</span>
-          </div>
-        </div>
-
-        <div class="course-stat-card">
-          <div class="course-stat-icon">
-            <i class="fa-solid fa-file-lines"></i>
-          </div>
-          <div>
-            <strong>4</strong>
-            <span>Resource formats</span>
-          </div>
-        </div>
-
-        <div class="course-stat-card">
-          <div class="course-stat-icon">
-            <i class="fa-solid fa-flask"></i>
-          </div>
-          <div>
-            <strong>13</strong>
-            <span>Science chapters</span>
-          </div>
-        </div>
-
-        <div class="course-stat-card">
-          <div class="course-stat-icon">
-            <i class="fa-solid fa-calculator"></i>
-          </div>
-          <div>
-            <strong>8</strong>
-            <span>Maths chapters</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="course-section">
-        <div class="course-section-heading">
-          <div>
-            <div class="course-section-label">YOUR SUBJECTS</div>
-            <h2>Choose a subject</h2>
-            <p>
-              Explore the updated chapter lists and available resources.
-            </p>
-          </div>
-        </div>
-
-        <div class="subject-grid">
-          <article class="subject-card">
-            <div class="subject-card-top">
-              <div class="subject-icon science-icon">
-                <i class="fa-solid fa-flask"></i>
-              </div>
-              <span class="subject-class">13 CHAPTERS</span>
-            </div>
-
-            <h3>Science</h3>
-
-            <p>
-              Explore the updated Class 9 Science curriculum,
-              organised chapter by chapter.
-            </p>
-
-            <a href="class9-science.html" class="subject-button">
-              View Science
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </article>
-
-          <article class="subject-card">
-            <div class="subject-card-top">
-              <div class="subject-icon maths-icon">
-                <i class="fa-solid fa-calculator"></i>
-              </div>
-              <span class="subject-class">8 CHAPTERS</span>
-            </div>
-
-            <h3>Mathematics</h3>
-
-            <p>
-              Build concepts and practise through the updated
-              Class 9 Mathematics structure.
-            </p>
-
-            <a href="class9-maths.html" class="subject-button">
-              View Mathematics
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </article>
-        </div>
-      </section>
-
-      <section class="course-section">
-        <div class="course-section-heading">
-          <div>
-            <div class="course-section-label">SCIENCE</div>
-            <h2>Science chapters</h2>
-            <p>13 chapters in the updated Class 9 Science curriculum.</p>
-          </div>
-        </div>
-
-        <div class="course-chapter-grid">
-          <div class="chapter-card">
-            <div class="chapter-number">01</div>
-            <div>
-              <h3>Exploration: Entering the World of Secondary Science</h3>
-              <p>Science • Chapter 1</p>
-            </div>
-          </div>
-
-          <div class="chapter-card">
-            <div class="chapter-number">02</div>
-            <div>
-              <h3>Cell: The Building Block of Life</h3>
-              <p>Science • Chapter 2</p>
-            </div>
-          </div>
-
-          <div class="chapter-card">
-            <div class="chapter-number">03</div>
-            <div>
-              <h3>Tissues in Action</h3>
-              <p>Science • Chapter 3</p>
-            </div>
-          </div>
-
-          <div class="chapter-card">
-            <div class="chapter-number">04</div>
-            <div>
-              <h3>Describing Motion Around Us</h3>
-              <p>Science • Chapter 4</p>
-            </div>
-          </div>
-
-          <div class="chapter-card">
-            <div class="chapter-number">05</div>
-            <div>
-              <h3>Exploring Mixtures and their Separation</h3>
-              <p>Science • Chapter 5</p>
-            </div>
-          </div>
-
-          <div class="chapter-card">
-            <div class="chapter-number">06</div>
-            <div>
-              <h3>How Forces Affect Motion</h3>
-              <p>Science • Chapter 6</p>
-            </div>
-          </div>
-
-          <div class="chapter-card">
-            <div class="chapter-number">07</div>
-            <div>
-              <h3>Work, Energy, and Simple Machines</h3>
-              <p>Science • Chapter 7</p>
-            </div>
-          </div>
-
-          <div class="chapter-card">
-            <div class="chapter-number">08</div>
-            <div>
-              <h3>Journey Inside the Atom</h3>
-              <p>Science • Chapter 8</p>
-            </div>
-          </div>
-
-          <div class="chapter-card">
-            <div class="chapter-number">09</div>
-            <div>
-              <h3>Atomic Foundations of Matter</h3>
-              <p>Science • Chapter 9</p>
-            </div>
-          </div>
-
-          <div class="chapter-card">
-            <div class="chapter-number">10</div>
-            <div>
-              <h3>Sound Waves: Characteristics and Applications</h3>
-              <p>Science • Chapter 10</p>
-            </div>
-          </div>
-
-          <div class="chapter-card">
-            <div class="chapter-number">11</div>
-            <div>
-              <h3>Reproduction: How Life Continues</h3>
-              <p>Science • Chapter 11</p>
-            </div>
-          </div>
-
-          <div class="chapter-card">
-            <div class="chapter-number">12</div>
-            <div>
-              <h3>Patterns in Life: Diversity and Classification</h3>
-              <p>Science • Chapter 12</p>
-            </div>
-          </div>
-
-          <div class="chapter-card">
-            <div class="chapter-number">13</div>
-            <div>
-              <h3>Earth as a System: Energy, Matter, and Life</h3>
-              <p>Science • Chapter 13</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="course-section">
-        <div class="course-section-heading">
-          <div>
-            <div class="course-section-label">MATHEMATICS</div>
-            <h2>Mathematics chapters</h2>
-            <p>
-              8 chapters in the updated Class 9 Mathematics curriculum.
-            </p>
-          </div>
-        </div>
-
-        <div class="course-chapter-grid">
-          <div class="chapter-card">
-            <div class="chapter-number">01</div>
-            <div>
-              <h3>Orienting Yourself: The Use of Coordinates</h3>
-              <p>Mathematics • Chapter 1</p>
-            </div>
-          </div>
-
-          <div class="chapter-card">
-            <div class="chapter-number">02</div>
-            <div>
-              <h3>Introduction to Linear Polynomials</h3>
-              <p>Mathematics • Chapter 2</p>
-            </div>
-          </div>
-
-          <div class="chapter-card">
-            <div class="chapter-number">03</div>
-            <div>
-              <h3>The World of Numbers</h3>
-              <p>Mathematics • Chapter 3</p>
-            </div>
-          </div>
-
-          <div class="chapter-card">
-            <div class="chapter-number">04</div>
-            <div>
-              <h3>Exploring Algebraic Identities</h3>
-              <p>Mathematics • Chapter 4</p>
-            </div>
-          </div>
-
-          <div class="chapter-card">
-            <div class="chapter-number">05</div>
-            <div>
-              <h3>I’m Up and Down, and Round and Round</h3>
-              <p>Mathematics • Chapter 5</p>
-            </div>
-          </div>
-
-          <div class="chapter-card">
-            <div class="chapter-number">06</div>
-            <div>
-              <h3>Measuring Space: Perimeter and Area</h3>
-              <p>Mathematics • Chapter 6</p>
-            </div>
-          </div>
-
-          <div class="chapter-card">
-            <div class="chapter-number">07</div>
-            <div>
-              <h3>The Mathematics of Maybe: Introduction to Probability</h3>
-              <p>Mathematics • Chapter 7</p>
-            </div>
-          </div>
-
-          <div class="chapter-card">
-            <div class="chapter-number">08</div>
-            <div>
-              <h3>
-                Predicting What Comes Next: Exploring Sequences and Progressions
-              </h3>
-              <p>Mathematics • Chapter 8</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="course-section">
-        <div class="course-section-heading">
-          <div>
-            <div class="course-section-label">QUICK ACCESS</div>
-            <h2>Study resources</h2>
-            <p>
-              Open the resource area for the subject you want to study.
-            </p>
-          </div>
-        </div>
-
-        <div class="course-resource-grid">
-          <a href="class9-science.html" class="course-resource-card">
-            <div class="resource-icon">
-              <i class="fa-solid fa-book-open"></i>
-            </div>
-            <div class="resource-content">
-              <h3>Notes</h3>
-              <p>Open chapter-wise study notes.</p>
-            </div>
-            <i class="fa-solid fa-arrow-right resource-arrow"></i>
-          </a>
-
-          <a href="class9-science.html" class="course-resource-card">
-            <div class="resource-icon">
-              <i class="fa-solid fa-file-powerpoint"></i>
-            </div>
-            <div class="resource-content">
-              <h3>PPT Presentations</h3>
-              <p>Open classroom-ready presentations.</p>
-            </div>
-            <i class="fa-solid fa-arrow-right resource-arrow"></i>
-          </a>
-
-          <a href="class9-science.html" class="course-resource-card">
-            <div class="resource-icon">
-              <i class="fa-solid fa-clipboard-check"></i>
-            </div>
-            <div class="resource-content">
-              <h3>Chapter Tests</h3>
-              <p>Practise and check your preparation.</p>
-            </div>
-            <i class="fa-solid fa-arrow-right resource-arrow"></i>
-          </a>
-
-          <a href="class9-science.html" class="course-resource-card">
-            <div class="resource-icon">
-              <i class="fa-solid fa-bolt"></i>
-            </div>
-            <div class="resource-content">
-              <h3>One-Shot Videos</h3>
-              <p>Revise complete chapters efficiently.</p>
-            </div>
-            <i class="fa-solid fa-arrow-right resource-arrow"></i>
-          </a>
-        </div>
-
-        <div class="course-note" style="margin-top: 14px">
-          <i class="fa-solid fa-circle-info"></i>
-          Resource availability is being expanded chapter by chapter.
-          New material will appear in the course as it is uploaded.
-        </div>
-      </section>
-    </main>
-
-    <!-- SHELL:FOOTER:START -->
+  <section class="section" aria-labelledby="maths-title">
+    <div class="section__head">
+      <span class="eyebrow">Mathematics</span>
+      <h2 id="maths-title">Mathematics chapters</h2>
+      <p>14 chapters in the Class 9 Ganita Manjari Mathematics curriculum.</p>
+    </div>
+    <div class="grid grid--2">
+      <a class="card card--row card--sm lesson" href="class9-maths-chapter-1-orienting-yourself-the-use-of-coordinates.html"><span class="lesson__num">01</span><span class="lesson__body card__body"><strong>Orienting Yourself: The Use of Coordinates</strong><small>Mathematics · Chapter 1</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-maths-chapter-2-introduction-to-linear-polynomials.html"><span class="lesson__num">02</span><span class="lesson__body card__body"><strong>Introduction to Linear Polynomials</strong><small>Mathematics · Chapter 2</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-maths-chapter-3-the-world-of-numbers.html"><span class="lesson__num">03</span><span class="lesson__body card__body"><strong>The World of Numbers</strong><small>Mathematics · Chapter 3</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-maths-chapter-4-exploring-algebraic-identities.html"><span class="lesson__num">04</span><span class="lesson__body card__body"><strong>Exploring Algebraic Identities</strong><small>Mathematics · Chapter 4</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-maths-chapter-5-i-m-up-and-down-and-round-and-round.html"><span class="lesson__num">05</span><span class="lesson__body card__body"><strong>I’m Up and Down, and Round and Round</strong><small>Mathematics · Chapter 5</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-maths-chapter-6-measuring-space-perimeter-and-area.html"><span class="lesson__num">06</span><span class="lesson__body card__body"><strong>Measuring Space: Perimeter and Area</strong><small>Mathematics · Chapter 6</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-maths-chapter-7-the-mathematics-of-maybe-introduction-to-probability.html"><span class="lesson__num">07</span><span class="lesson__body card__body"><strong>The Mathematics of Maybe: Introduction to Probability</strong><small>Mathematics · Chapter 7</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-maths-chapter-8-predicting-what-comes-next-exploring-sequences-and-progressions.html"><span class="lesson__num">08</span><span class="lesson__body card__body"><strong>Predicting What Comes Next: Exploring Sequences and Progressions</strong><small>Mathematics · Chapter 8</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-maths-chapter-9-propositions-and-their-converses.html"><span class="lesson__num">09</span><span class="lesson__body card__body"><strong>Propositions and their Converses</strong><small>Mathematics · Chapter 9</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-maths-chapter-10-how-quantities-combine-understanding-data.html"><span class="lesson__num">10</span><span class="lesson__body card__body"><strong>How Quantities Combine: Understanding Data</strong><small>Mathematics · Chapter 10</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-maths-chapter-11-the-world-of-algorithms.html"><span class="lesson__num">11</span><span class="lesson__body card__body"><strong>The World of Algorithms</strong><small>Mathematics · Chapter 11</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-maths-chapter-12-quadrilaterals.html"><span class="lesson__num">12</span><span class="lesson__body card__body"><strong>Quadrilaterals</strong><small>Mathematics · Chapter 12</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-maths-chapter-13-two-variables-one-line.html"><span class="lesson__num">13</span><span class="lesson__body card__body"><strong>Two Variables, One Line</strong><small>Mathematics · Chapter 13</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+      <a class="card card--row card--sm lesson" href="class9-maths-chapter-14-math-of-space-surface-area-and-volume.html"><span class="lesson__num">14</span><span class="lesson__body card__body"><strong>Math of Space: Surface Area and Volume</strong><small>Mathematics · Chapter 14</small></span><i class="fa-solid fa-arrow-right card__arrow" aria-hidden="true"></i></a>
+    </div>
+  </section>
+</main>
+<!-- SHELL:FOOTER:START -->
 <footer class="site-footer">
   <div class="site-footer__inner">
     <div class="site-footer__grid">
@@ -796,48 +204,45 @@
   </div>
 </footer>
 <!-- SHELL:FOOTER:END -->
-  </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script>
+(async function () {
+  const page = document.getElementById("main");
+  try {
+    const {
+      data: { session },
+      error: sessionError
+    } = await supabaseClient.auth.getSession();
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/supabase-config.js"></script>
+    if (sessionError || !session) {
+      window.location.href = "login.html";
+      return;
+    }
 
-  <script>
-    (async function () {
-      const page = document.getElementById("coursePage");
-      try {
-        const {
-          data: { session },
-          error: sessionError
-        } = await supabaseClient.auth.getSession();
+    const {
+      data: access,
+      error: accessError
+    } = await supabaseClient
+      .from("course_access")
+      .select("id")
+      .eq("user_id", session.user.id)
+      .eq("course_id", 1)
+      .limit(1)
+      .maybeSingle();
 
-        if (sessionError || !session) {
-          window.location.href = "login.html";
-          return;
-        }
+    if (accessError || !access) {
+      window.location.href = "store.html";
+      return;
+    }
 
-        const {
-          data: access,
-          error: accessError
-        } = await supabaseClient
-          .from("course_access")
-          .select("id")
-          .eq("user_id", session.user.id)
-          .eq("course_id", 1)
-          .limit(1)
-          .maybeSingle();
-
-        if (accessError || !access) {
-          window.location.href = "store.html";
-          return;
-        }
-
-        page.style.visibility = "visible";
-      } catch (error) {
-        console.error("Course page error:", error);
-        window.location.href = "dashboard.html";
-      }
-    })();
-  </script>
+    page.removeAttribute("data-guard");
+  } catch (error) {
+    console.error("Course page error:", error);
+    window.location.href = "dashboard.html";
+  }
+})();
+</script>
 <script src="js/site.js" defer></script>
 </body>
 </html>

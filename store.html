@@ -4,12 +4,16 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Store | iStudyBytes</title><link rel="icon" href="images/logo-icon.avif"><meta name="description" content="Explore iStudyBytes CBSE 60-day crash courses and subject resource bundles for Class 9 and Class 10.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/store-polish.css"><link rel="stylesheet" href="css/customer-responsive.css">
-  <link rel="stylesheet" href="css/ui-system.css">
-<link rel="stylesheet" href="css/site.css">
-<meta name="theme-color" content="#2563eb">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"><meta name="theme-color" content="#2563eb">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/store.css">
 </head>
-<body><div class="store-page">
+<body class="page-store">
+<a class="skip-link" href="#main">Skip to main content</a>
 <!-- SHELL:HEADER:START -->
 <header class="site-header" id="site-header">
   <script>try{for(var k in localStorage){if(/^sb-.+-auth-token$/.test(k)){document.documentElement.classList.add('has-session');break}}}catch(e){}</script>
@@ -32,7 +36,7 @@
       </ul>
       <div class="site-nav__actions">
         <div class="site-nav__guest">
-          <a href="login.html" class="btn btn-ghost btn-sm" id="home-auth-link">Log in</a>
+          <a href="login.html" class="btn btn-secondary btn-sm" id="home-auth-link">Log in</a>
           <a href="register.html" class="btn btn-primary btn-sm">Sign up</a>
         </div>
         <div class="site-user" id="site-user">
@@ -52,20 +56,51 @@
   </div>
 </header>
 <!-- SHELL:HEADER:END -->
-<main class="store-main">
-<section class="store-hero"><span class="store-label">iStudyBytes Store</span><h1>Choose exactly what you need.</h1><p>60-day crash courses for everything, or buy individual subject resource bundles without a complicated checkout.</p></section>
+<main id="main" class="page">
+  <header class="page-head page-head--center">
+    <span class="eyebrow">iStudyBytes Store</span>
+    <h1>Choose exactly what you need</h1>
+    <p class="page-head__lead">60-day crash courses for everything, or buy individual subject resource bundles without a complicated checkout.</p>
+  </header>
 
-<section class="store-section" id="courses">
-<div class="store-section-heading"><span class="store-section-label">Best value</span><h2>60-Day Crash Courses</h2><p>Get Science and Mathematics together with the course library as resources are released.</p></div>
-<div class="product-grid">
-<article class="product-card" data-category="course"><div class="product-icon"><i class="fa-solid fa-flask"></i></div><div class="product-category">Class 9 • CBSE</div><h3>CBSE Class 9 60-Day Crash Course • 2026–27</h3><p>Science + Mathematics with focused 60-day preparation and resources released progressively as they are prepared.</p><div class="product-bottom"><span class="product-price" id="class9-price">Loading…</span><a href="product-class9.html" class="product-button">View Course <i class="fa-solid fa-arrow-right"></i></a></div></article>
-<article class="product-card" data-category="course"><div class="product-icon"><i class="fa-solid fa-calculator"></i></div><div class="product-category">Class 10 • CBSE</div><h3>CBSE Class 10 60-Day Crash Course • 2026–27</h3><p>Science + Mathematics with focused 60-day preparation and chapter-wise resources released progressively.</p><div class="product-bottom"><span class="product-price" id="class10-price">Loading…</span><a href="product-class10.html" class="product-button">View Course <i class="fa-solid fa-arrow-right"></i></a></div></article>
-</div></section>
+  <section class="section" id="courses" aria-labelledby="courses-title">
+    <div class="section__head">
+      <span class="eyebrow">Best value</span>
+      <h2 id="courses-title">60-Day Crash Courses</h2>
+      <p>Get Science and Mathematics together with the course library as resources are released.</p>
+    </div>
+    <div class="grid grid--2">
+      <article class="card" data-category="course">
+        <span class="icon-tile"><i class="fa-solid fa-flask" aria-hidden="true"></i></span>
+        <span class="eyebrow">Class 9 · CBSE</span>
+        <h3 class="card__title">CBSE Class 9 60-Day Crash Course · 2026–27</h3>
+        <p class="card__text">Science + Mathematics with focused 60-day preparation and resources released progressively as they are prepared.</p>
+        <div class="card__foot store-card-foot">
+          <span class="price"><span class="price__now" id="class9-price">Loading…</span></span>
+          <a href="product-class9.html" class="btn btn-primary">View course <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </article>
+      <article class="card" data-category="course">
+        <span class="icon-tile"><i class="fa-solid fa-calculator" aria-hidden="true"></i></span>
+        <span class="eyebrow">Class 10 · CBSE</span>
+        <h3 class="card__title">CBSE Class 10 60-Day Crash Course · 2026–27</h3>
+        <p class="card__text">Science + Mathematics with focused 60-day preparation and chapter-wise resources released progressively.</p>
+        <div class="card__foot store-card-foot">
+          <span class="price"><span class="price__now" id="class10-price">Loading…</span></span>
+          <a href="product-class10.html" class="btn btn-primary">View course <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </article>
+    </div>
+  </section>
 
-<section class="store-section" id="bundles">
-<div class="store-section-heading"><span class="store-section-label">Flexible access</span><h2>Subject Resource Bundles</h2><p>Subject resource bundles are being prepared. Actual Notes, PPTs, Tests and One-Shot content will be made available as it is completed.</p></div>
-<div class="bundle-subject-grid" id="bundle-grid"><div class="bundle-loading">Premium resource templates are ready; actual content is being prepared.</div></div>
-</section>
+  <section class="section" id="bundles" aria-labelledby="bundles-title">
+    <div class="section__head">
+      <span class="eyebrow">Flexible access</span>
+      <h2 id="bundles-title">Subject Resource Bundles</h2>
+      <p>Subject resource bundles are being prepared. Notes, PPTs, tests and one-shot content will be made available as each is completed.</p>
+    </div>
+    <div class="grid grid--2" id="bundle-grid"><div class="empty-state">Premium resource templates are ready; actual content is being prepared.</div></div>
+  </section>
 </main>
 <!-- SHELL:FOOTER:START -->
 <footer class="site-footer">
@@ -112,7 +147,7 @@
     </div>
   </div>
 </footer>
-<!-- SHELL:FOOTER:END --></div>
+<!-- SHELL:FOOTER:END -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="js/supabase-config.js"></script>
 <script>
@@ -130,26 +165,26 @@
       subjects.forEach(function(subject){
         const items=groups.filter(function(x){return x.course_slug===courseSlug&&x.subject===subject}).sort(function(a,b){return order[a.resource_type]-order[b.resource_type]});
         if(!items.length)return;
-        const card=document.createElement('article');card.className='bundle-subject-card';
-        const heading=document.createElement('div');heading.className='bundle-subject-heading';
-        heading.innerHTML='<span class="bundle-class">'+(courseSlug==='class-9'?'CLASS 9':'CLASS 10')+'</span><h3>'+escapeHtml(subject)+'</h3>';
+        const card=document.createElement('article');card.className='card bundle';
+        const heading=document.createElement('div');heading.className='bundle__head';
+        heading.innerHTML='<span class="eyebrow">'+(courseSlug==='class-9'?'Class 9':'Class 10')+'</span><h3 class="card__title">'+escapeHtml(subject)+'</h3>';
         card.appendChild(heading);
-        const list=document.createElement('div');list.className='bundle-list';
+        const list=document.createElement('div');list.className='bundle__list';
         items.forEach(function(item){
-          const row=document.createElement('div');row.className='bundle-row';
-          row.innerHTML='<div class="bundle-row-icon"><i class="fa-solid '+icons[item.resource_type]+'"></i></div><div class="bundle-row-copy"><strong>'+escapeHtml(labels[item.resource_type])+'</strong><span>Content released as this resource type is completed</span></div><strong class="bundle-price">₹'+Number(item.price).toLocaleString('en-IN')+'</strong><span class="bundle-buy" aria-label="Resource preparing">Preparing</span>';
+          const row=document.createElement('div');row.className='bundle__row';
+          row.innerHTML='<span class="icon-tile"><i class="fa-solid '+icons[item.resource_type]+'" aria-hidden="true"></i></span><div class="bundle__copy"><strong>'+escapeHtml(labels[item.resource_type])+'</strong><span>Released as this resource type is completed</span></div><strong class="bundle__price">₹'+Number(item.price).toLocaleString('en-IN')+'</strong><span class="badge badge--muted">Preparing</span>';
           list.appendChild(row);
         });
         card.appendChild(list);bundleGrid.appendChild(card);
       });
     });
-    if(!bundleGrid.children.length)bundleGrid.innerHTML='<div class="bundle-loading">Premium resource content is being prepared and will appear here as it is uploaded.</div>';
+    if(!bundleGrid.children.length)bundleGrid.innerHTML='<div class="empty-state">Premium resource content is being prepared and will appear here as it is uploaded.</div>';
   }
   supabaseClient.from('courses').select('slug,price,launch_price,launch_offer_ends_at').in('slug',['class-9','class-10']).then(function(result){
-    (result.data||[]).forEach(function(course){const el=document.getElementById(course.slug==='class-9'?'class9-price':'class10-price');if(el){const active=course.launch_price!=null&&course.launch_offer_ends_at&&new Date()<new Date(course.launch_offer_ends_at);el.innerHTML=active?'₹'+Number(course.launch_price).toLocaleString('en-IN')+' <span style="text-decoration:line-through;opacity:.5;font-size:.72em;margin-left:6px">₹'+Number(course.price).toLocaleString('en-IN')+'</span>':'₹'+Number(course.price).toLocaleString('en-IN')}});
-  }).catch(function(error){console.error(error);document.querySelectorAll('.product-price').forEach(function(el){if(el.textContent==='Loading…')el.textContent='Price unavailable'})});
+    (result.data||[]).forEach(function(course){const el=document.getElementById(course.slug==='class-9'?'class9-price':'class10-price');if(el){const active=course.launch_price!=null&&course.launch_offer_ends_at&&new Date()<new Date(course.launch_offer_ends_at);el.innerHTML=active?'₹'+Number(course.launch_price).toLocaleString('en-IN')+' <span class="price__was">₹'+Number(course.price).toLocaleString('en-IN')+'</span>':'₹'+Number(course.price).toLocaleString('en-IN')}});
+  }).catch(function(error){console.error(error);document.querySelectorAll('.price__now').forEach(function(el){if(el.textContent==='Loading…')el.textContent='Price unavailable'})});
   supabaseClient.from('resource_bundles').select('slug,name,subject,resource_type,price,courses!inner(slug)').order('course_id').then(function(result){
-    if(result.error){console.error('Unable to load bundles:',result.error);bundleGrid.innerHTML='<div class="bundle-loading">Unable to load resource bundles. Please refresh.</div>';return}
+    if(result.error){console.error('Unable to load bundles:',result.error);bundleGrid.innerHTML='<div class="notice notice--danger">Unable to load resource bundles. Please refresh.</div>';return}
     const groups=(result.data||[]).map(function(item){return Object.assign({},item,{course_slug:item.courses.slug})});
     render(groups);
   });

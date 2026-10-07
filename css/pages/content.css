@@ -1,0 +1,13 @@
+/* About, contact and legal pages */
+.page-head__meta { font-size: var(--fs-sm); color: var(--muted); }
+.about__tags { margin-top: var(--s-5); }
+.about__body { margin-top: 0; }
+.about__body > * + * { margin-top: var(--s-5); }
+
+.prose-card { padding: var(--s-10); }
+.prose-card > .prose { max-width: none; }
+.prose > :first-child, .prose > h2:first-child { margin-top: 0; }
+
+@media (max-width: 640px) {
+  .prose-card { padding: var(--s-6) var(--s-5); }
+}

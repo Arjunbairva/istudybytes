@@ -2,18 +2,15 @@
 (function () {
   "use strict";
 
-  var style = document.createElement("style");
-  style.textContent = ".dashboard-progress{margin-top:1rem;padding:1rem;border:1px solid rgba(37,99,235,.14);border-radius:14px;background:rgba(37,99,235,.035)}.dashboard-progress__row{display:flex;align-items:center;justify-content:space-between;gap:1rem}.dashboard-progress__bar{height:7px;margin:.65rem 0 0;overflow:hidden;border-radius:999px;background:rgba(15,23,42,.1)}.dashboard-progress__fill{height:100%;width:0;border-radius:inherit;background:#2563eb;transition:width 180ms ease}.dashboard-progress__meta{margin:.55rem 0 0;opacity:.72}.dashboard-progress__continue{display:inline-flex;margin-top:.75rem}.dashboard-progress--empty{opacity:.8}";
-  document.head.appendChild(style);
-
   function addProgress(container, percent, completed, total, label) {
     var box = document.createElement("div");
     box.className = "dashboard-progress" + (total ? "" : " dashboard-progress--empty");
     var safePercent = Math.max(0, Math.min(100, Math.round(percent)));
     box.innerHTML =
       '<div class="dashboard-progress__row"><strong>Course progress</strong><span>' + safePercent + '%</span></div>' +
-      '<div class="dashboard-progress__bar" aria-hidden="true"><div class="dashboard-progress__fill" style="width:' + safePercent + '%"></div></div>' +
-      '<p class="dashboard-progress__meta">' + (total ? (completed + ' of ' + total + ' chapters completed') : 'No published chapter content is available yet') + '</p>';
+      '<div class="progress" role="progressbar" aria-label="Course progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + safePercent + '"><span class="progress__bar"></span></div>' +
+      '<p class="card__meta">' + (total ? (completed + ' of ' + total + ' chapters completed') : 'No published chapter content is available yet') + '</p>';
+    box.querySelector(".progress__bar").style.width = safePercent + "%";
     container.appendChild(box);
   }
 

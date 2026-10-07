@@ -1,0 +1,48 @@
+/* Free learning pages: NCERT solutions and quizzes */
+.learn-cta { gap: var(--s-6); flex-wrap: wrap; }
+.learn-cta .btn { flex: none; }
+
+.quiz-back { margin-bottom: var(--s-5); }
+.quiz-library { margin-top: 0; }
+#quiz-note { margin-top: var(--s-6); }
+
+/* Chapter selector */
+.quiz-part + .quiz-part { margin-top: var(--s-8); }
+.quiz-part__title { margin-bottom: var(--s-4); font-size: var(--fs-base); font-weight: 600; color: var(--ink); }
+.quiz-part__title span { margin-left: var(--s-2); font-weight: 400; color: var(--muted); }
+#quiz-body > .section__head { max-width: none; }
+
+/* Question view */
+.quiz-card { gap: 0; padding: var(--s-8); }
+.quiz-card > * + * { margin-top: var(--s-5); }
+.quiz-topline { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); color: var(--muted); font-size: var(--fs-ui); }
+.quiz-topline strong { color: var(--ink); font-size: var(--fs-base); }
+.quiz-card #quiz-question { font-size: var(--fs-h3); line-height: 1.4; }
+#quiz-options { display: grid; gap: var(--s-3); }
+.quiz-option {
+  width: 100%;
+  min-height: 52px;
+  padding: var(--s-3) var(--s-4);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: var(--fs-base);
+  text-align: left;
+  transition: border-color var(--ease), background var(--ease);
+}
+.quiz-option b { margin-right: var(--s-2); color: var(--brand); }
+.quiz-option:hover:not(:disabled) { border-color: var(--brand); background: var(--brand-soft); }
+.quiz-option.correct { border-color: var(--success); background: var(--success-soft); }
+.quiz-option.wrong { border-color: var(--danger); background: var(--danger-soft); }
+.quiz-actions { display: flex; justify-content: space-between; gap: var(--s-3); }
+
+.quiz-result { align-items: center; text-align: center; }
+.quiz-score { font-size: var(--fs-display); font-weight: 700; line-height: 1; color: var(--brand); letter-spacing: -.03em; }
+.quiz-result__actions { justify-content: center; }
+
+@media (max-width: 640px) {
+  .quiz-card { padding: var(--s-6) var(--s-5); }
+  .quiz-actions { flex-direction: column-reverse; }
+  .quiz-actions .btn { width: 100%; }
+}

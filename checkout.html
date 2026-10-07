@@ -1,7 +1,12 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Checkout | iStudyBytes</title><link rel="icon" href="images/logo-icon.avif"><meta name="description" content="Secure checkout for iStudyBytes courses and resource bundles."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/checkout-polish.css"><link rel="stylesheet" href="css/customer-responsive.css">  <link rel="stylesheet" href="css/ui-system.css">
-<link rel="stylesheet" href="css/site.css">
-<meta name="theme-color" content="#2563eb">
-</head><body class="checkout-page"><div class="checkout-shell"><!-- SHELL:HEADER:START -->
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Checkout | iStudyBytes</title><link rel="icon" href="images/logo-icon.avif"><meta name="description" content="Secure checkout for iStudyBytes courses and resource bundles."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"><meta name="theme-color" content="#2563eb">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/checkout.css">
+</head><body class="page-checkout">
+<a class="skip-link" href="#main">Skip to main content</a><!-- SHELL:HEADER:START -->
 <header class="site-header" id="site-header">
   <script>try{for(var k in localStorage){if(/^sb-.+-auth-token$/.test(k)){document.documentElement.classList.add('has-session');break}}}catch(e){}</script>
   <div class="site-header__inner">
@@ -23,7 +28,7 @@
       </ul>
       <div class="site-nav__actions">
         <div class="site-nav__guest">
-          <a href="login.html" class="btn btn-ghost btn-sm" id="home-auth-link">Log in</a>
+          <a href="login.html" class="btn btn-secondary btn-sm" id="home-auth-link">Log in</a>
           <a href="register.html" class="btn btn-primary btn-sm">Sign up</a>
         </div>
         <div class="site-user" id="site-user">
@@ -42,7 +47,47 @@
     </nav>
   </div>
 </header>
-<!-- SHELL:HEADER:END --><main class="checkout-main"><section class="checkout-heading"><span class="checkout-label">Checkout</span><h1>Complete Your Purchase</h1><p>Review your selected iStudyBytes resource before continuing to secure payment.</p></section><section class="checkout-card" aria-label="iStudyBytes checkout"><div class="checkout-card-top"><div class="checkout-icon"><i class="fa-solid fa-graduation-cap"></i></div><span class="checkout-badge">Secure Checkout</span></div><div class="course-info"><h2 id="course-name">Loading...</h2><p id="course-description">Please wait while we load your selected resource.</p></div><div class="price-row"><span>Price</span><strong id="course-price">Loading...</strong></div><div class="payment-identity-notice"><div class="payment-identity-icon"><i class="fa-solid fa-circle-info"></i></div><div><strong>Payment identification</strong><p>Razorpay will display <strong>iStudyBytes</strong>. For UPI payments, the payer may see the name <strong>Arjun Bairva</strong>.</p></div></div><div class="checkout-actions"><button id="pay-button" type="button">Continue to Payment <i class="fa-solid fa-arrow-right"></i></button><p id="checkout-message" class="checkout-message" aria-live="polite"></p><div id="invoice-action" style="display:none;margin-top:18px;"><a id="invoice-link" href="#" style="display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:600;color:#2563eb;"><i class="fa-solid fa-file-invoice"></i> View &amp; Download Invoice</a></div></div><div class="checkout-trust-row"><div><i class="fa-solid fa-shield-halved"></i><span><strong>Secure Payment</strong><small>Processed through Razorpay</small></span></div><div><i class="fa-solid fa-credit-card"></i><span><strong>Multiple Payment Options</strong><small>UPI, Cards, Net Banking &amp; Wallets</small></span></div><div><i class="fa-solid fa-lock"></i><span><strong>Your Data is Safe</strong><small>Secure payment processing</small></span></div></div><p class="secure-note"><i class="fa-solid fa-shield-halved"></i> Payment is processed securely through Razorpay.</p></section></main><!-- SHELL:FOOTER:START -->
+<!-- SHELL:HEADER:END --><main id="main" class="page page--narrow checkout">
+  <header class="page-head page-head--center">
+    <span class="eyebrow">Checkout</span>
+    <h1>Complete your purchase</h1>
+    <p class="page-head__lead">Review your selected iStudyBytes resource before continuing to secure payment.</p>
+  </header>
+
+  <section class="card checkout__card" aria-label="iStudyBytes checkout">
+    <div class="card__top">
+      <span class="icon-tile"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
+      <span class="badge badge--success"><i class="fa-solid fa-lock" aria-hidden="true"></i> Secure checkout</span>
+    </div>
+
+    <div class="checkout__product">
+      <h2 class="card__title" id="course-name">Loading…</h2>
+      <p class="card__text" id="course-description">Please wait while we load your selected resource.</p>
+    </div>
+
+    <div class="checkout__total">
+      <span>Total</span>
+      <strong class="price__now" id="course-price">Loading…</strong>
+    </div>
+
+    <div class="notice checkout__identity">
+      <strong>Payment identification</strong>
+      <p>Razorpay will display <strong>iStudyBytes</strong>. For UPI payments, the payer may see the name <strong>Arjun Bairva</strong>.</p>
+    </div>
+
+    <div class="checkout__actions">
+      <button id="pay-button" type="button" class="btn btn-primary btn-lg btn-block">Continue to payment <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+      <p id="checkout-message" class="notice" role="status" aria-live="polite"></p>
+      <div id="invoice-action" hidden><a id="invoice-link" href="#" class="link-arrow"><i class="fa-solid fa-file-invoice" aria-hidden="true"></i> View &amp; download invoice</a></div>
+    </div>
+
+    <ul class="checkout__trust">
+      <li><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><span><strong>Secure payment</strong><small>Processed through Razorpay</small></span></li>
+      <li><i class="fa-solid fa-credit-card" aria-hidden="true"></i><span><strong>Multiple payment options</strong><small>UPI, cards, net banking &amp; wallets</small></span></li>
+      <li><i class="fa-solid fa-lock" aria-hidden="true"></i><span><strong>Your data is safe</strong><small>Secure payment processing</small></span></li>
+    </ul>
+  </section>
+</main><!-- SHELL:FOOTER:START -->
 <footer class="site-footer site-footer--compact">
   <div class="site-footer__inner">
     <nav class="site-footer__legal" aria-label="Legal">
@@ -57,7 +102,7 @@
     </div>
   </div>
 </footer>
-<!-- SHELL:FOOTER:END --></div>
+<!-- SHELL:FOOTER:END -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="js/supabase-config.js"></script><script>
 (async function(){
   const {data:{session},error:sessionError}=await supabaseClient.auth.getSession();
@@ -89,13 +134,13 @@
   descEl.textContent=product.description||(productType==='bundle'?'Complete premium '+product.subject+' '+product.resource_type+' resources.':'');
   const launchActive=product.launch_price!=null&&product.launch_offer_ends_at&&new Date()<new Date(product.launch_offer_ends_at);
   const displayPrice=launchActive?Number(product.launch_price):Number(product.price);
-  priceEl.innerHTML=launchActive?'₹'+displayPrice.toLocaleString('en-IN')+' <span style="text-decoration:line-through;opacity:.55;font-size:.72em;margin-left:8px">₹'+Number(product.price).toLocaleString('en-IN')+'</span> <span style="font-size:.65em;color:#16a34a;margin-left:6px">50% OFF</span>':'₹'+displayPrice.toLocaleString('en-IN');
+  priceEl.innerHTML=launchActive?'₹'+displayPrice.toLocaleString('en-IN')+' <span class="price__was">₹'+Number(product.price).toLocaleString('en-IN')+'</span> <span class="price__off">50% OFF</span>':'₹'+displayPrice.toLocaleString('en-IN');
   const razorpayScript=document.createElement('script');razorpayScript.src='https://checkout.razorpay.com/v1/checkout.js';document.head.appendChild(razorpayScript);
-  function resetButton(){payButton.disabled=false;payButton.innerHTML='Continue to Payment <i class="fa-solid fa-arrow-right"></i>'}
+  function resetButton(){payButton.disabled=false;payButton.innerHTML='Continue to payment <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>'}
   function waitForRazorpay(){return new Promise((resolve,reject)=>{if(typeof Razorpay!=='undefined'){resolve();return}const start=Date.now(),timer=setInterval(()=>{if(typeof Razorpay!=='undefined'){clearInterval(timer);resolve()}else if(Date.now()-start>10000){clearInterval(timer);reject(new Error('Razorpay Checkout failed to load.'))}},100)})}
   razorpayScript.onerror=()=>{message.textContent='Unable to load the payment system. Please refresh and try again.'};
   payButton.addEventListener('click',async function(){
-    payButton.disabled=true;payButton.innerHTML='Creating secure payment...';message.textContent='';invoiceAction.style.display='none';
+    payButton.disabled=true;payButton.innerHTML='Creating secure payment...';message.textContent='';invoiceAction.hidden=true;
     try{
       await waitForRazorpay();
       const {data:{session:currentSession}}=await supabaseClient.auth.getSession();
@@ -111,7 +156,7 @@
           if(!verificationData?.success)throw new Error(verificationData?.error||'Payment verification failed.');
           message.textContent=productType==='course'?'Payment verified successfully. Your course access has been activated.':'Payment verified successfully. Your resource bundle access has been activated.';
           payButton.innerHTML='Payment Completed';
-          if(verificationData.order_id){invoiceLink.href='invoice.html?order='+encodeURIComponent(verificationData.order_id);invoiceAction.style.display='block'}
+          if(verificationData.order_id){invoiceLink.href='invoice.html?order='+encodeURIComponent(verificationData.order_id);invoiceAction.hidden=false}
         }catch(error){console.error('Payment verification failed:',error);message.textContent=error.message||'Payment verification failed. Please contact support.';resetButton()}
       },modal:{ondismiss:function(){resetButton()}}};
       const razorpay=new Razorpay(options);
