@@ -89,7 +89,9 @@
     try {
       if (typeof supabaseClient === "undefined") throw new Error("Learning service is unavailable.");
       var courseSlug = page.dataset.course || "";
-      var subject = page.dataset.subject || "";
+      var rawSubject = page.dataset.subject || "";
+      var subjectMap = { science: "Science", maths: "Mathematics", mathematics: "Mathematics" };
+      var subject = subjectMap[String(rawSubject).toLowerCase()] || rawSubject;
       var chapterNumber = Number(page.dataset.chapter || 0);
       if (!courseSlug || !subject || !Number.isInteger(chapterNumber) || chapterNumber < 1) throw new Error("Invalid chapter configuration.");
 
