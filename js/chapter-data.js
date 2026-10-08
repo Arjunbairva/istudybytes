@@ -34,7 +34,7 @@ window.ISB_CHAPTERS = {
     ["Measuring Space: Perimeter and Area", "Measuring Space: Perimeter and Area", "class9-maths-chapter-6-measuring-space-perimeter-and-area.html"],
     ["The Mathematics of Maybe: Introduction to Probability", "The Mathematics of Maybe: Introduction to Probability", "class9-maths-chapter-7-the-mathematics-of-maybe-introduction-to-probability.html"],
     ["Predicting What Comes Next: Exploring Sequences and Progressions", "Predicting What Comes Next: Exploring Sequences and Progressions", "class9-maths-chapter-8-predicting-what-comes-next-exploring-sequences-and-progressions.html"],
-    ["Propositions and their Converses", "Propositions and their Converses", "class9-maths-chapter-9-propositions-and-their-converses.html"],
+    ["Propositions and their Converses", "Propositions and their Converses", "class9-maths-chapter-9-propositions-and-their-converses.html", "static:/ncert/class-9/mathematics/chapter-9.html"],
     ["How Quantities Combine: Understanding Data", "How Quantities Combine: Understanding Data", "class9-maths-chapter-10-how-quantities-combine-understanding-data.html"],
     ["The World of Algorithms", "The World of Algorithms", "class9-maths-chapter-11-the-world-of-algorithms.html"],
     ["Quadrilaterals", "Quadrilaterals", "class9-maths-chapter-12-quadrilaterals.html"],
