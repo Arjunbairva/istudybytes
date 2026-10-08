@@ -139,5 +139,12 @@
   if (!chapterKey) { showChapterList(); return; }
   var index = list.findIndex(function (item) { return item[1] === chapterKey; });
   if (index < 0) { showChapterList(); return; }
+
+  // Static NCERT chapters bypass the database entirely.
+  if (list[index][3] && String(list[index][3]).indexOf("static:") === 0) {
+    location.replace(String(list[index][3]).slice(7));
+    return;
+  }
+
   showChapter(list[index], index);
 })();
