@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CBSE Class 10 60-Day Crash Course • 2026–27 | iStudyBytes</title>
+<title>CBSE Class 10 – 60-Day Crash Course • 2026–27 | iStudyBytes</title>
 <link rel="icon" href="images/logo-icon.avif">
-<meta name="description" content="iStudyBytes CBSE Class 10 60-Day Crash Course • 2026–27 — chapter-wise Science and Mathematics resources for CBSE preparation.">
+<meta name="description" content="iStudyBytes CBSE Class 10 – 60-Day Crash Course • 2026–27 — chapter-wise Science and Mathematics resources for CBSE preparation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
@@ -66,7 +66,7 @@
   <nav class="breadcrumb" aria-label="Breadcrumb">
     <ol class="breadcrumb__list">
       <li><a href="store.html">Store</a></li>
-      <li><span aria-current="page">CBSE Class 10 60-Day Crash Course • 2026–27</span></li>
+      <li><span aria-current="page">CBSE Class 10 – 60-Day Crash Course • 2026–27</span></li>
     </ol>
   </nav>
 
@@ -74,7 +74,7 @@
     <div class="panel-dark product-visual">
       <span class="icon-tile product-visual__icon"><i class="fa-solid fa-calculator" aria-hidden="true"></i></span>
       <span class="eyebrow">CBSE · Class 10 · 2026–27</span>
-      <h1 id="course-title">CBSE Class 10 60-Day Crash Course • 2026–27</h1>
+      <h1 id="course-title">CBSE Class 10 – 60-Day Crash Course • 2026–27</h1>
       <p id="course-description">A focused 60-day crash course for CBSE Class 10 Science and Mathematics (2026–27), built for fast, structured exam preparation.</p>
     </div>
 
@@ -139,7 +139,7 @@
       <p>A one-time purchase for the Class 10 course, with access linked to your iStudyBytes account after successful payment.</p>
     </div>
     <dl class="card card--flat details">
-      <div><dt>Course</dt><dd>CBSE Class 10 60-Day Crash Course • 2026–27</dd></div>
+      <div><dt>Course</dt><dd>CBSE Class 10 – 60-Day Crash Course • 2026–27</dd></div>
       <div><dt>Curriculum</dt><dd>CBSE 2026–27</dd></div>
       <div><dt>Subjects</dt><dd>Science + Mathematics</dd></div>
       <div><dt>Chapter coverage</dt><dd>14 Mathematics chapters + 13 Science chapters</dd></div>
@@ -217,7 +217,7 @@
 const buyNowBtn=document.getElementById('buyNowBtn');
 function goCheckout(){window.location.href='checkout.html?course=class-10'}
 buyNowBtn?.addEventListener('click',goCheckout);
-async function loadCourse(){try{const {data,error}=await supabaseClient.from('courses').select('name,description,price,launch_price,launch_offer_ends_at').eq('slug','class-10').single();if(error)throw error;if(data){document.getElementById('course-title').textContent=data.name||'CBSE Class 10 60-Day Crash Course • 2026–27';document.getElementById('course-description').textContent=data.description||'A structured learning course for Class 10 Science and Mathematics.';const active=data.launch_price!=null&&data.launch_offer_ends_at&&new Date()<new Date(data.launch_offer_ends_at);const price='₹'+Number(active?data.launch_price:(data.price||2999)).toLocaleString('en-IN');const detail=active?price+' <span class="price__was">₹'+Number(data.price||2999).toLocaleString('en-IN')+'</span> <span class="price__off">50% OFF</span>':price;document.getElementById('course-price').innerHTML=detail;document.getElementById('course-price-detail').innerHTML=detail}}catch(error){console.error('Course load failed:',error)}}
+async function loadCourse(){try{const {data,error}=await supabaseClient.from('courses').select('name,description,price,launch_price,launch_offer_ends_at').eq('slug','class-10').single();if(error)throw error;if(data){document.getElementById('course-title').textContent=String(data.name||'CBSE Class 10 – 60-Day Crash Course • 2026–27').replace(/(Class\s+\d+)\s+(?=60-Day)/i,'$1 – ');document.getElementById('course-description').textContent=data.description||'A structured learning course for Class 10 Science and Mathematics.';const active=data.launch_price!=null&&data.launch_offer_ends_at&&new Date()<new Date(data.launch_offer_ends_at);const price='₹'+Number(active?data.launch_price:(data.price||2999)).toLocaleString('en-IN');const detail=active?price+' <span class="price__was">₹'+Number(data.price||2999).toLocaleString('en-IN')+'</span> <span class="price__off">50% OFF</span>':price;document.getElementById('course-price').innerHTML=detail;document.getElementById('course-price-detail').innerHTML=detail}}catch(error){console.error('Course load failed:',error)}}
 loadCourse();
 </script>
 <script src="js/site.js" defer></script>

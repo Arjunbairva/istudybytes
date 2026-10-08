@@ -50,7 +50,7 @@ if(order.product_type==='bundle'){
   if(accessError||!access){showError('Invoice unavailable','Course access could not be verified for this order.');return;}
   const {data:course,error:courseError}=await supabaseClient.from('courses').select('name,slug,description,price').eq('id',access.course_id).maybeSingle();
   if(courseError||!course){showError('Invoice unavailable','The course linked to this payment could not be found.');return;}
-  productName=course.name;productDescription='One-time digital course access';
+  productName=String(course.name||'').replace(/(Class\s+\d+)\s+(?=60-Day)/i,'$1 – ');productDescription='One-time digital course access';
 }
 const customerName=session.user.user_metadata?.full_name||session.user.user_metadata?.name||session.user.email?.split('@')[0]||'Student';
 const invoiceNumber='ISB-'+new Date(order.created_at).getFullYear()+'-'+String(order.id).padStart(6,'0');

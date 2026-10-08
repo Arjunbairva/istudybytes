@@ -130,7 +130,7 @@
     if(result.error||!result.data){nameEl.textContent='Resource bundle not found';descEl.textContent='The selected resource bundle could not be found.';priceEl.textContent='';payButton.disabled=true;return}
     product=result.data;
   }
-  nameEl.textContent=product.name;
+  nameEl.textContent=String(product.name||'').replace(/(Class\s+\d+)\s+(?=60-Day)/i,'$1 – ');
   descEl.textContent=product.description||(productType==='bundle'?'Complete premium '+product.subject+' '+product.resource_type+' resources.':'');
   const launchActive=product.launch_price!=null&&product.launch_offer_ends_at&&new Date()<new Date(product.launch_offer_ends_at);
   const displayPrice=launchActive?Number(product.launch_price):Number(product.price);
