@@ -34,7 +34,8 @@
   /* ---- Chapter list --------------------------------------------------- */
   function chapterCard(item, index) {
     var n = index + 1;
-    return '<a class="card card--row card--sm lesson" href="' + base + "&chapter=" + q(item[1]) + '">' +
+    var target = item[4] || (base + "&chapter=" + q(item[1]));
+    return '<a class="card card--row card--sm lesson" href="' + target + '">' +
       '<span class="lesson__num" aria-hidden="true">' + String(n).padStart(2, "0") + "</span>" +
       '<span class="lesson__body card__body"><strong>' + esc(item[0]) + "</strong><small>Chapter " + n + "</small></span>" +
       '<span class="card__arrow" aria-hidden="true">→</span></a>';
@@ -141,8 +142,8 @@
   if (index < 0) { showChapterList(); return; }
 
   // Static NCERT chapters bypass the database entirely.
-  if (list[index][3] && String(list[index][3]).indexOf("static:") === 0) {
-    location.replace(String(list[index][3]).slice(7));
+  if (list[index][4]) {
+    location.replace(list[index][4]);
     return;
   }
 
