@@ -28,15 +28,15 @@
   }
 
   function chapterLabel(row) {
-    if (!row) return null;
-    return "Chapter " + row.chapter_number + " — " + row.chapter_name;
+    return row ? "Chapter " + row.chapter_number + " — " + row.chapter_name : "";
   }
 
-  function chapterUrl(slug, subject, chapterNumber) {
-    var prefix = slug === "class-9" ? "class9-" : slug === "class-10" ? "class10-" : "";
-    var subjectPart = subject === "Science" ? "science" : subject === "Mathematics" ? "maths" : "";
-    if (!prefix || !subjectPart || !chapterNumber) return null;
-    return prefix + subjectPart + ".html#chapter-" + chapterNumber;
+  function subjectUrl(slug, subject) {
+    if (slug === "class-9" && subject === "Science") return "class9-science.html";
+    if (slug === "class-9" && subject === "Mathematics") return "class9-maths.html";
+    if (slug === "class-10" && subject === "Science") return "class10-science.html";
+    if (slug === "class-10" && subject === "Mathematics") return "class10-maths.html";
+    return slug === "class-9" ? "course-class9.html" : slug === "class-10" ? "course-class10.html" : "store.html";
   }
 
   async function run() {
@@ -66,13 +66,13 @@
 
     var progressResult = await supabaseClient
       .from("user_chapter_progress")
-      .select("course_id,subject,chapter_number,completed,updated_at")
+      .select("course_id,subject,chapter_number,completed")
       .eq("user_id", user.id)
       .in("course_id", ids);
 
     var courseProgressResult = await supabaseClient
       .from("user_progress")
-      .select("course_id,progress_percent,updated_at")
+      .select("course_id,progress_percent")
       .eq("user_id", user.id)
       .in("course_id", ids);
 
@@ -104,14 +104,13 @@
       var card = cards[index];
       if (!card) return;
 
-      var courseId = String(enrollment.course_id);
-      var chapters = chaptersByCourse.get(courseId) || [];
+      var chapters = chaptersByCourse.get(String(enrollment.course_id)) || [];
       var completed = chapters.filter(function (row) {
         return completedSet.has(chapterKey(row));
       }).length;
 
-      var percent = progressByCourse.has(courseId)
-        ? progressByCourse.get(courseId)
+      var percent = progressByCourse.has(String(enrollment.course_id))
+        ? progressByCourse.get(String(enrollment.course_id))
         : (chapters.length ? completed / chapters.length * 100 : 0);
 
       addProgress(card, percent, completed, chapters.length);
@@ -144,25 +143,21 @@
     var button = existingContinue.querySelector("a.btn");
 
     if (currentChapter && description) {
-      var text = firstCompleted >= firstChapters.length
+      description.textContent = firstCompleted >= firstChapters.length
         ? "Course completed. Review your chapters anytime."
         : "Continue with " + chapterLabel(currentChapter) + ".";
-
-      description.textContent = text;
     }
 
     if (currentChapter && button) {
       var slug = first.courses && first.courses.slug;
-      var url = chapterUrl(slug, currentChapter.subject, currentChapter.chapter_number);
-      if (url) {
-        button.href = url;
-        button.textContent = "Continue";
-        var icon = document.createElement("i");
-        icon.className = "fa-solid fa-arrow-right";
-        icon.setAttribute("aria-hidden", "true");
-        button.appendChild(document.createTextNode(" "));
-        button.appendChild(icon);
-      }
+      var url = subjectUrl(slug, currentChapter.subject);
+      button.href = url;
+      button.textContent = firstCompleted >= firstChapters.length ? "Review Course" : "Continue";
+      var icon = document.createElement("i");
+      icon.className = "fa-solid fa-arrow-right";
+      icon.setAttribute("aria-hidden", "true");
+      button.appendChild(document.createTextNode(" "));
+      button.appendChild(icon);
     }
   }
 
