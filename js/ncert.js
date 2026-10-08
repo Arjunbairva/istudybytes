@@ -120,7 +120,7 @@
     try {
       if (typeof supabaseClient !== "undefined") {
         var request = supabaseClient.from("ncert_solutions").select("*")
-          .eq("published", true).eq("class_level", cls).eq("subject", subject).eq("chapter_number", chapterNumber)
+          .eq("published", true).eq("class_level", "class-" + cls).eq("subject", subject).eq("chapter_number", chapterNumber)
           .limit(1);
         var r = await Promise.race([
           request,
