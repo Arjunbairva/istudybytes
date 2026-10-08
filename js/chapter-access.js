@@ -102,7 +102,7 @@
         return;
       }
 
-      if (!accessResult.data || enrollmentResult.data.length === 0) {
+      if (!accessResult.data || accessResult.data.length === 0) {
         showGate(
           "This chapter is part of the Complete Course",
           "Your account does not have active access to the " + courseLabel + " Complete Course. Purchase the course to unlock premium chapters.",
