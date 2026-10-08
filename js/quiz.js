@@ -10,69 +10,7 @@ const chapter=p.get("chapter")||"";
 
 let questions=[],i=0,score=0,answered=false,answerLog=[],startedAt=new Date().toISOString();
 
-const chapterLists={
-"9|Science":[
-["Exploration: Entering the World of Secondary Science","Exploration"],
-["Cell: The Building Block of Life","Cell"],
-["Tissues in Action","Tissues in Action"],
-["Describing Motion Around Us","Describing Motion Around Us"],
-["Exploring Mixtures and their Separation","Exploring Mixtures and their Separation"],
-["How Forces Affect Motion","How Forces Affect Motion"],
-["Work, Energy, and Simple Machines","Work, Energy, and Simple Machines"],
-["Journey Inside the Atom","Journey Inside the Atom"],
-["Atomic Foundations of Matter","Atomic Foundations of Matter"],
-["Sound Waves: Characteristics and Applications","Sound Waves: Characteristics and Applications"],
-["Reproduction: How Life Continues","Reproduction: How Life Continues"],
-["Patterns in Life: Diversity and Classification","Patterns in Life: Diversity and Classification"],
-["Earth as a System: Energy, Matter, and Life","Earth as a System: Energy, Matter, and Life"]
-],
-"9|Mathematics":[
-["Orienting Yourself: The Use of Coordinates","Orienting Yourself: The Use of Coordinates"],
-["Introduction to Linear Polynomials","Introduction to Linear Polynomials"],
-["The World of Numbers","The World of Numbers"],
-["Exploring Algebraic Identities","Exploring Algebraic Identities"],
-["I’m Up and Down, and Round and Round","I’m Up and Down, and Round and Round"],
-["Measuring Space: Perimeter and Area","Measuring Space: Perimeter and Area"],
-["The Mathematics of Maybe: Introduction to Probability","The Mathematics of Maybe: Introduction to Probability"],
-["Predicting What Comes Next: Exploring Sequences and Progressions","Predicting What Comes Next: Exploring Sequences and Progressions"],
-["Propositions and their Converses","Propositions and their Converses"],
-["How Quantities Combine: Understanding Data","How Quantities Combine: Understanding Data"],
-["The World of Algorithms","The World of Algorithms"],
-["Quadrilaterals","Quadrilaterals"],
-["Two Variables, One Line","Two Variables, One Line"],
-["Math of Space: Surface Area and Volume","Math of Space: Surface Area and Volume"]
-],
-"10|Science":[
-["Chemical Reactions and Equations","Chemical Reactions and Equations"],
-["Acids, Bases and Salts","Acids, Bases and Salts"],
-["Metals and Non-metals","Metals and Non-metals"],
-["Carbon and its Compounds","Carbon and its Compounds"],
-["Life Processes","Life Processes"],
-["Control and Coordination","Control and Coordination"],
-["How do Organisms Reproduce?","How do Organisms Reproduce?"],
-["Heredity","Heredity"],
-["Light: Reflection and Refraction","Light: Reflection and Refraction"],
-["The Human Eye and the Colourful World","The Human Eye and the Colourful World"],
-["Electricity","Electricity"],
-["Magnetic Effects of Electric Current","Magnetic Effects of Electric Current"],
-["Our Environment","Our Environment"]
-],
-"10|Mathematics":[
-["Real Numbers","Real Numbers"],
-["Polynomials","Polynomials"],
-["Pair of Linear Equations in Two Variables","Pair of Linear Equations in Two Variables"],
-["Quadratic Equations","Quadratic Equations"],
-["Arithmetic Progressions","Arithmetic Progressions"],
-["Triangles","Triangles"],
-["Coordinate Geometry","Coordinate Geometry"],
-["Introduction to Trigonometry","Introduction to Trigonometry"],
-["Some Applications of Trigonometry","Some Applications of Trigonometry"],
-["Circles","Circles"],
-["Areas Related to Circles","Areas Related to Circles"],
-["Surface Areas and Volumes","Surface Areas and Volumes"],
-["Statistics","Statistics"],
-["Probability","Probability"]
-]};
+const chapterLists=window.ISB_CHAPTERS||{}; // shared with the NCERT pages: js/chapter-data.js
 
 const fallback=[
 {class_level:"9",subject:"Science",chapter:"Cell",question:"Which structure controls most activities of a cell?",question_type:"single",option_a:"Cell wall",option_b:"Nucleus",option_c:"Vacuole",option_d:"Cytoplasm",correct_answer:"B",explanation:"The nucleus contains genetic material and coordinates many cellular activities."},
@@ -259,6 +197,8 @@ async function nextQuestion(){
   if(!answered)return;
   if(i<questions.length-1){i++;render();return;}
   await saveAttempt();
+  const solutions=document.getElementById("quiz-solutions-link");
+  if(solutions&&chapter)solutions.href="ncert-solutions.html?class="+encodeURIComponent(cls)+"&subject="+encodeURIComponent(subject)+"&chapter="+encodeURIComponent(chapter);
   body.hidden=true;
   result.hidden=false;
   document.getElementById("final-score").textContent=score+"/"+questions.length;

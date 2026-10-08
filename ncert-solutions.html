@@ -51,33 +51,21 @@
 <!-- SHELL:HEADER:END --><main id="main" class="page">
   <header class="page-head page-head--center">
     <span class="eyebrow">100% free · No login</span>
-    <h1>NCERT Solutions for CBSE Class 9 &amp; 10</h1>
-    <p class="page-head__lead">Chapter-wise and question-wise solutions for CBSE students, with Class 9 resources aligned to Ganita Manjari Mathematics and Exploration Science. Free to read and designed for easy navigation.</p>
+    <h1 id="ncert-title">NCERT Solutions for CBSE Class 9 &amp; 10</h1>
+    <p class="page-head__lead" id="ncert-intro">Chapter-wise and question-wise solutions for CBSE students, with Class 9 resources aligned to Ganita Manjari Mathematics and Exploration Science. Free to read and designed for easy navigation.</p>
   </header>
 
+  <div id="ncert-landing">
   <section class="section" aria-labelledby="subjects-title">
     <div class="section__head"><h2 id="subjects-title">Choose your class and subject</h2></div>
     <div class="grid grid--2">
-      <article class="card"><span class="badge">Science</span><h3 class="card__title">Class 9 Science</h3><p class="card__text">Explore the Class 9 Science resource area, organised chapter by chapter for the CBSE 2026–27 curriculum.</p><div class="card__foot"><a class="btn btn-secondary" href="class9-science.html">Explore Class 9 Science <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></article>
-      <article class="card"><span class="badge">Maths</span><h3 class="card__title">Class 9 Mathematics</h3><p class="card__text">Explore Class 9 Mathematics chapter resources, organised for the CBSE 2026–27 curriculum.</p><div class="card__foot"><a class="btn btn-secondary" href="class9-maths.html">Explore Class 9 Maths <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></article>
-      <article class="card"><span class="badge">Science</span><h3 class="card__title">Class 10 Science</h3><p class="card__text">Free Class 10 Science solution library.</p><div class="card__foot"><a class="btn btn-secondary" href="class10-science.html">Explore Class 10 Science <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></article>
-      <article class="card"><span class="badge">Maths</span><h3 class="card__title">Class 10 Mathematics</h3><p class="card__text">Free Class 10 Mathematics solution library.</p><div class="card__foot"><a class="btn btn-secondary" href="class10-maths.html">Explore Class 10 Maths <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></article>
+      <article class="card"><span class="badge">Science</span><h3 class="card__title">Class 9 Science</h3><p class="card__text">Free NCERT solutions for Class 9 Exploration Science, organised chapter by chapter for the CBSE 2026–27 curriculum.</p><div class="card__foot"><a class="btn btn-secondary" href="ncert-solutions.html?class=9&amp;subject=Science">Explore Class 9 Science <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></article>
+      <article class="card"><span class="badge">Maths</span><h3 class="card__title">Class 9 Mathematics</h3><p class="card__text">Free NCERT solutions for Class 9 Ganita Manjari Mathematics, organised chapter by chapter for the CBSE 2026–27 curriculum.</p><div class="card__foot"><a class="btn btn-secondary" href="ncert-solutions.html?class=9&amp;subject=Mathematics">Explore Class 9 Maths <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></article>
+      <article class="card"><span class="badge">Science</span><h3 class="card__title">Class 10 Science</h3><p class="card__text">Free NCERT solutions for Class 10 Science, organised chapter by chapter.</p><div class="card__foot"><a class="btn btn-secondary" href="ncert-solutions.html?class=10&amp;subject=Science">Explore Class 10 Science <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></article>
+      <article class="card"><span class="badge">Maths</span><h3 class="card__title">Class 10 Mathematics</h3><p class="card__text">Free NCERT solutions for Class 10 Mathematics, organised chapter by chapter.</p><div class="card__foot"><a class="btn btn-secondary" href="ncert-solutions.html?class=10&amp;subject=Mathematics">Explore Class 10 Maths <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></article>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="guides-title">
-    <div class="section__head">
-      <h2 id="guides-title">Free chapter guides</h2>
-      <p>Start with chapter-level study hubs that connect the textbook, free practice and revision resources.</p>
-    </div>
-    <div class="grid grid--3">
-      <a class="card" href="class9-science-cell.html"><h3 class="card__title">Class 9 Science — Cell</h3><p class="card__text">Key concepts, definitions, activities and free quiz.</p></a>
-      <a class="card" href="class9-maths-chapter-1-orienting-yourself-the-use-of-coordinates.html"><h3 class="card__title">Class 9 Mathematics — Chapter 1</h3><p class="card__text">Ganita Manjari coordinate chapter study path.</p></a>
-      <a class="card" href="class10-science-chapter-1-chemical-reactions-and-equations.html"><h3 class="card__title">Class 10 Science — Chapter 1</h3><p class="card__text">Textbook pathway, practice and free quiz.</p></a>
-      <a class="card" href="class10-maths-chapter-1-real-numbers.html"><h3 class="card__title">Class 10 Mathematics — Chapter 1</h3><p class="card__text">Real Numbers study path and free practice.</p></a>
-      <a class="card" href="class9-science-exploration.html"><h3 class="card__title">Class 9 Science — Exploration</h3><p class="card__text">Scientific inquiry, models, measurement, predictions and estimation.</p></a>
-    </div>
-  </section>
 
   <section class="section" aria-labelledby="quiz-cta-title">
     <div class="card card--tint card--row learn-cta">
@@ -90,6 +78,9 @@
   </section>
 
   <p class="notice"><strong>iStudyBytes policy:</strong> NCERT Solutions and free quizzes remain accessible without login.</p>
+  </div>
+
+  <section id="ncert-view" hidden></section>
 </main>
 <!-- SHELL:FOOTER:START -->
 <footer class="site-footer">
@@ -137,5 +128,9 @@
   </div>
 </footer>
 <!-- SHELL:FOOTER:END -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/chapter-data.js"></script>
+<script src="js/ncert.js"></script>
 <script src="js/site.js" defer></script>
 </body></html>
