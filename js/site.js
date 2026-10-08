@@ -50,20 +50,50 @@
     if (window.innerWidth > 900) setNav(false);
   });
 
+  /* ---- Shared script loader ---- */
+  function loadScript(src) {
+    return new Promise(function (resolve, reject) {
+      var existing = document.querySelector('script[src="' + src + '"]');
+      if (existing) {
+        if (existing.dataset.loaded === "true") return resolve();
+        existing.addEventListener("load", function () { resolve(); }, { once: true });
+        existing.addEventListener("error", function () { reject(new Error("Failed to load " + src)); }, { once: true });
+        return;
+      }
+      var s = document.createElement("script");
+      s.src = src;
+      s.onload = function () { s.dataset.loaded = "true"; resolve(); };
+      s.onerror = function () { reject(new Error("Failed to load " + src)); };
+      document.head.appendChild(s);
+    });
+  }
+
+  /* ---- Premium chapter runtime ----
+     Premium chapter templates use data attributes so the shared shell can
+     bootstrap the protected learning runtime even when the page only includes
+     site.js. This keeps every chapter on the same authorization path. */
+  (async function bootPremiumChapter() {
+    if (!document.body || document.body.dataset.premiumChapter !== "true") return;
+    try {
+      if (!window.supabase) await loadScript("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2");
+      if (typeof supabaseClient === "undefined") await loadScript("js/supabase-config.js");
+      if (!document.querySelector('script[src="js/chapter-access.js"]')) {
+        await loadScript("js/chapter-access.js");
+      }
+      if (!document.querySelector('script[src="js/premium-content.js"]')) {
+        await loadScript("js/premium-content.js");
+      }
+    } catch (err) {
+      console.error("Premium chapter runtime failed to start:", err);
+    }
+  })();
+
   /* ---- Auth state ----
      The inline script in the header sets .has-session when a Supabase token is
      in localStorage (so signed-in visitors never see a "Log in" flash). Here we
      confirm the session is real and fill in the name. Signed-out visitors
      (no token) make no network request at all. */
   if (!root.classList.contains("has-session")) return;
-
-  function loadScript(src) {
-    return new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = src; s.onload = resolve; s.onerror = reject;
-      document.head.appendChild(s);
-    });
-  }
 
   async function getClient() {
     if (typeof supabaseClient !== "undefined") return supabaseClient;
