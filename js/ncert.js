@@ -59,25 +59,11 @@
 
   /* ---- Chapter view --------------------------------------------------- */
   function solutionsHtml(rows) {
-    if (!rows || !rows.length) {
+    if (!rows || !rows.length || !rows[0].content_html) {
       return '<div class="empty-state"><h3>Solutions are being added</h3>' +
         "<p>The NCERT solutions for this chapter are being prepared. Meanwhile, you can take the free chapter quiz.</p></div>";
     }
-    var html = "", current = null;
-    rows.forEach(function (row) {
-      if (row.exercise !== current) {
-        if (current !== null) html += "</div></section>";
-        current = row.exercise;
-        html += '<section class="quiz-part"><h3 class="quiz-part__title">' + esc(current) + '</h3><div class="grid grid--2">';
-      }
-      var label = row.question_number ? "Q" + esc(row.question_number) : "";
-      html += '<article class="card">' + (label ? '<span class="eyebrow">' + label + "</span>" : "") +
-        '<p class="card__text"><strong>Question.</strong> ' + esc(row.question) + "</p>" +
-        String(row.solution).split(/\n+/).filter(Boolean).map(function (line, i) {
-          return '<p class="card__text">' + (i === 0 ? "<strong>Solution.</strong> " : "") + esc(line) + "</p>";
-        }).join("") + "</article>";
-    });
-    return html + "</div></section>";
+    return rows[0].content_html;
   }
 
   function premiumCard(name, text, href, action) {
@@ -125,17 +111,17 @@
           premiumCard("Premium Test", "Chapter tests with exam-style questions.", courseUrl, "View course") +
         "</div></section>"
     );
-    loadSolutions(item[1]);
+    loadSolutions(n);
   }
 
-  async function loadSolutions(key) {
+  async function loadSolutions(chapterNumber) {
     var holder = document.getElementById("ncert-solutions-body");
     var rows = [];
     try {
       if (typeof supabaseClient !== "undefined") {
         var request = supabaseClient.from("ncert_solutions").select("*")
-          .eq("published", true).eq("class_level", cls).eq("subject", subject).eq("chapter", key)
-          .order("display_order", { ascending: true }).limit(500);
+          .eq("published", true).eq("class_level", cls).eq("subject", subject).eq("chapter_number", chapterNumber)
+          .limit(1);
         var r = await Promise.race([
           request,
           new Promise(function (resolve) { setTimeout(function () { resolve({ error: new Error("timeout"), data: null }); }, 5000); })
