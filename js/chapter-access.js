@@ -29,7 +29,7 @@
           '<a class="btn btn-primary" href="' + primaryHref + '">' + primaryLabel + ' <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>' +
           (secondaryHref ? '<a class="btn btn-secondary" href="' + secondaryHref + '">' + secondaryLabel + '</a>' : '') +
         '</div>' +
-        '<p class="card__meta">Chapter 1 remains free. Premium chapters require active course access.</p>' +
+        '<p class="card__meta">Premium chapters require active course access.</p>' +
       '</section>';
 
     ready();
@@ -82,16 +82,15 @@
         return;
       }
 
-      var enrollmentResult = await supabaseClient
-        .from("enrollments")
+      var accessResult = await supabaseClient
+        .from("course_access")
         .select("id")
         .eq("user_id", user.id)
         .eq("course_id", courseResult.data.id)
-        .eq("status", "active")
         .limit(1);
 
-      if (enrollmentResult.error) {
-        console.error("Premium chapter enrollment check failed:", enrollmentResult.error);
+      if (accessResult.error) {
+        console.error("Premium chapter course-access check failed:", accessResult.error);
         showGate(
           "Access could not be verified",
           "We could not verify your course access right now. Please try again in a moment.",
@@ -103,7 +102,7 @@
         return;
       }
 
-      if (!enrollmentResult.data || enrollmentResult.data.length === 0) {
+      if (!accessResult.data || enrollmentResult.data.length === 0) {
         showGate(
           "This chapter is part of the Complete Course",
           "Your account does not have active access to the " + courseLabel + " Complete Course. Purchase the course to unlock premium chapters.",
